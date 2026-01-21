@@ -1,4 +1,6 @@
 .site-header {
+    background-color: rgba(white, 75%);
+    backdrop-filter: blur(10px);
     border-block-end: rem(1px) solid $color-black-6;
 }
 
@@ -11,12 +13,12 @@
 }
 
 .site-header__logo {
-    height: rem(32px);
+    height: rem(40px);
 }
 
 .site-header__menu {
     display: flex;
-    gap: rem(24px);
+    gap: rem(32px);
     align-items: center;
 }
 

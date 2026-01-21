@@ -11,16 +11,24 @@
 
 // H4
 @mixin type-style-04 {
-	font-size: rem(24px);
+	font-size: rem(20px);
 	line-height: 1.1;
 	letter-spacing: -0.03em;
+
+	@media (min-width: $break-grid-md) {
+		font-size: rem(24px);
+	}
 }
 
 // H5
 @mixin type-style-05 {
-	font-size: rem(20px);
+	font-size: rem(18px);
 	line-height: 1.1;
 	letter-spacing: -0.03em;
+
+	@media (min-width: $break-grid-md) {
+		font-size: rem(20px);
+	}
 }
 
 // H6
@@ -60,12 +68,15 @@
 	@media (min-width: $break-grid-md) {
 		font-size: rem(80px);
 	}
+
+	@media (min-width: $break-grid-lg) {
+		font-size: rem(100px);
+	}
 }
 
 // Menu Link
 @mixin type-style-13 {
-	font-size: rem(14px);
-	letter-spacing: -0.01em;
+	font-size: rem(16px);
 }
 
 @mixin type-style-14 {}

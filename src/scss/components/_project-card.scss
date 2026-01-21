@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     row-gap: rem(24px);
+    position: relative;
 }
 
 .project-card__media {
@@ -23,7 +24,7 @@
 .project-card__content {
     display: flex;
     flex-direction: column;
-    row-gap: rem(8px);
+    row-gap: rem(4px);
 }
 
 .project-card__title {
@@ -33,6 +34,14 @@
 
     .project-card--alt & {
         @include type-style-05;
+    }
+}
+
+.project-card__link {
+    &::before {
+        position: absolute;
+        inset: 0;
+        content: '';
     }
 }
 
