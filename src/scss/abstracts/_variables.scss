@@ -94,23 +94,6 @@ $l-section-spacing-sm: rem(80px);
 $l-section-spacing-md: rem(140px);
 $l-section-spacing-lg: rem(150px);
 
-$l-component-spacing-xs: rem(30px);
-
-// Display a grid overlay for debugging
-$show-grid: false;
-
-// ---------------------------------------------------------------------------
-//  Content Sidebar
-// ---------------------------------------------------------------------------
-
-$break-content-sidebar: em(1200px);
-
-// ---------------------------------------------------------------------------
-//  Admin Bar
-// ---------------------------------------------------------------------------
-
-$admin-bar-height: var(--wp-admin--admin-bar--height, 0px);
-
 //---------------------------------------------------------------------------
 //	Site Header
 //---------------------------------------------------------------------------
@@ -188,7 +171,6 @@ $border-radius-circle: 50%;
 //---------------------------------------------------------------------------
 
 :root {
-	--admin-bar-height: var(--wp-admin--admin-bar--height, 0px);
 	--color-border: #{rgba(black, 20%)};
 	--color-border-light: #{rgba(black, 10%)};
 	--color-border-active: black;
@@ -197,7 +179,6 @@ $border-radius-circle: 50%;
 	--color-page-bg-black: #{$color-page-bg-black};
 	--color-theme-bg: #{$color-page-bg-black};
 	--easing-cubic-bezier: #{$transition-cubic-bezier};
-	--scroll-padding-top: calc(var(--admin-bar-height) + var(--section-spacer));
 	--site-header-offset-01: 0px;
 	--site-header-offset-02: #{$inset-01};
 	--site-header-height: #{rem(90px)};

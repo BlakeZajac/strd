@@ -2,6 +2,8 @@
 import SiteHeader from "../components/layout-site-header/SiteHeader.astro";
 import Footer from "../components/Footer.astro";
 
+import "../scss/style.scss";
+
 interface Props {
     title?: string;
     currentPage?: string;
@@ -18,7 +20,7 @@ const { title = "STRD", currentPage } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="stylesheet" href="https://use.typekit.net/lec4mqw.css" />
         <meta name="generator" content={Astro.generator} />
-        <title>{title} - {currentPage}</title>
+        <title>{title}</title>
     </head>
     <body>
         <SiteHeader currentPage={currentPage} />
@@ -28,7 +30,3 @@ const { title = "STRD", currentPage } = Astro.props;
         <Footer />
     </body>
 </html>
-
-<style lang="scss">
-    @import "../scss/style.scss";
-</style>
