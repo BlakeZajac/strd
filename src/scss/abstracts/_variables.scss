@@ -1,0 +1,232 @@
+@import "functions";
+
+//---------------------------------------------------------------------------
+//	Typography
+//---------------------------------------------------------------------------
+
+$font-family-01: "neue-haas-grotesk-text", Arial, Helvetica, sans-serif;
+
+$font-size-base: 16px;
+
+//---------------------------------------------------------------------------
+//	Colors
+//---------------------------------------------------------------------------
+
+// Branding
+$color-branding-01: #ed1941; // Red
+$color-branding-02: #eb0c80; // Pink
+$color-branding-03: #0f3443; // Navy
+$color-branding-04: #6100ff; // Purple
+$color-branding-05: rgba($color-branding-01, 10%); // Red 10%
+$color-branding-06: rgba($color-branding-02, 20%); // Pink 20%
+$color-branding-07: rgba($color-branding-02, 7%); // Pink 7%
+
+// Gradient
+$color-gradient-01: linear-gradient(93deg,
+		$color-branding-01 0%,
+		$color-branding-02 100%);
+$color-gradient-02: linear-gradient(93deg,
+		$color-branding-01 0%,
+		$color-branding-02 25%,
+		$color-branding-01 50%,
+		$color-branding-02 75%,
+		$color-branding-01 100%);
+
+// Greyscale
+$color-grey-800: #1d1f21;
+$color-grey-700: #252422;
+$color-grey-600: #323532;
+$color-grey-500: #4e564e;
+$color-grey-400: #93988f;
+$color-grey-300: #bdc0b9;
+$color-grey-200: #deded6;
+$color-grey-100: #f1f0ea;
+$color-grey-000: #f2f3f0;
+
+// System
+$color-page-bg: #fff;
+$color-page-bg-black: $color-grey-800;
+$color-page-bg-grey: $color-grey-100;
+
+$color-emphasis: $color-grey-700;
+$color-default: $color-grey-700;
+$color-media-placeholder: $color-grey-300;
+$color-placeholder: #4f4f4f;
+
+$color-selection-bg: rgba($color-branding-01, 0.5);
+
+// Other
+$color-google-01: #feaf05;
+
+//---------------------------------------------------------------------------
+//  Breakpoints
+//
+//  Global breakpoints used across the site. Use t-shirt sizing for naming.
+//  Add larger and smaller sizes with the format 2xs or 2xl.
+//---------------------------------------------------------------------------
+
+$break-grid-2xs: em(375px);
+$break-grid-xs: em(460px);
+$break-grid-sm: em(580px);
+$break-grid-md: em(744px);
+$break-grid-lg: em(1024px);
+$break-grid-xl: em(1280px);
+$break-grid-2xl: em(1400px);
+$break-grid-3xl: em(1600px);
+$break-grid-4xl: em(2560px);
+
+//---------------------------------------------------------------------------
+//	Layout
+//---------------------------------------------------------------------------
+
+$l-container-padding-xs: rem(20px);
+$l-container-padding-lg: rem(32px);
+$l-container-padding-xl: rem(64px);
+
+$l-container-max-width: rem(1920px);
+$l-container-max-width-lg: rem(2560px);
+
+$l-grid-padding-01: rem(10px);
+$l-grid-padding-02: rem(20px);
+
+// @todo - these aren't accurate. review tablet/mobile design once they're ready.
+$l-section-spacing-sm: rem(80px);
+$l-section-spacing-md: rem(140px);
+$l-section-spacing-lg: rem(150px);
+
+$l-component-spacing-xs: rem(30px);
+
+// Display a grid overlay for debugging
+$show-grid: false;
+
+// ---------------------------------------------------------------------------
+//  Content Sidebar
+// ---------------------------------------------------------------------------
+
+$break-content-sidebar: em(1200px);
+
+// ---------------------------------------------------------------------------
+//  Admin Bar
+// ---------------------------------------------------------------------------
+
+$admin-bar-height: var(--wp-admin--admin-bar--height, 0px);
+
+//---------------------------------------------------------------------------
+//	Site Header
+//---------------------------------------------------------------------------
+
+$site-header-height: var(--site-header-height) !default;
+$site-header-break-sm: $break-grid-sm !default;
+$site-header-break-full: em(1100px) !default;
+
+//---------------------------------------------------------------------------
+//	Site Offcanvas
+//---------------------------------------------------------------------------
+
+$site-offcanvas-break-disable: em(1100px) !default;
+$site-offcanvas-inset: rem(10px) !default;
+$site-offcanvas-bottom-offset: rem(60px) !default;
+$site-offcanvas-control-size: rem(48px) !default;
+
+//---------------------------------------------------------------------------
+//	Inset
+//---------------------------------------------------------------------------
+
+$inset-01: rem(10px);
+
+//---------------------------------------------------------------------------
+//	Transitions
+//---------------------------------------------------------------------------
+
+$transition-default: 0.2s ease-in-out;
+$transition-medium: 0.3s ease-in-out;
+$transition-slow: 0.4s ease-in-out;
+
+$transition-cubic-bezier: cubic-bezier(0.16, 1, 0.3, 1);
+$transition-cubic-01: 1s $transition-cubic-bezier;
+$transition-cubic-02: 1.2s $transition-cubic-bezier;
+
+$transition-elastic-ease-out: linear(0,
+		0.5737 7.6%,
+		0.8382 11.87%,
+		0.9463 14.19%,
+		1.0292 16.54%,
+		1.0886 18.97%,
+		1.1258 21.53%,
+		1.137 22.97%,
+		1.1424 24.48%,
+		1.1423 26.1%,
+		1.1366 27.86%,
+		1.1165 31.01%,
+		1.0507 38.62%,
+		1.0219 42.57%,
+		0.9995 46.99%,
+		0.9872 51.63%,
+		0.9842 58.77%,
+		1.0011 81.26%,
+		1);
+$transition-elastic-01: 1s $transition-elastic-ease-out;
+$transition-elastic-02: 1.2s $transition-elastic-ease-out;
+
+//---------------------------------------------------------------------------
+//	Border Radius
+//---------------------------------------------------------------------------
+
+// @todo - update these to 01, 02 prefixes etc once we have the full list of radii
+$border-radius-4: rem(4px);
+$border-radius-8: rem(8px);
+$border-radius-15: rem(15px);
+$border-radius-16: rem(16px);
+$border-radius-30: rem(30px);
+$border-radius-32: rem(32px);
+$border-radius-40: rem(40px);
+$border-radius-full: rem(9999px);
+$border-radius-circle: 50%;
+
+//---------------------------------------------------------------------------
+//	Root Variables
+//---------------------------------------------------------------------------
+
+:root {
+	--admin-bar-height: var(--wp-admin--admin-bar--height, 0px);
+	--color-border: #{rgba(black, 20%)};
+	--color-border-light: #{rgba(black, 10%)};
+	--color-border-active: black;
+	--color-emphasis: #{$color-emphasis};
+	--color-default: #{$color-default};
+	--color-page-bg-black: #{$color-page-bg-black};
+	--color-theme-bg: #{$color-page-bg-black};
+	--easing-cubic-bezier: #{$transition-cubic-bezier};
+	--scroll-padding-top: calc(var(--admin-bar-height) + var(--section-spacer));
+	--site-header-offset-01: 0px;
+	--site-header-offset-02: #{$inset-01};
+	--site-header-height: #{rem(90px)};
+	--section-spacer: #{$l-section-spacing-sm};
+	--spacer-01: #{rem(32px)};
+	--swiper-pagination-color: #{$color-gradient-01};
+}
+
+@media (min-width: $site-header-break-sm) {
+	:root {
+		--site-header-height: #{rem(130px)};
+	}
+}
+
+@media (min-width: $break-grid-md) {
+	:root {
+		--section-spacer: #{$l-section-spacing-md};
+		--spacer-01: #{rem(40px)};
+	}
+}
+
+@media (min-width: $break-grid-lg) {
+	:root {
+		--section-spacer: #{$l-section-spacing-lg};
+		--spacer-01: #{rem(48px)};
+	}
+}
+
+html:has(.u-inset:first-child) {
+	--site-header-offset-01: #{$inset-01};
+	--site-header-offset-02: 0px;
+}

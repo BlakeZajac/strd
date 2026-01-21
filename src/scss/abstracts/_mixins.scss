@@ -1,0 +1,204 @@
+@use "sass:math";
+
+@mixin visually-hidden {
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	white-space: nowrap;
+}
+
+@mixin link-underline($thickness: rem(2px),
+	$offset: rem(6px),
+	$color: transparent) {
+	text-decoration: underline;
+	text-decoration-color: $color;
+	text-decoration-thickness: $thickness;
+	text-underline-offset: $offset;
+	transition: text-decoration $transition-cubic-01;
+}
+
+@mixin link-underline-hover($color: currentColor) {
+	text-decoration-color: $color;
+}
+
+@mixin link-underline-animated($reverse: false,
+	$background: $color-gradient-01) {
+	width: fit-content;
+	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		inset-block-end: 0;
+		inset-inline-start: 0;
+		width: 100%;
+		height: rem(1px);
+		background: $background;
+		transition: transform $transition-cubic-01;
+	}
+
+	@if $reverse {
+		&::after {
+			transform: scaleX(0);
+			transform-origin: right;
+		}
+	}
+
+	@else {
+		&::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
+	}
+}
+
+@mixin link-underline-animated-hover($reverse: false) {
+	@if $reverse {
+		&::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
+	}
+
+	@else {
+		&::after {
+			transform: scaleX(0);
+			transform-origin: right;
+		}
+	}
+}
+
+@mixin gradient-text($animated: true, $background: $color-gradient-02) {
+	background: $background;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+	&:is(strong) {
+		font-weight: inherit;
+	}
+
+	@if $animated and (prefers-reduced-motion: no-preference) {
+		@include gradient-shift;
+	}
+}
+
+@mixin gradient-shift {
+	background-size: 200% 200%;
+	animation: gradient-shift 4s linear infinite;
+}
+
+@mixin stroke-text($stroke-width: 2px, $stroke-color: $color-branding-01) {
+	-webkit-text-stroke: $stroke-width $stroke-color;
+	-webkit-text-fill-color: transparent;
+}
+
+@mixin inset {
+	margin-block-end: $inset-01;
+	margin-inline: $inset-01;
+	border-radius: $border-radius-40;
+
+	&:first-child {
+		margin-block-start: $inset-01;
+	}
+
+	@media (min-width: calc($break-grid-4xl + ($inset-01 * 2))) {
+		margin-inline: auto;
+	}
+}
+
+@mixin inset-inline {
+	margin-inline: $inset-01;
+	border-radius: $border-radius-40;
+
+	@media (min-width: calc($break-grid-4xl + ($inset-01 * 2))) {
+		margin-inline: auto;
+	}
+}
+
+// Used for horizontal scrollbars
+@mixin scrollbar-01($inverted: false) {
+	@supports (-moz-appearance: none) {
+		scrollbar-width: thin;
+	}
+
+	&::-webkit-scrollbar {
+		height: rem(6px);
+	}
+
+	&::-webkit-scrollbar-track {
+		border-radius: $border-radius-full;
+
+		@if $inverted {
+			background: rgba(white, 30%);
+		}
+
+		@else {
+			background: rgba(black, 10%);
+		}
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: $border-radius-full;
+
+		@if $inverted {
+			background: rgba(white, 30%);
+		}
+
+		@else {
+			background: rgba(black, 30%);
+		}
+
+		&:hover {
+			@if $inverted {
+				background: rgba(white, 50%);
+			}
+
+			@else {
+				background: rgba(black, 50%);
+			}
+		}
+	}
+}
+
+// Used for vertical scrollbars
+@mixin scrollbar-02($inverted: true) {
+	@supports (-moz-appearance: none) {
+		scrollbar-width: thin;
+	}
+
+	&::-webkit-scrollbar {
+		width: rem(4px);
+	}
+
+	&::-webkit-scrollbar-track {
+		border-radius: $border-radius-full;
+
+		@if $inverted {
+			background: rgba(white, 30%);
+		}
+
+		@else {
+			background: rgba(black, 30%);
+		}
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: $border-radius-full;
+
+		@if $inverted {
+			background: white;
+		}
+
+		@else {
+			background: black;
+		}
+	}
+}
+
+@mixin focus($width: rem(2px), $color: $color-branding-01, $offset: rem(4px)) {
+	outline: $width solid $color;
+	outline-offset: $offset;
+}

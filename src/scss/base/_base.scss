@@ -1,0 +1,61 @@
+@import "../abstracts/variables";
+@import "../abstracts/functions";
+
+$color-selection: white !default;
+$color-selection-bg: rgba(25, 47, 3, 0.3) !default;
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: calc(var(--scroll-padding-top) - 1px);
+}
+
+body {
+	margin: 0;
+	background: $color-page-bg;
+	color: var(--color-default); // @todo we need a way to change this dynamically based on data-light or data-dark. currently this needs to be added to each css element as it's too high up to be applied.
+	font-family: $font-family-01;
+	font-size: rem($font-size-base);
+	line-height: 1.5;
+	scrollbar-width: 0;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+// Text Selection
+/* Set text selection colour & kill text shadow */
+::selection {
+	background: $color-selection-bg;
+	color: $color-selection;
+	text-shadow: none;
+}
+
+//---------------------------------------------------------------------------
+//	Type
+//---------------------------------------------------------------------------
+
+strong {
+	font-weight: 600;
+}
+
+button,
+input[type="submit"],
+input[type="button"] {
+	cursor: pointer;
+}
+
+p:empty {
+	display: none;
+}

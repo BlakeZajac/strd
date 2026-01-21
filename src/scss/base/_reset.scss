@@ -1,0 +1,276 @@
+//	Project: Redback Boilerplate
+
+//	[Reset]
+
+//	Reset by Anthony Short (https://github.com/anthonyshort/stitch-css/blob/master/stylesheets/stitch/_reset.scss)
+
+html {
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	line-height: 1;
+}
+
+//---------------------------------------------------------------------------
+//	FORMS
+//---------------------------------------------------------------------------
+
+form {
+	margin: 0;
+}
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+button,
+input,
+select,
+textarea {
+	font-size: 100%;
+	font-family: inherit;
+	margin: 0;
+	padding: 0;
+	border: none;
+	vertical-align: baseline;
+	*vertical-align: middle;
+}
+
+button,
+input {
+	line-height: normal;
+	overflow: visible;
+}
+
+button {
+	background-color: transparent;
+	border: 0;
+	color: inherit;
+}
+
+textarea {
+	overflow: auto;
+	padding: 0;
+	vertical-align: top;
+}
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+:focus {
+	outline: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+//---------------------------------------------------------------------------
+//	IMAGES
+//---------------------------------------------------------------------------
+
+figure {
+	margin: 0;
+}
+
+img {
+	-ms-interpolation-mode: bicubic;
+	display: block;
+}
+
+//---------------------------------------------------------------------------
+//	LISTS
+//---------------------------------------------------------------------------
+
+ol,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+dl,
+dd {
+	margin: 0;
+}
+
+li {
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+//---------------------------------------------------------------------------
+//	HEADINGS
+//---------------------------------------------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	line-height: inherit;
+	font-size: inherit;
+	margin: 0;
+}
+
+//---------------------------------------------------------------------------
+//	BLOCK ELEMENTS
+//---------------------------------------------------------------------------
+
+p {
+	margin: 0;
+}
+
+blockquote {
+	margin: 0;
+}
+
+pre {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+//---------------------------------------------------------------------------
+//	INLINE ELEMENTS
+//---------------------------------------------------------------------------
+
+cite {
+	font-style: normal;
+}
+
+ins {
+	text-decoration: none;
+}
+
+dfn {
+	font-style: inherit;
+}
+
+mark {
+	background: none;
+	color: inherit;
+}
+
+address {
+	font-style: normal;
+}
+
+tt,
+code,
+kbd,
+samp {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+small {
+	font-size: 100%;
+}
+
+q {
+	quotes: none;
+}
+
+q:before,
+q:after {
+	content: "";
+	content: none;
+}
+
+a {
+	font-weight: inherit;
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	outline: none;
+}
+
+a:focus {
+	outline: none;
+}
+
+a img {
+	border: none;
+}
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+//---------------------------------------------------------------------------
+//	HTML5 ELEMENTS
+//---------------------------------------------------------------------------
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+//---------------------------------------------------------------------------
+//	TABLES
+//---------------------------------------------------------------------------
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+th {
+	font-weight: inherit;
+}
+
+td {
+	vertical-align: top;
+}

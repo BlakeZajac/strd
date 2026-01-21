@@ -1,0 +1,134 @@
+// copy spacing guidelines
+// larger headings that expand fullwidth of the container should have a block-end of 48px
+// headings such as h2 should have a block-end of 32px
+// smaller headings such as subtitle should have a block-end of 24px
+
+.copy {
+	--copy-spacer: #{rem(24px)};
+
+	@media (min-width: $break-grid-md) {
+		--copy-spacer: #{rem(32px)};
+	}
+
+	> *:first-child {
+		margin-block-start: 0 !important;
+	}
+
+	> *:last-child {
+		margin-block-end: 0 !important;
+	}
+
+	:is(h1, .h1) {
+		@include type-style-01;
+		margin-block: var(--section-spacer) var(--copy-spacer);
+		color: var(--color-emphasis);
+	}
+
+	.h1-hero {
+		@include type-style-16;
+	}
+
+	:is(h2, .h2) {
+		@include type-style-01;
+		margin-block: var(--section-spacer) var(--copy-spacer);
+		color: var(--color-emphasis);
+	}
+
+	:is(h3, .h3) {
+		@include type-style-03;
+		margin-block: var(--copy-spacer);
+		color: var(--color-emphasis);
+	}
+
+	:is(h4, .h4) {
+		@include type-style-04;
+		margin-block: var(--copy-spacer);
+		color: var(--color-emphasis);
+	}
+
+	:is(h5, .h5) {
+		@include type-style-05;
+		margin-block: var(--copy-spacer);
+		color: var(--color-emphasis);
+	}
+
+	:is(h6, .h6) {
+		@include type-style-06;
+		margin-block: var(--copy-spacer);
+		color: var(--color-emphasis);
+	}
+
+	p {
+		@include type-style-07;
+		margin-block-end: rem(24px);
+
+		&:last-child {
+			margin-block-end: 0;
+		}
+
+		@at-root .copy--size_md#{&} {
+			margin-block-end: rem(20px);
+			@include type-style-09;
+		}
+	}
+
+	.subtitle {
+		--copy-spacer: #{rem(24px)};
+	}
+
+	.subtitle:not(.subtitle--sm) {
+		@include type-style-27;
+	}
+
+	.subtitle--sm {
+		@include type-style-28;
+	}
+
+	.lead {
+		@include type-style-08;
+		margin-block-end: var(--copy-spacer);
+	}
+
+	ul {
+		padding-inline-start: rem(40px);
+		margin-block-end: var(--copy-spacer);
+		list-style-type: disc;
+	}
+
+	ol {
+		padding-inline-start: rem(40px);
+		margin-block-end: var(--copy-spacer);
+		list-style-type: decimal;
+	}
+
+	li {
+		@include type-style-07;
+		display: list-item;
+		list-style-type: inherit;
+
+		@at-root .copy--size_md#{&} {
+			@include type-style-09;
+		}
+	}
+
+	a:not(.btn):not(.button) {
+		@include gradient-text;
+		@include link-underline(rem(2px), rem(2px), $color-branding-01);
+
+		&:hover {
+			@include link-underline-hover(transparent);
+		}
+
+		&:focus-visible {
+			@include focus($offset: 0);
+		}
+	}
+
+	hr {
+		height: rem(1px);
+		width: 100%;
+		margin-block-start: rem(40px);
+		margin-block-end: rem(40px);
+		background-color: black;
+	}
+}

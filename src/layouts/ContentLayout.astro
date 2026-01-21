@@ -1,0 +1,18 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+    title?: string;
+    currentPage?: string;
+}
+
+const { title, currentPage } = Astro.props;
+---
+
+<Layout title={title} currentPage={currentPage}>
+    <article class="site-content">
+        <div class="site-content__container">
+            <slot />
+        </div>
+    </article>
+</Layout>

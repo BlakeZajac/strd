@@ -1,0 +1,214 @@
+$animation-duration: 1.2s !default;
+$animation-timing-function: $transition-cubic-bezier !default;
+$animation-distance: rem(32px) !default;
+
+@media (prefers-reduced-motion: no-preference) {
+	:root {
+		--animation-fade-down: fade-down #{$animation-duration} #{$animation-timing-function}
+			forwards;
+		--animation-fade-in: fade-in #{$animation-duration} #{$animation-timing-function}
+			forwards;
+		--animation-fade-in-scale-down: fade-in-scale-down #{$animation-duration} #{$animation-timing-function}
+			forwards;
+		--animation-fade-up: fade-up #{$animation-duration} #{$animation-timing-function}
+			forwards;
+		--animation-reveal-text: reveal-text #{$animation-duration} #{$animation-timing-function}
+			forwards;
+		--animation-scale-up: scale-up #{$animation-duration} #{$animation-timing-function}
+			forwards;
+		--animation-separator: separator #{$animation-duration} 0.5s #{$animation-timing-function}
+			forwards;
+	}
+
+	// Initial states
+	.scroll-trigger {
+		&.animate--fade-in {
+			opacity: 0;
+		}
+
+		&.animate--fade-in-scale-down {
+			opacity: 0;
+			transform: scale(1.25);
+		}
+
+		&.animate--fade-up {
+			opacity: 0;
+			transform: translateY($animation-distance);
+		}
+
+		&.animate--fade-down {
+			opacity: 0;
+			transform: translateY(-$animation-distance);
+		}
+
+		&.animate--reveal-text,
+		.animate--reveal-text {
+			transform: translateY(110%);
+		}
+
+		&.animate--scale-up {
+			transform: scale(0);
+		}
+
+		&.animate--separator {
+			width: 0;
+		}
+
+		// Animation states
+		&:not(.scroll-trigger--offscreen) {
+			&.animate--fade-in {
+				animation: var(--animation-fade-in);
+			}
+
+			&.animate--fade-in-scale-down {
+				animation: var(--animation-fade-in-scale-down);
+			}
+
+			&.animate--fade-up {
+				animation: var(--animation-fade-up);
+			}
+
+			&.animate--fade-down {
+				animation: var(--animation-fade-down);
+			}
+
+			&.animate--reveal-text,
+			.animate--reveal-text {
+				animation: var(--animation-reveal-text);
+			}
+
+			&.animate--scale-up {
+				animation: var(--animation-scale-up);
+			}
+
+			&.animate--separator {
+				animation: var(--animation-separator);
+			}
+		}
+	}
+
+	// Delay
+	.a-delay {
+		animation-delay: var(--delay) !important;
+		transition-delay: var(--delay) !important;
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes fade-in-scale-down {
+		from {
+			opacity: 0;
+			transform: scale(1.125);
+		}
+
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY($animation-distance);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes fade-down {
+		from {
+			opacity: 0;
+			transform: translateY(-$animation-distance);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes gradient-shift {
+		0% {
+			background-position: 0% 50%;
+		}
+
+		50% {
+			background-position: 100% 50%;
+		}
+
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+
+	@keyframes reveal-text {
+		from {
+			transform: translateY(110%);
+		}
+
+		to {
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes scale-up {
+		from {
+			transform: scale(0);
+		}
+
+		to {
+			transform: scale(1);
+		}
+	}
+
+	@keyframes separator {
+		from {
+			width: 0;
+		}
+
+		to {
+			width: 100%;
+		}
+	}
+
+	@keyframes rotate {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes rotate-reverse {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(-360deg);
+		}
+	}
+
+	// Fallbacks
+	.no-js .scroll-trigger,
+	.scroll-trigger[data-prefers-reduced-motion] {
+		opacity: 1 !important;
+		transform: none !important;
+		clip-path: none !important;
+		animation: none !important;
+	}
+}
