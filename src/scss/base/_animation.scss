@@ -4,20 +4,13 @@ $animation-distance: rem(32px) !default;
 
 @media (prefers-reduced-motion: no-preference) {
 	:root {
-		--animation-fade-down: fade-down #{$animation-duration} #{$animation-timing-function}
-			forwards;
-		--animation-fade-in: fade-in #{$animation-duration} #{$animation-timing-function}
-			forwards;
-		--animation-fade-in-scale-down: fade-in-scale-down #{$animation-duration} #{$animation-timing-function}
-			forwards;
-		--animation-fade-up: fade-up #{$animation-duration} #{$animation-timing-function}
-			forwards;
-		--animation-reveal-text: reveal-text #{$animation-duration} #{$animation-timing-function}
-			forwards;
-		--animation-scale-up: scale-up #{$animation-duration} #{$animation-timing-function}
-			forwards;
-		--animation-separator: separator #{$animation-duration} 0.5s #{$animation-timing-function}
-			forwards;
+		--animation-fade-down: fade-down #{$animation-duration} #{$animation-timing-function} forwards;
+		--animation-fade-in: fade-in #{$animation-duration} #{$animation-timing-function} forwards;
+		--animation-fade-in-scale-down: fade-in-scale-down #{$animation-duration} #{$animation-timing-function} forwards;
+		--animation-fade-up: fade-up #{$animation-duration} #{$animation-timing-function} forwards;
+		--animation-reveal-text: reveal-text #{$animation-duration} #{$animation-timing-function} forwards;
+		--animation-scale-up: scale-up #{$animation-duration} #{$animation-timing-function} forwards;
+		--animation-separator: separator #{$animation-duration} 0.5s #{$animation-timing-function} forwards;
 	}
 
 	// Initial states
@@ -136,20 +129,6 @@ $animation-distance: rem(32px) !default;
 		to {
 			opacity: 1;
 			transform: translateY(0);
-		}
-	}
-
-	@keyframes gradient-shift {
-		0% {
-			background-position: 0% 50%;
-		}
-
-		50% {
-			background-position: 100% 50%;
-		}
-
-		100% {
-			background-position: 0% 50%;
 		}
 	}
 

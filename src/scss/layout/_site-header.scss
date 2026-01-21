@@ -1,0 +1,34 @@
+.site-header {
+    border-block-end: rem(1px) solid $color-black-6;
+}
+
+.site-header__container {
+    display: flex;
+    gap: rem(32px);
+    align-items: center;
+    justify-content: space-between;
+    padding-block: rem(24px);
+}
+
+.site-header__logo {
+    height: rem(32px);
+}
+
+.site-header__menu {
+    display: flex;
+    gap: rem(24px);
+    align-items: center;
+}
+
+.site-header__link {
+    @include type-style-13;
+    @include link-underline-animated(true);
+
+    &:hover {
+        @include link-underline-animated-hover(true);
+    }
+}
+
+.site-header__link--active {
+    opacity: 0.5;
+}

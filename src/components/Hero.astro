@@ -1,13 +1,17 @@
-<div class="hero">
-    <div class="hero__container l-container">
-        <h1 class="hero__title">
-            Built to perform. <br />
-            Designed to last.
-        </h1>
+---
+interface Props {
+    title?: string;
+    description?: string;
+}
 
-        <p class="hero__text">
-            Making strides through WordPress and design.<br />
-            Built for businesses and individuals ready to move forward.
-        </p>
+const { title = "", description = "" } = Astro.props;
+
+if (!title && !description) return;
+---
+
+<div class="hero l-section">
+    <div class="hero__container l-container">
+        {title && <h1 set:html={title} class="hero__title" />}
+        {description && <p set:html={description} class="hero__text" />}
     </div>
 </div>

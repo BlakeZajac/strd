@@ -2,23 +2,11 @@
 @import "../abstracts/functions";
 
 //---------------------------------------------------------------------------
-//	Section - Dark Mode
-//---------------------------------------------------------------------------
-
-[data-dark-mode] {
-	--color-border: #{rgba(white, 10%)};
-	--color-border-light: #{rgba(white, 10%)};
-	--color-border-active: white;
-	--color-emphasis: white;
-	--color-default: white;
-}
-
-//---------------------------------------------------------------------------
 //	Section - Margin
 //---------------------------------------------------------------------------
 
 .l-section {
-	margin-block-start: var(--section-spacer);
+	margin-block-start: var(--spacer-section);
 }
 
 .l-section--margin-top_none {
@@ -66,62 +54,10 @@
 }
 
 .l-section--background_black-01 {
-	background-color: $color-page-bg-black;
+	background-color: $color-black;
 
 	&:has(+ .l-section--background_black-01) {
 		padding-block-end: 0;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-	}
-
-	+.l-section--background_black-01 {
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-	}
-}
-
-.l-section--background_grey-01 {
-	background-color: $color-grey-000;
-
-	&:has(+ .l-section--background_grey-01) {
-		padding-block-end: 0;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-	}
-
-	+.l-section--background_grey-01 {
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-	}
-}
-
-.l-section--background_grey-02 {
-	background-color: $color-page-bg-grey;
-
-	&:has(+ .l-section--background_grey-02) {
-		padding-block-end: 0;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-	}
-
-	+.l-section--background_grey-02 {
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-	}
-}
-
-.l-section--background_theme {
-	background-color: var(--color-theme-bg);
-
-	&:has(+ .l-section--background_theme) {
-		padding-block-end: 0;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-	}
-
-	+.l-section--background_theme {
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
 	}
 }
 
@@ -142,31 +78,10 @@
 		padding-inline: $l-container-padding-xl;
 	}
 
-	[class*="u-inset"] & {
-		padding-inline: calc($l-container-padding-xs - $inset-01);
-
-		@media (min-width: $break-grid-lg) {
-			padding-inline: calc($l-container-padding-lg - $inset-01);
-		}
-
-		@media (min-width: $break-grid-lg) {
-			padding-inline: calc($l-container-padding-xl - $inset-01);
-		}
-	}
-
 	.l-container {
 		max-width: 100%;
 		padding: 0;
 		margin: 0;
-	}
-}
-
-.l-container--lg {
-	max-width: $l-container-max-width-lg;
-	padding-inline: $inset-01;
-
-	[class*="u-inset"] & {
-		padding-inline: $inset-01;
 	}
 }
 

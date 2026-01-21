@@ -1,5 +1,5 @@
 ---
-import SiteHeader from "../components/layout-site-header/SiteHeader.astro";
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 import "../scss/style.scss";
@@ -23,7 +23,7 @@ const { title = "STRD", currentPage } = Astro.props;
         <title>{title}</title>
     </head>
     <body>
-        <SiteHeader currentPage={currentPage} />
+        <Header currentPage={currentPage} />
         <main class="site-main">
             <slot />
         </main>

@@ -1,0 +1,33 @@
+---
+const currentPath = Astro.url.pathname;
+const navItems = [
+    { label: "Work", href: "/work" },
+    { label: "About", href: "/about" },
+    { label: "Reading", href: "/reading" },
+];
+---
+
+<header class="site-header">
+    <div class="site-header__container l-container">
+        <a href="/">
+            <img src="/logo.svg" alt="STRD Logo" class="site-header__logo" />
+        </a>
+
+        <nav class="site-header__menu">
+            {
+                navItems.map((item) => (
+                    <a
+                        href={item.href}
+                        class={
+                            currentPath === item.href
+                                ? "site-header__link site-header__link--active"
+                                : "site-header__link"
+                        }
+                    >
+                        {item.label}
+                    </a>
+                ))
+            }
+        </nav>
+    </div>
+</header>

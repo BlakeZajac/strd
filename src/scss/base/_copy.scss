@@ -10,18 +10,17 @@
 		--copy-spacer: #{rem(32px)};
 	}
 
-	> *:first-child {
+	>*:first-child {
 		margin-block-start: 0 !important;
 	}
 
-	> *:last-child {
+	>*:last-child {
 		margin-block-end: 0 !important;
 	}
 
 	:is(h1, .h1) {
 		@include type-style-01;
 		margin-block: var(--section-spacer) var(--copy-spacer);
-		color: var(--color-emphasis);
 	}
 
 	.h1-hero {
@@ -31,31 +30,26 @@
 	:is(h2, .h2) {
 		@include type-style-01;
 		margin-block: var(--section-spacer) var(--copy-spacer);
-		color: var(--color-emphasis);
 	}
 
 	:is(h3, .h3) {
 		@include type-style-03;
 		margin-block: var(--copy-spacer);
-		color: var(--color-emphasis);
 	}
 
 	:is(h4, .h4) {
 		@include type-style-04;
 		margin-block: var(--copy-spacer);
-		color: var(--color-emphasis);
 	}
 
 	:is(h5, .h5) {
 		@include type-style-05;
 		margin-block: var(--copy-spacer);
-		color: var(--color-emphasis);
 	}
 
 	:is(h6, .h6) {
 		@include type-style-06;
 		margin-block: var(--copy-spacer);
-		color: var(--color-emphasis);
 	}
 
 	p {
@@ -112,8 +106,7 @@
 	}
 
 	a:not(.btn):not(.button) {
-		@include gradient-text;
-		@include link-underline(rem(2px), rem(2px), $color-branding-01);
+		@include link-underline(rem(2px), rem(2px), currentColor);
 
 		&:hover {
 			@include link-underline-hover(transparent);
@@ -129,6 +122,6 @@
 		width: 100%;
 		margin-block-start: rem(40px);
 		margin-block-end: rem(40px);
-		background-color: black;
+		background-color: $color-black;
 	}
 }

@@ -17,8 +17,8 @@ html {
 
 body {
 	margin: 0;
-	background: $color-page-bg;
-	color: var(--color-default); // @todo we need a way to change this dynamically based on data-light or data-dark. currently this needs to be added to each css element as it's too high up to be applied.
+	background: white;
+	color: $color-black;
 	font-family: $font-family-01;
 	font-size: rem($font-size-base);
 	line-height: 1.5;

@@ -1,0 +1,15 @@
+.hero {}
+
+.hero__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--spacer-03);
+}
+
+.hero__title {
+    @include type-style-12;
+}
+
+.hero__text {
+    @include type-style-07;
+}

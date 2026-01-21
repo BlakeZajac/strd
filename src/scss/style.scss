@@ -15,8 +15,11 @@
 @import "base/copy";
 @import "base/animation";
 
-// Global components
+// Components
+@import 'components/hero';
 
 // Layout
+@import 'layout/site-header';
+@import 'layout/site-footer';
 
 // Pages

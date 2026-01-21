@@ -1,436 +1,86 @@
 @use "sass:math";
 
-// Figma: H1
-@mixin type-style-01 {
-	font-family: $font-family-01;
-	font-size: rem(28px);
-	line-height: 1.28;
-	letter-spacing: rem(0.42px);
+// H1
+@mixin type-style-01 {}
 
-	@media (min-width: $break-grid-md) {
-		font-size: rem(40px);
-	}
+// H2
+@mixin type-style-02 {}
 
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(42px);
-	}
-}
+// H3
+@mixin type-style-03() {}
 
-// Figma: H2
-@mixin type-style-02 {
-	font-family: $font-family-01;
-	font-size: rem(24px);
-	line-height: 1.28;
-	letter-spacing: rem(0.32px);
+// H4
+@mixin type-style-04() {}
 
-	@media (min-width: $break-grid-md) {
-		font-size: rem(30px);
-	}
+// H5
+@mixin type-style-05() {}
 
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(32px);
-	}
-}
-
-// Figma: H3
-@mixin type-style-03($font-weight: 400) {
-	font-size: rem(21px);
-	font-weight: $font-weight;
-	line-height: 1.38;
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(26px);
-	}
-}
-
-// Figma: H4
-@mixin type-style-04($font-weight: 400) {
-	font-size: rem(22px);
-	font-weight: $font-weight;
-	line-height: 1.4;
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(24px);
-	}
-}
-
-// Figma: H5
-@mixin type-style-05($font-weight: 400) {
-	font-size: rem(18px);
-	font-weight: $font-weight;
-	line-height: 1.4;
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(20px);
-	}
-}
-
-// Figma: H6
+// H6
 @mixin type-style-06 {}
 
-// Figma: Body Default
-@mixin type-style-07($font-weight: 400) {
-	font-size: rem(16px);
-	font-weight: $font-weight;
+// Body Default
+@mixin type-style-07() {
+	font-size: rem(18px);
 	line-height: 1.6;
-	letter-spacing: rem(0.17px);
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(17px);
-	}
 }
 
-// Figma: Body Featured
-@mixin type-style-08($font-weight: 400) {
-	font-size: rem(20px);
-	font-weight: $font-weight;
-	line-height: 1.5;
+// Body Featured
+@mixin type-style-08() {}
 
-	@media (min-width: $break-grid-md) {
-		font-size: rem(22px);
-	}
+// Body Medium
+@mixin type-style-09() {}
 
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(23px);
-	}
-}
-
-// Figma: Body Medium
-@mixin type-style-09($font-weight: 400) {
-	font-size: rem(13px);
-	font-weight: $font-weight;
-	line-height: 1.4;
-	letter-spacing: rem(0.15px);
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(15px);
-	}
-}
-
-// Figma: Body Small
+// Body Small
 @mixin type-style-10() {}
 
-// Figma: Body Small Button
-@mixin type-style-11($font-weight: 900, $text-transform: uppercase) {
+// Button
+@mixin type-style-11() {}
+
+// Display
+@mixin type-style-12() {
+	font-size: rem(80px);
+	line-height: 1.05;
+	letter-spacing: -0.02em;
+}
+
+// Menu Link
+@mixin type-style-13() {
 	font-size: rem(14px);
-	font-weight: $font-weight;
-	line-height: 1.4;
-	letter-spacing: rem(1.4px);
-	text-transform: $text-transform;
+	letter-spacing: -0.01em;
 }
 
-// Figma: Body XS
-@mixin type-style-12 {}
+@mixin type-style-14() {}
 
-// Primary Menu Label
-@mixin type-style-13($font-weight: 400) {
-	font-size: rem(15px);
-	font-weight: $font-weight;
-	line-height: 1.77;
+@mixin type-style-15() {}
 
-	@media (min-width: em(1200px)) {
-		font-size: rem(16px);
-	}
+@mixin type-style-16() {}
 
-	@media (min-width: $break-grid-2xl) {
-		font-size: rem(18px);
-	}
-}
+@mixin type-style-17() {}
 
-// Primary Menu Submenu Label
-@mixin type-style-14 {
-	font-size: rem(14px);
+@mixin type-style-18() {}
 
-	@media (min-width: em(1200px)) {
-		font-size: rem(14px);
-	}
+@mixin type-style-19() {}
 
-	font-size: rem(15px);
+@mixin type-style-20() {}
 
-	@media (min-width: $break-grid-2xl) {
-		font-size: rem(16px);
-	}
-}
+@mixin type-style-21() {}
 
-// Figma: Big Hero Text
-@mixin type-style-15($text-transform: uppercase) {
-	font-family: $font-family-01;
-	font-size: rem(88px);
-	line-height: 0.74;
-	letter-spacing: rem(-0.88px);
-	text-transform: $text-transform;
+@mixin type-style-22() {}
 
-	@media (min-width: $break-grid-md) {
-		font-size: rem(150px);
-		letter-spacing: rem(-1.5px);
-	}
+@mixin type-style-23() {}
 
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(220px);
-		letter-spacing: rem(-2.2px);
-	}
-}
+@mixin type-style-24() {}
 
-// Figma: H1 Hero (Small Hero Text)
-@mixin type-style-16 {
-	font-family: $font-family-01;
-	font-size: rem(35px);
-	line-height: 1.2;
-	letter-spacing: rem(0.7px);
+@mixin type-style-25() {}
 
-	@media (min-width: $break-grid-md) {
-		font-size: rem(64px);
-	}
+@mixin type-style-26() {}
 
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(70px);
-		letter-spacing: rem(0.35px);
-	}
-}
+@mixin type-style-27() {}
 
-// Figma: Graph Item Title
-@mixin type-style-17 {
-	font-family: $font-family-01;
-	font-size: rem(90px);
-	line-height: 1;
+@mixin type-style-28() {}
 
-	@media (min-width: $break-grid-sm) {
-		font-size: rem(120px);
-	}
+@mixin type-style-29() {}
 
-	@media (min-width: $break-grid-md) {
-		font-size: rem(140px);
-	}
+@mixin type-style-30() {}
 
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(180px);
-	}
-
-	@media (min-width: $break-grid-2xl) {
-		font-size: rem(220px);
-	}
-}
-
-// Figma: Graph Item Percentage
-@mixin type-style-18($font-weight: 700) {
-	font-family: $font-family-01;
-	font-size: rem(48px);
-	font-weight: $font-weight;
-
-	@media (min-width: $break-grid-sm) {
-		font-size: rem(60px);
-	}
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(72px);
-	}
-
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(100px);
-	}
-
-	@media (min-width: $break-grid-2xl) {
-		font-size: rem(120px);
-	}
-}
-
-// Figma: Featured Project Title
-@mixin type-style-19 {
-	font-family: $font-family-01;
-	font-size: rem(35px);
-	line-height: 1.2;
-	letter-spacing: rem(0.35px);
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(64px);
-		letter-spacing: rem(-0.64px);
-	}
-
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(80px);
-		letter-spacing: rem(0.8px);
-	}
-}
-
-// Figma: Featured Project Statistic Title
-@mixin type-style-20 {
-	font-family: $font-family-01;
-	font-size: rem(50px);
-	line-height: 1;
-	text-transform: uppercase;
-}
-
-// Figma: Hero Title
-@mixin type-style-21($text-transform: uppercase) {
-	font-family: $font-family-01;
-	font-size: rem(191px);
-	line-height: 0.74;
-	text-transform: $text-transform;
-	letter-spacing: rem(-2.1px);
-
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(255px);
-	}
-
-	@media (min-width: $break-grid-xl) {
-		font-size: rem(319px);
-	}
-}
-
-// Figma: Hero Accordion Label
-@mixin type-style-22($text-transform: uppercase) {
-	@include type-style-15($text-transform);
-
-	@media (max-width: max-width($break-grid-2xs)) {
-		font-size: rem(64px);
-	}
-
-	@media (min-width: $break-grid-xl) {
-		font-size: clamp(rem(160px),
-			calc(#{rem(160px)} + 16.22vw - #{rem(207.616px)}),
-			rem(220px));
-		letter-spacing: rem(-2.2px);
-	}
-}
-
-// Figma: Content Grid Title
-@mixin type-style-23 {
-	font-family: $font-family-01;
-	font-size: rem(40px);
-	line-height: 1.2;
-	letter-spacing: rem(1.1px);
-
-	@media (min-width: $break-grid-sm) {
-		font-size: rem(48px);
-	}
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(64px);
-	}
-
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(80px);
-	}
-
-	@media (min-width: $break-grid-xl) {
-		font-size: rem(110px);
-	}
-}
-
-// Figma: Banner Quote Quote
-@mixin type-style-24 {
-	font-family: $font-family-01;
-	font-size: rem(20px);
-	line-height: 1.5;
-	letter-spacing: rem(0.26px);
-
-	@media (min-width: $break-grid-sm) {
-		font-size: rem(24px);
-	}
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(26px);
-	}
-}
-
-// Figma: Result Card Amount
-@mixin type-style-25($text-transform: uppercase) {
-	font-family: $font-family-01;
-	font-size: rem(120px);
-	line-height: 1;
-	text-transform: $text-transform;
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(160px);
-	}
-}
-
-// Figma: Result Card Amount Suffix
-@mixin type-style-26($font-weight: 700) {
-	font-family: $font-family-01;
-	font-size: rem(64px);
-	font-weight: $font-weight;
-	line-height: inherit;
-	text-transform: inherit;
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(90px);
-	}
-}
-
-// Figma: Label Large (Subtitle)
-@mixin type-style-27($font-weight: 700, $text-transform: uppercase) {
-	font-size: rem(13px);
-	font-weight: $font-weight;
-	line-height: 1;
-	text-transform: $text-transform;
-
-	@if $text-transform ==uppercase {
-		letter-spacing: rem(2.6px);
-	}
-}
-
-// Figma: Label Medium (Subtitle Small)
-@mixin type-style-28($font-weight: 700, $text-transform: uppercase) {
-	@include type-style-27($font-weight, $text-transform);
-	font-size: rem(12px);
-
-	@if $text-transform ==uppercase {
-		letter-spacing: rem(2.4px);
-	}
-}
-
-// Figma: Large Quote
-@mixin type-style-29($font-weight: 300) {
-	font-family: $font-family-01;
-	font-size: rem(32px);
-	font-weight: $font-weight;
-	line-height: 1.28;
-	letter-spacing: rem(0.5px);
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(40px);
-	}
-
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(50px);
-	}
-}
-
-// Figma: Text Statistics Stacked Title
-@mixin type-style-30($font-weight: 900) {
-	font-family: $font-family-01;
-	font-size: rem(50px);
-	font-weight: $font-weight;
-	line-height: 1;
-	text-transform: uppercase;
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(70px);
-	}
-}
-
-// Figma: Graph Item Text
-@mixin type-style-31($font-weight: 400) {
-	@media (max-width: max-width($break-grid-sm)) {
-		@include type-style-07($font-weight);
-		line-height: 1.4;
-	}
-
-	@media (min-width: $break-grid-sm) {
-		font-size: rem(20px);
-		font-weight: $font-weight;
-	}
-
-	@media (min-width: $break-grid-md) {
-		font-size: rem(22px);
-	}
-
-	@media (min-width: $break-grid-lg) {
-		font-size: rem(26px);
-	}
-
-	@media (min-width: $break-grid-2xl) {
-		font-size: rem(30px);
-	}
-}
+@mixin type-style-31() {}

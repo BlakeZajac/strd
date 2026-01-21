@@ -1,8 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
 import Hero from "../components/Hero.astro";
+
+const heroContent = {
+	title: "Built to perform. <br /> Designed to last.",
+	description:
+		"Making strides through WordPress and design. <br /> Built for businesses and individuals ready to move forward.",
+};
 ---
 
 <Layout>
-	<Hero />
+	<Hero title={heroContent.title} description={heroContent.description} />
 </Layout>
