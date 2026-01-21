@@ -1,0 +1,23 @@
+---
+interface Props {
+    className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class={`project-card ${className ?? ""}`}>
+    <div class="project-card__media">
+        <img
+            src="https://placehold.co/600x800"
+            alt=""
+            class="project-card__image"
+        />
+    </div>
+
+    <div class="project-card__content">
+        <div class="project-card__title">Project title</div>
+
+        <div class="project-card__text">Project description</div>
+    </div>
+</div>

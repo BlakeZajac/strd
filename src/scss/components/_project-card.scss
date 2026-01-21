@@ -1,0 +1,49 @@
+.project-card {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(24px);
+}
+
+.project-card__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    border-radius: $border-radius-01;
+    background-color: $color-grey;
+}
+
+.project-card__image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+}
+
+.project-card__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(8px);
+}
+
+.project-card__title {
+    .project-card:not(.project-card--alt) & {
+        @include type-style-04;
+    }
+
+    .project-card--alt & {
+        @include type-style-05;
+    }
+}
+
+.project-card__text {
+    color: $color-grey;
+
+    .project-card:not(.project-card--alt) & {
+        @include type-style-07;
+    }
+
+    .project-card--alt & {
+        @include type-style-09;
+    }
+}

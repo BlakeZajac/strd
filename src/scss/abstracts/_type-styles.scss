@@ -7,80 +7,99 @@
 @mixin type-style-02 {}
 
 // H3
-@mixin type-style-03() {}
+@mixin type-style-03 {}
 
 // H4
-@mixin type-style-04() {}
+@mixin type-style-04 {
+	font-size: rem(24px);
+	line-height: 1.1;
+	letter-spacing: -0.03em;
+}
 
 // H5
-@mixin type-style-05() {}
+@mixin type-style-05 {
+	font-size: rem(20px);
+	line-height: 1.1;
+	letter-spacing: -0.03em;
+}
 
 // H6
 @mixin type-style-06 {}
 
 // Body Default
-@mixin type-style-07() {
-	font-size: rem(18px);
+@mixin type-style-07 {
+	font-size: rem(16px);
 	line-height: 1.6;
+
+	@media (min-width: $break-grid-md) {
+		font-size: rem(18px);
+	}
 }
 
 // Body Featured
-@mixin type-style-08() {}
+@mixin type-style-08 {}
 
 // Body Medium
-@mixin type-style-09() {}
+@mixin type-style-09 {
+	font-size: rem(16px);
+	line-height: 1.6;
+}
 
 // Body Small
-@mixin type-style-10() {}
+@mixin type-style-10 {}
 
 // Button
-@mixin type-style-11() {}
+@mixin type-style-11 {}
 
 // Display
-@mixin type-style-12() {
-	font-size: rem(80px);
+@mixin type-style-12 {
+	font-size: rem(60px);
 	line-height: 1.05;
 	letter-spacing: -0.02em;
+
+	@media (min-width: $break-grid-md) {
+		font-size: rem(80px);
+	}
 }
 
 // Menu Link
-@mixin type-style-13() {
+@mixin type-style-13 {
 	font-size: rem(14px);
 	letter-spacing: -0.01em;
 }
 
-@mixin type-style-14() {}
+@mixin type-style-14 {}
 
-@mixin type-style-15() {}
+@mixin type-style-15 {}
 
-@mixin type-style-16() {}
+@mixin type-style-16 {}
 
-@mixin type-style-17() {}
+@mixin type-style-17 {}
 
-@mixin type-style-18() {}
+@mixin type-style-18 {}
 
-@mixin type-style-19() {}
+@mixin type-style-19 {}
 
-@mixin type-style-20() {}
+@mixin type-style-20 {}
 
-@mixin type-style-21() {}
+@mixin type-style-21 {}
 
-@mixin type-style-22() {}
+@mixin type-style-22 {}
 
-@mixin type-style-23() {}
+@mixin type-style-23 {}
 
-@mixin type-style-24() {}
+@mixin type-style-24 {}
 
-@mixin type-style-25() {}
+@mixin type-style-25 {}
 
-@mixin type-style-26() {}
+@mixin type-style-26 {}
 
-@mixin type-style-27() {}
+@mixin type-style-27 {}
 
-@mixin type-style-28() {}
+@mixin type-style-28 {}
 
-@mixin type-style-29() {}
+@mixin type-style-29 {}
 
-@mixin type-style-30() {}
+@mixin type-style-30 {}
 
-@mixin type-style-31() {}
+@mixin type-style-31 {}

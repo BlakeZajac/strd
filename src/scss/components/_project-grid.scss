@@ -1,0 +1,19 @@
+.project-grid {
+    --num-columns: 1;
+
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-columns: 1fr;
+    grid-gap: var(--spacer-02) $l-grid-padding-02;
+    grid-template-columns: repeat(var(--num-columns), 1fr);
+
+    @media (min-width: $break-grid-lg) {
+        --num-columns: 2;
+    }
+}
+
+.project-grid--columns_3 {
+    @media (min-width: $break-grid-3xl) {
+        --num-columns: 3;
+    }
+}

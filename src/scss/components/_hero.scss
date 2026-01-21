@@ -12,4 +12,10 @@
 
 .hero__text {
     @include type-style-07;
+
+    @media (max-width: max-width($break-grid-xs)) {
+        br {
+            display: none;
+        }
+    }
 }

@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 
 import Hero from "../components/Hero.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
 
 const heroContent = {
 	title: "Built to perform. <br /> Designed to last.",
@@ -12,4 +13,5 @@ const heroContent = {
 
 <Layout>
 	<Hero title={heroContent.title} description={heroContent.description} />
+	<ProjectGrid />
 </Layout>

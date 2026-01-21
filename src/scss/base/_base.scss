@@ -12,7 +12,7 @@ $color-selection-bg: rgba(25, 47, 3, 0.3) !default;
 
 html {
 	scroll-behavior: smooth;
-	scroll-padding-top: calc(var(--scroll-padding-top) - 1px);
+	text-wrap: pretty;
 }
 
 body {

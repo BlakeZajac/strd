@@ -1,0 +1,18 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+interface Props {
+    columns?: number;
+}
+
+const { columns = 2 } = Astro.props;
+---
+
+<div class="l-section">
+    <div class="l-container">
+        <div class={`project-grid project-grid--columns_${columns}`}>
+            <ProjectCard className={3 === columns ? "project-card--alt" : ""} />
+            <ProjectCard className={3 === columns ? "project-card--alt" : ""} />
+        </div>
+    </div>
+</div>
