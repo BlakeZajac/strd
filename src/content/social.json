@@ -1,0 +1,25 @@
+{
+  "title": "Social",
+  "items": [
+    {
+      "platform": "LinkedIn",
+      "handle": "@blakezajac",
+      "url": "https://linkedin.com/in/blakezajac"
+    },
+    {
+      "platform": "Instagram",
+      "handle": "@blake_zajac",
+      "url": "https://instagram.com/blake_zajac"
+    },
+    {
+      "platform": "X",
+      "handle": "@blakezdesign",
+      "url": "https://x.com/blakezdesign"
+    },
+    {
+      "platform": "Email",
+      "handle": "contact@blakezajac.com",
+      "url": "mailto:contact@blakezajac.com"
+    }
+  ]
+}

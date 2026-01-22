@@ -1,0 +1,28 @@
+{
+  "title": "Experience",
+  "items": [
+    {
+      "dates": "Jul 2023 - Present",
+      "company": "Redback Solutions",
+      "role": "WordPress Developer",
+      "url": "https://rb.com.au"
+    },
+    {
+      "dates": "Dec 2019 - Jul 2023",
+      "company": "COG Branding",
+      "role": "UX Designer",
+      "url": "https://cogbranding.com.au"
+    },
+    {
+      "dates": "Jun 2019",
+      "company": "Simmer Studio",
+      "role": "Motion Designer",
+      "url": "https://simmerstudio.com.au"
+    },
+    {
+      "dates": "Mar 2019 - May 2019",
+      "company": "Wind and Rain",
+      "role": "Junior Graphic Designer"
+    }
+  ]
+}

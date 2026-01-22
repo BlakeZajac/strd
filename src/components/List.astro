@@ -1,7 +1,59 @@
 ---
+import { getCollection } from "astro:content";
+
 interface Props {
-    title?: string;
+    type: "education" | "experience" | "reading" | "social";
 }
 
-const {} = Astro.props;
+const { type } = Astro.props;
+
+const experience = await getCollection("experience");
 ---
+
+<div class="l-section">
+    <div class="l-container">
+        <div class="list-2col">
+            <div class="container-d-auto border-top">
+                <div class="list-title">Experience</div>
+            </div>
+
+            <div class="container-d-75 is-list">
+                <div class="list-3col">
+                    <div class="list-text">Jul 2023 - Present</div>
+                    <a
+                        class="list-text"
+                        href="https://rb.com.au"
+                        target="_blank">Redback Solutions</a
+                    >
+                    <div class="list-text">WordPress Developer</div>
+                </div>
+
+                <div class="list-3col">
+                    <div class="list-text">Dec 2019 - Jul 2023</div>
+                    <a
+                        class="list-text"
+                        href="https://cogbranding.com.au"
+                        target="_blank">COG Branding</a
+                    >
+                    <div class="list-text">UX Designer</div>
+                </div>
+
+                <div class="list-3col">
+                    <div class="list-text">Jun 2019</div>
+                    <a
+                        class="list-text"
+                        href="https://simmerstudio.com.au"
+                        target="_blank">Simmer Studio</a
+                    >
+                    <div class="list-text">Motion Designer</div>
+                </div>
+
+                <div class="list-3col">
+                    <div class="list-text">Mar 2019 - May 2019</div>
+                    <div class="list-text">Wind and Rain</div>
+                    <div class="list-text">Junior Graphic Designer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
