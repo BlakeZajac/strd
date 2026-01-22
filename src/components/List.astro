@@ -1,59 +1,95 @@
 ---
-import { getCollection } from "astro:content";
-
 interface Props {
-    type: "education" | "experience" | "reading" | "social";
+    data: {
+        title?: string;
+        items?: Array<{
+            dates?: string;
+            year?: string;
+            company?: string;
+            institution?: string;
+            role?: string;
+            qualification?: string;
+            url?: string;
+        }>;
+        sections?: Array<{
+            year: number | string;
+            items: Array<{
+                title: string;
+                author: string;
+                url?: string;
+            }>;
+        }>;
+    };
 }
 
-const { type } = Astro.props;
+const { data } = Astro.props;
+const title = data.title || "";
 
-const experience = await getCollection("experience");
+// Reading list has sections, other content items are just a list of items.
+const isReadingList = "sections" in data && data.sections;
 ---
 
 <div class="l-section">
     <div class="l-container">
-        <div class="list-2col">
-            <div class="container-d-auto border-top">
-                <div class="list-title">Experience</div>
+        {isReadingList ? (
+            <!-- Reading list structure with sections -->
+            {data.sections?.map((section) => (
+                <div class="list-2col">
+                    <div class="container-d-auto border-top">
+                        <div class="list-title">{section.year}</div>
+                    </div>
+                    <div class="container-d-75 is-list">
+                        {section.items.map((item) => (
+                            <div class="list-3col">
+                                <div class="list-text">{item.title}</div>
+                                {item.url ? (
+                                    <a
+                                        class="list-text"
+                                        href={item.url}
+                                        target="_blank"
+                                    >
+                                        {item.author}
+                                    </a>
+                                ) : (
+                                    <div class="list-text">{item.author}</div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        ) : (
+            <!-- Experience/Education structure with items -->
+            <div class="list-2col">
+                <div class="container-d-auto border-top">
+                    <div class="list-title">{title}</div>
+                </div>
+                <div class="container-d-75 is-list">
+                    {data.items?.map((item) => (
+                        <div class="list-3col">
+                            <div class="list-text">
+                                {item.dates || item.year}
+                            </div>
+                            {item.url ? (
+                                <a
+                                    class="list-text"
+                                    href={item.url}
+                                    target="_blank"
+                                >
+                                    {item.company || item.institution}
+                                </a>
+                            ) : (
+                                <div class="list-text">
+                                    {item.company || item.institution}
+                                </div>
+                            )}
+                            <div class="list-text">
+                                {item.role || item.qualification}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-
-            <div class="container-d-75 is-list">
-                <div class="list-3col">
-                    <div class="list-text">Jul 2023 - Present</div>
-                    <a
-                        class="list-text"
-                        href="https://rb.com.au"
-                        target="_blank">Redback Solutions</a
-                    >
-                    <div class="list-text">WordPress Developer</div>
-                </div>
-
-                <div class="list-3col">
-                    <div class="list-text">Dec 2019 - Jul 2023</div>
-                    <a
-                        class="list-text"
-                        href="https://cogbranding.com.au"
-                        target="_blank">COG Branding</a
-                    >
-                    <div class="list-text">UX Designer</div>
-                </div>
-
-                <div class="list-3col">
-                    <div class="list-text">Jun 2019</div>
-                    <a
-                        class="list-text"
-                        href="https://simmerstudio.com.au"
-                        target="_blank">Simmer Studio</a
-                    >
-                    <div class="list-text">Motion Designer</div>
-                </div>
-
-                <div class="list-3col">
-                    <div class="list-text">Mar 2019 - May 2019</div>
-                    <div class="list-text">Wind and Rain</div>
-                    <div class="list-text">Junior Graphic Designer</div>
-                </div>
-            </div>
-        </div>
+        )}
     </div>
 </div>
