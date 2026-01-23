@@ -6,6 +6,7 @@ const workCollection = defineCollection({
         title: z.string(),
         description: z.string().optional(),
         featuredImage: z.string().optional(),
+        featuredVideo: z.string().optional(),
     }),
 });
 

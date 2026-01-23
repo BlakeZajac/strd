@@ -6,21 +6,55 @@ interface Props {
     title: string;
     description?: string;
     slug: string;
+    featuredImage?: string;
+    featuredVideo?: string;
 }
 
-const { className, title, description, slug } = Astro.props;
+const { className, title, description, slug, featuredImage, featuredVideo } =
+    Astro.props;
+
 const isComingSoon = description === "Coming soon";
+const getVideoType = (videoPath: string): string => {
+    if (videoPath.endsWith(".webm")) return "video/webm";
+    if (videoPath.endsWith(".mp4")) return "video/mp4";
+    return "video/mp4";
+};
 ---
 
 <div class={`project-card ${className ?? ""}`}>
-    <div class="project-card__media">
-        <Image
-            width="800"
-            height="1000"
-            src="https://placehold.co/800x1000"
-            alt=""
-            class="project-card__image"
-        />
+    <div class="project-card__background">
+        {
+            featuredVideo ? (
+                <video
+                    class="project-card__media project-card__media--video"
+                    poster={featuredImage}
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                >
+                    <source
+                        src={featuredVideo}
+                        type={getVideoType(featuredVideo)}
+                    />
+                    {featuredImage && (
+                        <img
+                            src={featuredImage}
+                            alt={title}
+                            class="project-card__media project-card__media--image"
+                        />
+                    )}
+                </video>
+            ) : (
+                featuredImage && (
+                    <img
+                        src={featuredImage}
+                        alt={title}
+                        class="project-card__media project-card__media--image"
+                    />
+                )
+            )
+        }
     </div>
 
     <div class="project-card__content">
