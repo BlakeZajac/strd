@@ -25,7 +25,7 @@
 
 .list-2col__unit {}
 
-.list-2col__unit--01 {
+.list-2col__unit--title {
     flex: 1;
     width: 100%;
     padding-block-start: var(--list-spacer);
@@ -36,7 +36,7 @@
     }
 }
 
-.list-2col__unit--02 {
+.list-2col__unit--list {
     display: grid;
     grid-auto-columns: 1fr;
     grid-template-rows: auto;

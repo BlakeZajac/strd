@@ -20,11 +20,11 @@ const { data } = Astro.props;
         {
             data.years?.map((year) => (
                 <div class="list-2col">
-                    <div class="list-2col__unit list-2col__unit--01">
+                    <div class="list-2col__unit list-2col__unit--title">
                         <div class="list-title">{year?.year}</div>
                     </div>
 
-                    <div class="list-2col__unit list-2col__unit--02">
+                    <div class="list-2col__unit list-2col__unit--list">
                         {year?.items?.map((item) => (
                             <div class="list-3col list-3col--reading">
                                 {item?.url ? (
