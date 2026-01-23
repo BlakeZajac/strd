@@ -59,9 +59,7 @@ $l-section-spacing-lg: rem(150px);
 //	Site Header
 //---------------------------------------------------------------------------
 
-$site-header-height: var(--site-header-height) !default;
-$site-header-break-sm: $break-grid-sm !default;
-$site-header-break-full: em(1100px) !default;
+$site-header-height: rem(90px) !default;
 
 //---------------------------------------------------------------------------
 //	Site Offcanvas
@@ -123,5 +121,11 @@ $border-radius-full: rem(9999px);
 	--spacer-04: #{rem(128px)};
 	--spacer-05: #{rem(160px)};
 
-	--spacer-section: var(--spacer-04);
+	--spacer-section: var(--spacer-03);
+}
+
+@media (min-width: $break-grid-lg) {
+	:root {
+		--spacer-section: var(--spacer-04);
+	}
 }

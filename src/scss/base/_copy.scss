@@ -20,7 +20,7 @@
 
 	:is(h1, .h1) {
 		@include type-style-01;
-		margin-block: var(--section-spacer) var(--copy-spacer);
+		margin-block: var(--spacer-section) var(--copy-spacer);
 	}
 
 	.h1-hero {
@@ -29,7 +29,7 @@
 
 	:is(h2, .h2) {
 		@include type-style-01;
-		margin-block: var(--section-spacer) var(--copy-spacer);
+		margin-block: var(--spacer-section) var(--copy-spacer);
 	}
 
 	:is(h3, .h3) {

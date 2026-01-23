@@ -2,17 +2,20 @@
 import ProjectCard from "./ProjectCard.astro";
 
 interface Props {
+    sectionClass?: string;
     columns?: number;
 }
 
-const { columns = 2 } = Astro.props;
+const { sectionClass = "", columns = 2 } = Astro.props;
+const className = 3 === columns ? "project-card--alt" : "";
 ---
 
-<div class="l-section">
+<div class={`l-section ${sectionClass}`}>
     <div class="l-container">
         <div class={`project-grid project-grid--columns_${columns}`}>
-            <ProjectCard className={3 === columns ? "project-card--alt" : ""} />
-            <ProjectCard className={3 === columns ? "project-card--alt" : ""} />
+            <ProjectCard className={className} />
+            <ProjectCard className={className} />
+            <ProjectCard className={className} />
         </div>
     </div>
 </div>

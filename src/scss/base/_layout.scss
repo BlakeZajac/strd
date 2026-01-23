@@ -14,9 +14,7 @@
 }
 
 .l-section--margin-top_sm {
-	@media (min-width: $break-grid-md) {
-		--section-spacer: #{$l-section-spacing-md};
-	}
+	--spacer-section: var(--spacer-02);
 }
 
 //---------------------------------------------------------------------------
@@ -24,7 +22,7 @@
 //---------------------------------------------------------------------------
 
 .l-section--padding {
-	padding-block: var(--section-spacer);
+	padding-block: var(--spacer-section);
 }
 
 .l-section--padding_none {
@@ -32,11 +30,11 @@
 }
 
 .l-section--padding-top {
-	padding-block-start: var(--section-spacer);
+	padding-block-start: var(--spacer-section);
 }
 
 .l-section--padding-bottom {
-	padding-block-end: var(--section-spacer);
+	padding-block-end: var(--spacer-section);
 }
 
 //---------------------------------------------------------------------------
