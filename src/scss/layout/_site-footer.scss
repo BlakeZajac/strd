@@ -7,6 +7,10 @@
     padding-block: rem(32px);
 }
 
+.site-footer__list-2col {
+    row-gap: var(--spacer-01);
+}
+
 .site-footer__logo {
     height: rem(40px);
 }
@@ -15,6 +19,14 @@
     display: flex;
     flex-direction: column;
     row-gap: rem(8px);
+
+    @media (max-width: max-width($break-grid-sm)) {
+        margin-block-start: var(--spacer-01);
+
+        &:first-child {
+            margin-block-start: 0;
+        }
+    }
 }
 
 .site-footer__link {
@@ -33,8 +45,12 @@
 .site-footer__strip {
     display: flex;
     flex-wrap: wrap;
-    gap: rem(20px);
+    gap: rem(8px) rem(20px);
     align-items: center;
     justify-content: space-between;
-    margin-block-start: var(--spacer-04);
+    margin-block-start: var(--spacer-03);
+
+    @media (min-width: $break-grid-sm) {
+        margin-block-start: var(--spacer-04);
+    }
 }
