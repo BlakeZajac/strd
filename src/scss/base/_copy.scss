@@ -66,6 +66,10 @@
 		}
 	}
 
+	.medium {
+		@include type-style-09;
+	}
+
 	.subtitle {
 		--copy-spacer: #{rem(24px)};
 	}

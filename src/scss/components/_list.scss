@@ -34,6 +34,10 @@
     @media (min-width: $break-grid-md) {
         width: 25%;
     }
+
+    &:not(:has(*)) {
+        border-block-start: none;
+    }
 }
 
 .list-2col__unit--list {
@@ -52,7 +56,7 @@
 
 .list-2col__unit--copy {
     width: 100%;
-    padding-block-start: var(--list-spacer);
+    padding-block-start: rem(32px);
     border-block-start: rem(1px) solid $color-border;
 
     @media (min-width: $break-grid-md) {
