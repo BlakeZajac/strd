@@ -7,7 +7,15 @@
 @mixin type-style-02 {}
 
 // H3
-@mixin type-style-03 {}
+@mixin type-style-03 {
+	font-size: rem(32px);
+	line-height: 1.2;
+	letter-spacing: -0.03em;
+
+	@media (min-width: $break-grid-md) {
+		font-size: rem(36px);
+	}
+}
 
 // H4
 @mixin type-style-04 {

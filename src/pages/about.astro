@@ -5,9 +5,16 @@ import List from "../components/List.astro";
 import experienceData from "../content/experience.json";
 import educationData from "../content/education.json";
 import socialData from "../content/social.json";
+import ListContent from "../components/ListContent.astro";
 ---
 
 <Layout>
+    <ListContent
+        title="Introduction"
+        content="<p class='h3'>Hallo, Blake here. I'm a WordPress developer and designer based in Newcastle, Australia, working full-time at Redback Solutions. I specialise in building custom WordPress solutions that help businesses move foward.</p>"
+        imageSrc="/headshot-01.jpg"
+        imageAlt="Headshot of Blake Zajac"
+    />
     <List type="experience" data={experienceData} />
     <List type="education" data={educationData} />
     <List type="social" data={socialData} />
