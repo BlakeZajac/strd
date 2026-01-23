@@ -1,9 +1,32 @@
 .site-footer {
+    --height: #{rem(500px)};
+
+    height: var(--height);
+    position: relative;
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
     background-color: $color-black;
     color: white;
+
+    @media (min-width: $break-grid-sm) {
+        --height: #{rem(400px)};
+    }
+}
+
+.site-footer__sticky-container {
+    height: calc(100vh + var(--height));
+    position: relative;
+    inset-block-start: calc(-100vh);
 }
 
 .site-footer__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: 100%;
+    height: var(--height);
+    position: sticky;
+    top: calc(100vh - var(--height));
     padding-block: rem(32px);
 }
 

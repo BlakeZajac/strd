@@ -15,44 +15,48 @@ const menus = [
 ---
 
 <footer class="site-footer">
-    <div class="site-footer__container l-container">
-        <div class="site-footer__list-2col list-2col list-2col--no-border-top">
-            <div class="list-2col__unit list-2col__unit--title">
-                <a href="/">
-                    <img
-                        src="/logo-inverted.svg"
-                        alt="STRD logo"
-                        class="site-footer__logo"
-                    />
-                </a>
-            </div>
+    <div class="site-footer__sticky-container">
+        <div class="site-footer__container l-container">
+            <div
+                class="site-footer__list-2col list-2col list-2col--no-border-top"
+            >
+                <div class="list-2col__unit list-2col__unit--title">
+                    <a href="/">
+                        <img
+                            src="/logo-inverted.svg"
+                            alt="STRD logo"
+                            class="site-footer__logo"
+                        />
+                    </a>
+                </div>
 
-            <div class="list-2col__unit list-2col__unit--list">
-                <div class="list-3col list-3col--menu">
-                    {
-                        menus.map((menu) => (
-                            <nav class="site-footer__menu">
-                                {menu.map((item) => (
-                                    <a
-                                        href={item.href}
-                                        class="site-footer__link"
-                                    >
-                                        {item.label}
-                                    </a>
-                                ))}
-                            </nav>
-                        ))
-                    }
+                <div class="list-2col__unit list-2col__unit--list">
+                    <div class="list-3col list-3col--menu">
+                        {
+                            menus.map((menu) => (
+                                <nav class="site-footer__menu">
+                                    {menu.map((item) => (
+                                        <a
+                                            href={item.href}
+                                            class="site-footer__link"
+                                        >
+                                            {item.label}
+                                        </a>
+                                    ))}
+                                </nav>
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="site-footer__strip">
-            <p class="site-footer__text">
-                &copy; {new Date().getFullYear()} STRD. All rights reserved.
-            </p>
+            <div class="site-footer__strip">
+                <p class="site-footer__text">
+                    &copy; {new Date().getFullYear()} STRD. All rights reserved.
+                </p>
 
-            <p class="site-footer__text">32.9283° S, 151.7817° E</p>
+                <p class="site-footer__text">32.9283° S, 151.7817° E</p>
+            </div>
         </div>
     </div>
 </footer>
