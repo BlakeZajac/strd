@@ -1,21 +1,41 @@
 ---
+import { getCollection } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
 
 interface Props {
     sectionClass?: string;
     columns?: number;
+    slugs?: string[];
 }
 
-const { sectionClass = "", columns = 2 } = Astro.props;
+const { sectionClass = "", columns = 2, slugs } = Astro.props;
 const className = 3 === columns ? "project-card--alt" : "";
+
+const workItems = await getCollection("work");
+
+// If slugs are provided, sort by that order; otherwise use collection order
+const sortedWorkItems = slugs
+    ? slugs
+          .map((slug) => workItems.find((item) => item.slug === slug))
+          .filter(
+              (item): item is NonNullable<typeof item> => item !== undefined,
+          )
+    : Array.from(workItems);
 ---
 
 <div class={`l-section ${sectionClass}`}>
     <div class="l-container">
         <div class={`project-grid project-grid--columns_${columns}`}>
-            <ProjectCard className={className} />
-            <ProjectCard className={className} />
-            <ProjectCard className={className} />
+            {
+                sortedWorkItems.map((item) => (
+                    <ProjectCard
+                        className={className}
+                        title={item.data.title}
+                        description={item.data.description}
+                        slug={item.slug}
+                    />
+                ))
+            }
         </div>
     </div>
 </div>

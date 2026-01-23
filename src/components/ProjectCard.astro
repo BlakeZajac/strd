@@ -3,9 +3,13 @@ import { Image } from "astro:assets";
 
 interface Props {
     className?: string;
+    title: string;
+    description?: string;
+    slug: string;
 }
 
-const { className } = Astro.props;
+const { className, title, description, slug } = Astro.props;
+const isComingSoon = description === "Coming soon";
 ---
 
 <div class={`project-card ${className ?? ""}`}>
@@ -21,9 +25,17 @@ const { className } = Astro.props;
 
     <div class="project-card__content">
         <div class="project-card__title">
-            <a href="#" class="project-card__link">Project title</a>
+            {
+                isComingSoon ? (
+                    <span class="project-card__link">{title}</span>
+                ) : (
+                    <a href={`/work/${slug}`} class="project-card__link">
+                        {title}
+                    </a>
+                )
+            }
         </div>
 
-        <div class="project-card__text">Project description</div>
+        {description && <div class="project-card__text">{description}</div>}
     </div>
 </div>
