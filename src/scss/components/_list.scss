@@ -1,0 +1,107 @@
+//---------------------------------------------------------------------------
+//  2 Column Variant
+//---------------------------------------------------------------------------
+
+.list-2col {
+    --list-spacer: #{rem(12px)};
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--list-spacer) $l-grid-padding-02;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-block-start: var(--spacer-03);
+
+    @media (min-width: $break-grid-lg) {
+        --list-spacer: #{rem(16px)};
+
+        flex-direction: row;
+    }
+
+    &:first-child {
+        margin-block-start: 0;
+    }
+}
+
+.list-2col__unit {}
+
+.list-2col__unit--01 {
+    flex: 1;
+    width: 100%;
+    padding-block-start: var(--list-spacer);
+    border-block-start: rem(1px) solid $color-border;
+
+    @media (min-width: $break-grid-lg) {
+        width: auto;
+    }
+}
+
+.list-2col__unit--02 {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+
+    @media (min-width: $break-grid-lg) {
+        width: 75%;
+    }
+}
+
+//---------------------------------------------------------------------------
+//  3 Column Variant
+//---------------------------------------------------------------------------
+
+.list-3col {
+    padding-block: var(--list-spacer);
+    position: relative;
+    border-block-start: rem(1px) solid $color-border;
+    transition: background-color $transition-default;
+
+    @media (min-width: $break-grid-sm) {
+        display: grid;
+        gap: rem(20px);
+        grid-template-columns: 4fr 4fr 4fr;
+        align-content: start;
+        align-items: center;
+    }
+
+    &:last-child {
+        border-block-end: rem(1px) solid $color-border;
+    }
+
+    &:has(.list-link:hover) {
+        background-color: $color-black-6;
+    }
+}
+
+
+.list-3col--reading {
+    @media (min-width: $break-grid-sm) {
+        grid-template-columns: 4fr 4fr 2fr;
+    }
+}
+
+//---------------------------------------------------------------------------
+//  General Styles
+//---------------------------------------------------------------------------
+
+.list-text {
+    @include type-style-09;
+}
+
+.list-text--author {
+    color: $color-grey;
+}
+
+.list-link {
+    @include type-style-09;
+
+    &::before {
+        position: absolute;
+        inset: 0;
+        content: '';
+    }
+}

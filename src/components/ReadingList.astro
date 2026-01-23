@@ -20,26 +20,28 @@ const { data } = Astro.props;
         {
             data.years?.map((year) => (
                 <div class="list-2col">
-                    <div class="container-d-auto border-top">
+                    <div class="list-2col__unit list-2col__unit--01">
                         <div class="list-title">{year?.year}</div>
                     </div>
 
-                    <div class="container-d-75 is-list">
+                    <div class="list-2col__unit list-2col__unit--02">
                         {year?.items?.map((item) => (
-                            <div class="list-3col">
-                                <div class="list-text">{item?.title}</div>
-
+                            <div class="list-3col list-3col--reading">
                                 {item?.url ? (
                                     <a
-                                        class="list-text"
+                                        class="list-link"
                                         href={item?.url}
                                         target="_blank"
                                     >
-                                        {item?.author}
+                                        {item?.title}
                                     </a>
                                 ) : (
-                                    <div class="list-text">{item?.author}</div>
+                                    <div class="list-text">{item?.title}</div>
                                 )}
+
+                                <div class="list-text list-text--author">
+                                    {item?.author}
+                                </div>
                             </div>
                         ))}
                     </div>
