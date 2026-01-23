@@ -35,7 +35,9 @@
         width: 25%;
     }
 
-    &:not(:has(*)) {
+
+    .list-2col--no-border-top & {
+        padding-block-start: 0;
         border-block-start: none;
     }
 }
@@ -61,6 +63,11 @@
 
     @media (min-width: $break-grid-md) {
         width: 75%;
+    }
+
+    .list-2col--no-border-top & {
+        padding-block-start: 0;
+        border-block-start: none;
     }
 }
 
