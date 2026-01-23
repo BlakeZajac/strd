@@ -10,17 +10,6 @@ const workCollection = defineCollection({
     }),
 });
 
-const newsCollection = defineCollection({
-    type: 'content',
-    schema: z.object({
-        title: z.string(),
-        date: z.coerce.date(),
-        excerpt: z.string(),
-        featuredImage: z.string().optional(),
-    }),
-});
-
 export const collections = {
     work: workCollection,
-    news: newsCollection,
 };

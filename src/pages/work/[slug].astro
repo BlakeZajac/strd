@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+
+export async function getStaticPaths() {
+    const workItems = await getCollection("work");
+    return workItems.map((item) => ({
+        params: { slug: item.slug },
+        props: { item },
+    }));
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<Layout>
+    <Hero title={item.data.title} />
+</Layout>

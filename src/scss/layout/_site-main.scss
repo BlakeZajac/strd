@@ -1,8 +1,4 @@
 .site-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
     min-height: calc(100svh - $site-header-height);
     padding-block-end: var(--spacer-section);
 }
