@@ -1,95 +1,73 @@
 ---
 interface Props {
+    type: "education" | "experience" | "social";
     data: {
         title?: string;
-        items?: Array<{
-            dates?: string;
+        items: Array<{
+            // Education Fields
             year?: string;
-            company?: string;
             institution?: string;
-            role?: string;
             qualification?: string;
+            // Experience Fields
+            dates?: string;
+            company?: string;
+            role?: string;
+            // Social Fields
+            platform?: string;
+            handle?: string;
+            // Common Fields
             url?: string;
-        }>;
-        sections?: Array<{
-            year: number | string;
-            items: Array<{
-                title: string;
-                author: string;
-                url?: string;
-            }>;
         }>;
     };
 }
 
-const { data } = Astro.props;
-const title = data.title || "";
-
-// Reading list has sections, other content items are just a list of items.
-const isReadingList = "sections" in data && data.sections;
+const { data, type } = Astro.props;
 ---
 
 <div class="l-section">
     <div class="l-container">
-        {isReadingList ? (
-            <!-- Reading list structure with sections -->
-            {data.sections?.map((section) => (
-                <div class="list-2col">
-                    <div class="container-d-auto border-top">
-                        <div class="list-title">{section.year}</div>
-                    </div>
-                    <div class="container-d-75 is-list">
-                        {section.items.map((item) => (
-                            <div class="list-3col">
-                                <div class="list-text">{item.title}</div>
-                                {item.url ? (
-                                    <a
-                                        class="list-text"
-                                        href={item.url}
-                                        target="_blank"
-                                    >
-                                        {item.author}
-                                    </a>
-                                ) : (
-                                    <div class="list-text">{item.author}</div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            ))}
-        ) : (
-            <!-- Experience/Education structure with items -->
-            <div class="list-2col">
-                <div class="container-d-auto border-top">
-                    <div class="list-title">{title}</div>
-                </div>
-                <div class="container-d-75 is-list">
-                    {data.items?.map((item) => (
+        <div class="list-2col">
+            <div class="list-2col__unit list-2col__unit--01">
+                <div class="list-title">{data?.title}</div>
+            </div>
+
+            <div class="list-2col__unit list-2col__unit--02">
+                {
+                    data?.items?.map((item) => (
                         <div class="list-3col">
                             <div class="list-text">
-                                {item.dates || item.year}
+                                {type === "social"
+                                    ? item.platform
+                                    : item.dates || item.year}
                             </div>
+
                             {item.url ? (
                                 <a
-                                    class="list-text"
                                     href={item.url}
                                     target="_blank"
+                                    class="list-link"
                                 >
-                                    {item.company || item.institution}
+                                    {type === "social"
+                                        ? item.handle
+                                        : item.company || item.institution}
                                 </a>
                             ) : (
                                 <div class="list-text">
-                                    {item.company || item.institution}
+                                    {type === "social"
+                                        ? item.handle
+                                        : item.company || item.institution}
                                 </div>
                             )}
-                            <div class="list-text">
-                                {item.role || item.qualification}
-                            </div>
+
+                            {type !== "social" && (
+                                <div class="list-text">
+                                    {item.role || item.qualification}
+                                </div>
+                            )}
                         </div>
-                    ))}
-                </div>
+                    ))
+                }
             </div>
-        )}
+        </div>
     </div>
 </div>

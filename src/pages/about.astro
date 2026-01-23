@@ -1,5 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import List from "../components/List.astro";
+
+import experienceData from "../content/experience.json";
+import educationData from "../content/education.json";
+import socialData from "../content/social.json";
 ---
 
-<Layout />
+<Layout>
+    <List type="experience" data={experienceData} />
+    <List type="education" data={educationData} />
+    <List type="social" data={socialData} />
+</Layout>
