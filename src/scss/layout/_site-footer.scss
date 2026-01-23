@@ -1,0 +1,40 @@
+.site-footer {
+    background-color: $color-black;
+    color: white;
+}
+
+.site-footer__container {
+    padding-block: rem(32px);
+}
+
+.site-footer__logo {
+    height: rem(40px);
+}
+
+.site-footer__menu {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(8px);
+}
+
+.site-footer__link {
+    @include type-style-14;
+    @include link-underline-animated(true);
+
+    &:hover {
+        @include link-underline-animated-hover(true);
+    }
+}
+
+.site-footer__text {
+    @include type-style-14;
+}
+
+.site-footer__strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(20px);
+    align-items: center;
+    justify-content: space-between;
+    margin-block-start: var(--spacer-04);
+}

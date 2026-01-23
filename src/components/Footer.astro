@@ -1,0 +1,58 @@
+---
+const menus = [
+    [
+        { label: "Home", href: "/" },
+        { label: "Work", href: "/work" },
+        { label: "About", href: "/about" },
+        { label: "Reading", href: "/reading" },
+    ],
+    [
+        { label: "LinkedIn", href: "https://linkedin.com/in/blakezajac" },
+        { label: "Instagram", href: "https://instagram.com/blake_zajac" },
+        { label: "X", href: "https://x.com/blakezdesign" },
+    ],
+];
+---
+
+<footer class="site-footer">
+    <div class="site-footer__container l-container">
+        <div class="list-2col list-2col--no-border-top">
+            <div class="list-2col__unit list-2col__unit--title">
+                <a href="/">
+                    <img
+                        src="/logo-inverted.svg"
+                        alt="STRD logo"
+                        class="site-footer__logo"
+                    />
+                </a>
+            </div>
+
+            <div class="list-2col__unit list-2col__unit--list">
+                <div class="list-3col list-3col--menu">
+                    {
+                        menus.map((menu) => (
+                            <nav class="site-footer__menu">
+                                {menu.map((item) => (
+                                    <a
+                                        href={item.href}
+                                        class="site-footer__link"
+                                    >
+                                        {item.label}
+                                    </a>
+                                ))}
+                            </nav>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="site-footer__strip">
+            <small class="site-footer__text">
+                &copy; {new Date().getFullYear()} STRD. All rights reserved.
+            </small>
+
+            <div class="site-footer__text">32.9283° S, 151.7817° E</div>
+        </div>
+    </div>
+</footer>

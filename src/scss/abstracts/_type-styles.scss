@@ -78,12 +78,15 @@
 	}
 }
 
-// Menu Link
+// Header Link
 @mixin type-style-13 {
 	font-size: rem(16px);
 }
 
-@mixin type-style-14 {}
+// Footer Text
+@mixin type-style-14 {
+	font-size: rem(14px);
+}
 
 @mixin type-style-15 {}
 
