@@ -12,8 +12,6 @@ const { sectionClass = "", columns = 2, slugs } = Astro.props;
 const className = 3 === columns ? "project-card--alt" : "";
 
 const workItems = await getCollection("work");
-
-// If slugs are provided, sort by that order; otherwise use collection order
 const sortedWorkItems = slugs
     ? slugs
           .map((slug) => workItems.find((item) => item.slug === slug))

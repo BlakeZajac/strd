@@ -3,12 +3,16 @@
     flex-direction: column;
     row-gap: rem(24px);
     position: relative;
+
+    @media (min-width: $break-grid-md) {
+        color: white;
+    }
 }
 
 .project-card__background {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 16 / 9;
     border-radius: $border-radius-01;
     background-color: $color-grey;
 }
@@ -22,19 +26,27 @@
 }
 
 .project-card__content {
-    display: flex;
-    flex-direction: column;
-    row-gap: rem(4px);
+    display: grid;
+    align-content: flex-end;
+
+    @media (min-width: $break-grid-md) {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        inset-block-end: 0;
+        inset-inline-end: 0;
+    }
+}
+
+.project-card__content-inner {
+    display: grid;
+    padding: rem(32px);
+    position: sticky;
+    inset-block-end: 0
 }
 
 .project-card__title {
-    .project-card:not(.project-card--alt) & {
-        @include type-style-04;
-    }
-
-    .project-card--alt & {
-        @include type-style-05;
-    }
+    @include type-style-05;
 }
 
 .project-card__link {
@@ -47,12 +59,5 @@
 
 .project-card__text {
     color: $color-grey;
-
-    .project-card:not(.project-card--alt) & {
-        @include type-style-07;
-    }
-
-    .project-card--alt & {
-        @include type-style-09;
-    }
+    @include type-style-09;
 }

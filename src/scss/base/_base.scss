@@ -1,8 +1,8 @@
 @import "../abstracts/variables";
 @import "../abstracts/functions";
 
+$color-selection-bg: $color-black-80 !default;
 $color-selection: white !default;
-$color-selection-bg: rgba(25, 47, 3, 0.3) !default;
 
 *,
 *:after,

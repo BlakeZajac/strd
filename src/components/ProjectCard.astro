@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 interface Props {
     className?: string;
     title: string;
@@ -58,18 +56,8 @@ const getVideoType = (videoPath: string): string => {
     </div>
 
     <div class="project-card__content">
-        <div class="project-card__title">
-            {
-                isComingSoon ? (
-                    <span class="project-card__link">{title}</span>
-                ) : (
-                    <a href={`/work/${slug}`} class="project-card__link">
-                        {title}
-                    </a>
-                )
-            }
+        <div class="project-card__content-inner">
+            <span class="project-card__title">{title}</span>
         </div>
-
-        {description && <div class="project-card__text">{description}</div>}
     </div>
 </div>

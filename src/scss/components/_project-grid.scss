@@ -6,7 +6,17 @@
     grid-auto-columns: 1fr;
     grid-gap: var(--spacer-02) $l-grid-padding-02;
     grid-template-columns: repeat(var(--num-columns), 1fr);
+}
 
+.project-grid--columns_1 {
+    grid-row-gap: var(--spacer-03);
+}
+
+.project-grid:not(.project-grid--columns_1) {
+    grid-row-gap: $l-grid-padding-02;
+}
+
+.project-grid--columns_2 {    
     @media (min-width: $break-grid-lg) {
         --num-columns: 2;
     }
