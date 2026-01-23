@@ -18,8 +18,12 @@
 
 .site-header__menu {
     display: flex;
-    gap: rem(32px);
+    gap: rem(24px);
     align-items: center;
+
+    @media (min-width: $break-grid-2xs) {
+        gap: rem(32px);
+    }
 }
 
 .site-header__link {
