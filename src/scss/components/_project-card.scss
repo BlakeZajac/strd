@@ -48,7 +48,6 @@
 .project-card__title {
     @include type-style-05;
 }
-
 .project-card__link {
     &::before {
         position: absolute;

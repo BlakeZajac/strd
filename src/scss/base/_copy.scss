@@ -1,8 +1,3 @@
-// copy spacing guidelines
-// larger headings that expand fullwidth of the container should have a block-end of 48px
-// headings such as h2 should have a block-end of 32px
-// smaller headings such as subtitle should have a block-end of 24px
-
 .copy {
 	--copy-spacer: #{rem(24px)};
 
@@ -21,10 +16,6 @@
 	:is(h1, .h1) {
 		@include type-style-01;
 		margin-block: var(--spacer-section) var(--copy-spacer);
-	}
-
-	.h1-hero {
-		@include type-style-16;
 	}
 
 	:is(h2, .h2) {
@@ -59,32 +50,10 @@
 		&:last-child {
 			margin-block-end: 0;
 		}
-
-		@at-root .copy--size_md#{&} {
-			margin-block-end: rem(20px);
-			@include type-style-09;
-		}
 	}
 
 	.medium {
 		@include type-style-09;
-	}
-
-	.subtitle {
-		--copy-spacer: #{rem(24px)};
-	}
-
-	.subtitle:not(.subtitle--sm) {
-		@include type-style-27;
-	}
-
-	.subtitle--sm {
-		@include type-style-28;
-	}
-
-	.lead {
-		@include type-style-08;
-		margin-block-end: var(--copy-spacer);
 	}
 
 	ul {
@@ -103,10 +72,6 @@
 		@include type-style-07;
 		display: list-item;
 		list-style-type: inherit;
-
-		@at-root .copy--size_md#{&} {
-			@include type-style-09;
-		}
 	}
 
 	a:not(.btn):not(.button) {

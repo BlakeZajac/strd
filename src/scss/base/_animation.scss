@@ -46,7 +46,7 @@ $animation-distance: rem(32px) !default;
 		&.animate--separator {
 			width: 0;
 		}
-
+        
 		// Animation states
 		&:not(.scroll-trigger--offscreen) {
 			&.animate--fade-in {
