@@ -1,4 +1,6 @@
 ---
+import Logo from "./Logo.astro";
+
 const menus = [
     [
         { label: "Home", href: "/" },
@@ -21,13 +23,7 @@ const menus = [
                 class="site-footer__list-2col list-2col list-2col--no-border-top"
             >
                 <div class="list-2col__unit list-2col__unit--title">
-                    <a href="/">
-                        <img
-                            src="/logo-inverted.svg"
-                            alt="STRD logo"
-                            class="site-footer__logo"
-                        />
-                    </a>
+                    <Logo inverted />
                 </div>
 
                 <div class="list-2col__unit list-2col__unit--list">

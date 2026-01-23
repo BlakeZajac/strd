@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
     title?: string;
     content?: string;
@@ -26,10 +28,13 @@ const { title, content, imageSrc, imageAlt, borderTop } = Astro.props;
             {
                 imageSrc && (
                     <div class="list-2col__unit list-2col__unit--image">
-                        <img
+                        <Image
+                            width={280}
+                            height={280}
                             src={imageSrc}
-                            alt={imageAlt}
+                            alt={imageAlt ?? ""}
                             class="list-2col__image"
+                            loading="eager"
                         />
                     </div>
                 )
