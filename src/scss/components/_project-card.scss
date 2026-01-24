@@ -60,6 +60,6 @@
 }
 
 .project-card__text {
-    color: $color-grey;
+    opacity: 0.5;
     @include type-style-09;
 }
