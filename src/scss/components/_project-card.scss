@@ -39,15 +39,18 @@
 }
 
 .project-card__content-inner {
-    display: grid;
-    padding: rem(32px);
-    position: sticky;
-    inset-block-end: 0
+    @media (min-width: $break-grid-md) {
+        display: grid;
+        padding: rem(32px);
+        position: sticky;
+        inset-block-end: 0;
+    }
 }
 
 .project-card__title {
     @include type-style-05;
 }
+
 .project-card__link {
     &::before {
         position: absolute;
