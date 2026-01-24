@@ -39,8 +39,10 @@
 }
 
 .project-card__content-inner {
+    display: grid;
+    row-gap: rem(4px);
+
     @media (min-width: $break-grid-md) {
-        display: grid;
         padding: rem(32px);
         position: sticky;
         inset-block-end: 0;
