@@ -1,0 +1,36 @@
+---
+interface Props {
+    primaryButton?: {
+        label: string;
+        url: string;
+        target?: string | "_self";
+    };
+    secondaryButton?: {
+        label: string;
+        url: string;
+        target?: string | "_self";
+    };
+    className?: string;
+}
+
+const { primaryButton, secondaryButton, className = "" } = Astro.props;
+
+if (!primaryButton && !secondaryButton) return;
+
+import Button from "./Button.astro";
+import Link from "./Link.astro";
+---
+
+<div class=`button-group ${className}`>
+    {
+        primaryButton && (
+            <Button {...primaryButton} className="button-group__button" />
+        )
+    }
+
+    {
+        secondaryButton && (
+            <Link {...secondaryButton} className="button-group__button" />
+        )
+    }
+</div>

@@ -11,7 +11,6 @@ interface Props {
 const { className, title, description, slug, featuredImage, featuredVideo } =
     Astro.props;
 
-const isComingSoon = description === "Coming soon";
 const getVideoType = (videoPath: string): string => {
     if (videoPath.endsWith(".webm")) return "video/webm";
     if (videoPath.endsWith(".mp4")) return "video/mp4";

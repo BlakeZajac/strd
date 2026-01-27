@@ -1,0 +1,64 @@
+---
+import Media from "./Media.astro";
+import ButtonGroup from "./ButtonGroup.astro";
+
+interface Props {
+    mediaType: "image" | "video";
+    mediaPosition: "left" | "right";
+    imageSrc?: string;
+    imageAlt?: string;
+    videoSrc?: string;
+    title?: string;
+    content?: string;
+    primaryButton?: {
+        label: string;
+        url: string;
+        target: string | "_self";
+    };
+    secondaryButton?: {
+        label: string;
+        url: string;
+        target: string | "_self";
+    };
+}
+
+const {
+    mediaType = "image",
+    mediaPosition = "left",
+    imageSrc = "",
+    imageAlt = "",
+    videoSrc = "",
+    title = "",
+    content = "",
+    primaryButton,
+    secondaryButton,
+} = Astro.props;
+---
+
+<div class="l-section">
+    <div class="l-container">
+        <div class=`media-content media-content--image_${mediaPosition}`>
+            <div class="media-content__cell media-content__cell--media">
+                <Media
+                    className="media-content__media"
+                    mediaType={mediaType}
+                    imageSrc={imageSrc}
+                    imageAlt={imageAlt}
+                    videoSrc={videoSrc}
+                />
+            </div>
+
+            <div class="media-content__cell media-content__cell--copy">
+                <div class="media-content__copy copy">
+                    {title && <h2 class="media-content__title">{title}</h2>}
+                    {content}
+                </div>
+
+                <ButtonGroup
+                    primaryButton={primaryButton}
+                    secondaryButton={secondaryButton}
+                />
+            </div>
+        </div>
+    </div>
+</div>

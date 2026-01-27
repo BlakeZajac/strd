@@ -1,0 +1,18 @@
+---
+interface Props {
+    label: string;
+    url: string;
+    target?: string;
+    className?: string;
+}
+
+const { label, url, target = "_self", className = "" } = Astro.props;
+
+if (!url && !label) return;
+---
+
+<a href={url} target={target} class={`button ${className}`}>
+    <span class="button__label">
+        {label}
+    </span>
+</a>

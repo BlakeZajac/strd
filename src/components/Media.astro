@@ -1,0 +1,57 @@
+---
+interface Props {
+    mediaType: "image" | "video";
+    imageSrc?: string;
+    imageAlt?: string;
+    videoSrc?: string;
+    className?: string;
+    loading?: "eager" | "lazy";
+}
+
+const {
+    mediaType = "image",
+    imageSrc = "",
+    imageAlt = "",
+    videoSrc = "",
+    className = "",
+    loading = "lazy",
+} = Astro.props;
+
+if ("image" === mediaType && !imageSrc) return;
+if ("video" === mediaType && !videoSrc) return;
+
+const getVideoType = (videoPath: string): string => {
+    if (videoPath.endsWith(".webm")) return "video/webm";
+    if (videoPath.endsWith(".mp4")) return "video/mp4";
+    return "video/mp4";
+};
+
+import { Image } from "astro:assets";
+---
+
+<div class=`media ${className}`>
+    {
+        "image" === mediaType && imageSrc ? (
+            <Image
+                width={1000}
+                height={1000}
+                src={imageSrc}
+                alt={imageAlt}
+                class="media__image"
+                loading={loading}
+            />
+        ) : "video" === mediaType && videoSrc ? (
+            <video
+                src={videoSrc}
+                class="media__video"
+                poster={imageSrc}
+                autoplay
+                loop
+                muted
+                playsinline
+            >
+                <source src={videoSrc} type={getVideoType(videoSrc)} />
+            </video>
+        ) : null
+    }
+</div>
