@@ -5,17 +5,28 @@ import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 
 export async function getStaticPaths() {
-    const workItems = await getCollection("work");
-    return workItems.map((item) => ({
-        params: { slug: item.slug },
-        props: { item },
-    }));
+	const workItems = await getCollection("work");
+	return workItems.map((item) => ({
+		params: { slug: item.slug },
+		props: { item },
+	}));
 }
 
 const { item } = Astro.props;
 const { Content } = await item.render();
 ---
 
-<Layout>
-    <Hero title={item.data.title} />
+<Layout
+	title={`${item.data.title} | WordPress project by Blake Zajac | STRD`}
+	description={item.data.description ??
+		"A WordPress project designed and developed by Blake Zajac."}
+	schema={{
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: `${item.data.title} | WordPress project by Blake Zajac`,
+		url: `https://blakezajac.com/work/${item.slug}`,
+	}}
+>
+	<Hero title={item.data.title} />
+	<Content />
 </Layout>

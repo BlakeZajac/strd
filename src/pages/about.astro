@@ -8,17 +8,33 @@ import socialData from "../content/social.json";
 import ListContent from "../components/ListContent.astro";
 ---
 
-<Layout>
-    <ListContent
-        title="Introduction"
-        content="<p class='h3'>Hallo, Blake here. I'm a WordPress developer and designer based in Newcastle, Australia, working full-time at Redback Solutions. I specialise in building custom WordPress solutions that help businesses move foward.</p>"
-        imageSrc="/headshot-01.jpg"
-        imageAlt="Headshot of Blake Zajac"
-    />
-    <ListContent
-        content="<p class='h5'>I find immense joy in problem solving, learning new approaches to development, and working on projects that challenge me to think differently. Originally focused purely on design, I've spent the last several years bridging the gap between design and development—building sites that not only look good, but work well and scale sustainably.</p> <p class='medium'>My approach is grounded in simplicity and functionality. I believe in building websites that balance business goals with user needs, creating experiences that are visually engaging and built to last. When I'm not coding or designing, you’ll find me running long distances, cycling around Newcastle, or trying (and often failing) to stick to a consistent reading habit.</p>"
-    />
-    <List type="experience" data={experienceData} />
-    <List type="education" data={educationData} />
-    <List type="social" data={socialData} />
+<Layout
+	title="About Blake Zajac | WordPress developer and designer in Newcastle | STRD"
+	description="Learn more about Blake Zajac, a Newcastle-based WordPress developer and designer focused on building considered, long-lasting WordPress sites for small businesses."
+	schema={{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		name: "Blake Zajac",
+		jobTitle: "WordPress developer and designer",
+		address: {
+			"@type": "PostalAddress",
+			addressLocality: "Newcastle",
+			addressRegion: "NSW",
+			addressCountry: "AU",
+		},
+		url: "https://blakezajac.com/about",
+	}}
+>
+	<ListContent
+		title="Introduction"
+		content="<p class='h3'>Hallo, Blake here. I'm a WordPress developer and designer based in Newcastle, Australia, working full-time at Redback Solutions. I specialise in building custom WordPress solutions that help businesses move foward.</p>"
+		imageSrc="/headshot-01.jpg"
+		imageAlt="Headshot of Blake Zajac"
+	/>
+	<ListContent
+		content="<p class='h5'>I find immense joy in problem solving, learning new approaches to development, and working on projects that challenge me to think differently. Originally focused purely on design, I've spent the last several years bridging the gap between design and development—building sites that not only look good, but work well and scale sustainably.</p> <p class='medium'>My approach is grounded in simplicity and functionality. I believe in building websites that balance business goals with user needs, creating experiences that are visually engaging and built to last. When I'm not coding or designing, you’ll find me running long distances, cycling around Newcastle, or trying (and often failing) to stick to a consistent reading habit.</p>"
+	/>
+	<List type="experience" data={experienceData} />
+	<List type="education" data={educationData} />
+	<List type="social" data={socialData} />
 </Layout>

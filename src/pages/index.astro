@@ -11,7 +11,21 @@ import educationData from "../content/education.json";
 import socialData from "../content/social.json";
 ---
 
-<Layout>
+<Layout
+	title="WordPress developer and designer in Newcastle | STRD"
+	description="WordPress developer and designer in Newcastle, Australia, helping small businesses take considered strides with fast, reliable websites built to last."
+	schema={{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: "STRD – WordPress developer and designer",
+		url: "https://blakezajac.com/",
+		potentialAction: {
+			"@type": "SearchAction",
+			target: "https://blakezajac.com/?s={search_term_string}",
+			"query-input": "required name=search_term_string",
+		},
+	}}
+>
 	<Hero
 		title="Built to perform. <br /> Designed to last."
 		description="Making strides through WordPress and design. <br /> Built for businesses and individuals ready to move forward."

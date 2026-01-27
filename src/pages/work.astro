@@ -3,9 +3,18 @@ import Layout from "../layouts/Layout.astro";
 import ProjectGrid from "../components/ProjectGrid.astro";
 ---
 
-<Layout>
-    <ProjectGrid
-        sectionClass="l-section--margin-top_sm"
-        slugs={["peaches-pilates"]}
-    />
+<Layout
+	title="Selected work | WordPress projects by Blake Zajac | STRD"
+	description="A selection of WordPress projects designed and developed by Blake Zajac, focusing on small businesses and modern, performance-minded websites."
+	schema={{
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "Selected work | WordPress projects by Blake Zajac",
+		url: "https://blakezajac.com/work",
+	}}
+>
+	<ProjectGrid
+		sectionClass="l-section--margin-top_sm"
+		slugs={["peaches-pilates"]}
+	/>
 </Layout>

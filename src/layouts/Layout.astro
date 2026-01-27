@@ -8,10 +8,17 @@ import "../scss/style.scss";
 
 interface Props {
     title?: string;
+	description?: string;
+	schema?: any;
     currentPage?: string;
 }
 
-const { title = "STRD", currentPage } = Astro.props;
+const {
+	title = "WordPress developer and designer in Newcastle | STRD",
+	description = "Blake Zajac is a Newcastle-based WordPress developer and designer building custom WordPress sites that perform well, look considered, and help small businesses move forward.",
+	schema,
+	currentPage,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -19,11 +26,15 @@ const { title = "STRD", currentPage } = Astro.props;
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
         <link rel="sitemap" href="/sitemap-index.xml" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="stylesheet" href="https://use.typekit.net/lec4mqw.css" />
-        <meta name="generator" content={Astro.generator} />
+		<meta name="generator" content={Astro.generator} />
         <title>{title}</title>
+		{schema && (
+			<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+		)}
     </head>
     <body>
         <Header currentPage={currentPage} />
