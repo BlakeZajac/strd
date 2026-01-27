@@ -4,7 +4,15 @@
 @mixin type-style-01 {}
 
 // H2
-@mixin type-style-02 {}
+@mixin type-style-02 {
+	font-size: rem(48px);
+	line-height: 1.1;
+	letter-spacing: -0.03em;
+
+	@media (min-width: $break-grid-md) {
+		font-size: rem(64px);
+	}
+}
 
 // H3
 @mixin type-style-03 {
@@ -61,7 +69,10 @@
 @mixin type-style-10 {}
 
 // Button
-@mixin type-style-11 {}
+@mixin type-style-11 {
+	font-size: rem(16px);
+	line-height: 1.5;
+}
 
 // Display
 @mixin type-style-12 {
@@ -115,6 +126,7 @@
 @mixin type-style-27 {}
 
 @mixin type-style-28 {}
+
 @mixin type-style-29 {}
 
 @mixin type-style-30 {}

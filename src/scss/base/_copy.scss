@@ -14,12 +14,12 @@
 	}
 
 	:is(h1, .h1) {
-		@include type-style-01;
-		margin-block: var(--spacer-section) var(--copy-spacer);
+		@include type-style-02;
+		margin-block-end: var(--copy-spacer);
 	}
 
 	:is(h2, .h2) {
-		@include type-style-01;
+		@include type-style-02;
 		margin-block: var(--spacer-section) var(--copy-spacer);
 	}
 

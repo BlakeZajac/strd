@@ -9,10 +9,48 @@ interface Props {
 const { label, url, target = "_self", className = "" } = Astro.props;
 
 if (!url && !label) return;
+
+const words = label.split(" ").filter((word) => word !== "");
+const totalWords = words.length;
 ---
 
-<a href={url} target={target} class={`button ${className}`}>
-    <span class="button__label">
-        {label}
+<a
+    href={url}
+    target={target}
+    class={`button ${className}`}
+    style={`--total-words: ${totalWords};`}
+>
+    <span class="button__labels">
+        <span class="button__label button__label--default">
+            {
+                words.map((word, index) => (
+                    <>
+                        <span
+                            class="button__word"
+                            style={`--word-index: ${index}`}
+                        >
+                            {word}
+                        </span>
+                        {index < words.length - 1 && " "}
+                    </>
+                ))
+            }
+        </span>
+
+        <span class="button__label button__label--hover">
+            {
+                words.map((word, index) => (
+                    <>
+                        <span
+                            class="button__word"
+                            style={`--word-index: ${index}`}
+                        >
+                            {word}
+                        </span>
+                        {index < words.length - 1 && " "}
+                    </>
+                ))
+            }
+        </span>
     </span>
 </a>

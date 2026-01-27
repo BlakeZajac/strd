@@ -1,0 +1,60 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    padding: rem(16px) rem(24px);
+    background-color: $color-yellow;
+    color: $color-black;
+    text-align: center;
+    cursor: pointer;
+
+    &:focus-visible {
+        // @include focus;
+    }
+}
+
+.button__labels {
+    display: flex;
+    flex-direction: column;
+    height: rem(24px);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.button__label {
+    @include type-style-11;
+    transition: transform $transition-elastic-02;
+}
+
+.button__label--default {
+    .button:hover & {
+        .button__word {
+            transform: translateY(-100%);
+        }
+    }
+}
+
+.button__label--hover {
+    transform: translateY(100%);
+
+    .button__word {
+        transform: translateY(100%);
+    }
+
+    .button:hover & {
+        transform: translateY(-100%);
+
+        .button__word {
+            transform: translateY(0);
+        }
+    }
+}
+
+.button__word {
+    display: inline-block;
+    transition: transform $transition-elastic-02;
+    transition-delay: calc((var(--total-words) - var(--word-index) - 1) * 0.05s);
+
+    .button:hover & {
+        transition-delay: calc(var(--word-index) * 0.05s);
+    }
+}

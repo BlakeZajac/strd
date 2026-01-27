@@ -1,5 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import MediaContent from "../components/MediaContent.astro";
 ---
 
-<Layout />
+<Layout>
+    <MediaContent
+        mediaPosition="right"
+        mediaPositionStacked="bottom"
+        imageSrc="/404/404.webp"
+        imageAlt=""
+        imageLoading="eager"
+        content="<p class='badge'>404 error</p><h1>We lost this page</h1><p>Sorry, the page you are looking for doesn't exist.</p>"
+        primaryButton={{
+            label: "Back to home",
+            url: "/",
+        }}
+    />
+</Layout>

@@ -3,30 +3,34 @@ import Media from "./Media.astro";
 import ButtonGroup from "./ButtonGroup.astro";
 
 interface Props {
-    mediaType: "image" | "video";
-    mediaPosition: "left" | "right";
+    mediaType?: "image" | "video";
+    mediaPosition?: "left" | "right";
+    mediaPositionStacked?: "top" | "bottom";
     imageSrc?: string;
     imageAlt?: string;
+    imageLoading?: "eager" | "lazy";
     videoSrc?: string;
     title?: string;
     content?: string;
     primaryButton?: {
         label: string;
         url: string;
-        target: string | "_self";
+        target?: string | "_self";
     };
     secondaryButton?: {
         label: string;
         url: string;
-        target: string | "_self";
+        target?: string | "_self";
     };
 }
 
 const {
     mediaType = "image",
     mediaPosition = "left",
+    mediaPositionStacked = "top",
     imageSrc = "",
     imageAlt = "",
+    imageLoading = "lazy",
     videoSrc = "",
     title = "",
     content = "",
@@ -37,13 +41,16 @@ const {
 
 <div class="l-section">
     <div class="l-container">
-        <div class=`media-content media-content--image_${mediaPosition}`>
+        <div
+            class={`media-content media-content--image_${mediaPosition} media-content--image_${mediaPositionStacked}`}
+        >
             <div class="media-content__cell media-content__cell--media">
                 <Media
                     className="media-content__media"
                     mediaType={mediaType}
                     imageSrc={imageSrc}
                     imageAlt={imageAlt}
+                    loading={imageLoading}
                     videoSrc={videoSrc}
                 />
             </div>
@@ -51,7 +58,7 @@ const {
             <div class="media-content__cell media-content__cell--copy">
                 <div class="media-content__copy copy">
                     {title && <h2 class="media-content__title">{title}</h2>}
-                    {content}
+                    <Fragment set:html={content} />
                 </div>
 
                 <ButtonGroup

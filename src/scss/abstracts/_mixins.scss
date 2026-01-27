@@ -36,7 +36,7 @@
 		width: 100%;
 		height: rem(1px);
 		background: $background;
-		transition: transform $transition-cubic-01;
+		transition: transform $transition-elastic-02;
 	}
 
 	@if $reverse {
