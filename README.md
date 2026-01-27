@@ -41,6 +41,3 @@ These are the next steps to review and polish before committing the recent SEO a
      - Mobile and desktop spacing.
      - Sentence case in headings and buttons.
      - No obvious content or UX regressions.
-
----
-
