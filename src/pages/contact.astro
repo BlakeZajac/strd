@@ -1,11 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ListContent from "../components/ListContent.astro";
+import ContactForm from "../components/ContactForm.astro";
+import Hero from "../components/Hero.astro";
+import List from "../components/List.astro";
 
-const url = new URL(Astro.request.url);
-const source = url.searchParams.get("source") ?? "direct";
-const campaign = url.searchParams.get("campaign") ?? "unknown";
-const status = url.searchParams.get("status");
+import socialData from "../content/social.json";
 ---
 
 <Layout
@@ -18,71 +17,7 @@ const status = url.searchParams.get("status");
 		url: "https://blakezajac.com/contact",
 	}}
 >
-	<section class="l-section">
-		<div class="l-container">
-			<ListContent
-				title="Start a project"
-				content="<p class='h5'>Share a few details about what you need, and I will get back to you with next steps. There is no obligation—this is simply a chance to see if we are a good fit for each other.</p>"
-			/>
-
-			{
-				status === "sent" && (
-					<p class="medium">
-						Thanks for getting in touch. Your message has been sent
-						and I will get back to you as soon as I can.
-					</p>
-				)
-			}
-
-			<form
-				class="l-stack l-stack--gap_sm contact-form"
-				method="post"
-				action="/api/contact"
-			>
-				<div class="l-stack l-stack--gap_xs">
-					<label class="medium" for="name">Name</label>
-					<input id="name" name="name" type="text" required />
-				</div>
-
-				<div class="l-stack l-stack--gap_xs">
-					<label class="medium" for="email">Email address</label>
-					<input id="email" name="email" type="email" required />
-				</div>
-
-				<div class="l-stack l-stack--gap_xs">
-					<label class="medium" for="business"
-						>Business or organisation</label
-					>
-					<input id="business" name="business" type="text" />
-				</div>
-
-				<div class="l-stack l-stack--gap_xs">
-					<label class="medium" for="website"
-						>Website (if you have one)</label
-					>
-					<input id="website" name="website" type="url" />
-				</div>
-
-				<div class="l-stack l-stack--gap_xs">
-					<label class="medium" for="details">Project details</label>
-					<textarea id="details" name="details" rows={6} required
-					></textarea>
-				</div>
-
-				<input type="hidden" name="source" value={source} />
-				<input type="hidden" name="campaign" value={campaign} />
-
-				<button class="button" type="submit">
-					<span class="button__labels">
-						<span class="button__label button__label--default">
-							Start a project
-						</span>
-						<span class="button__label button__label--hover">
-							Start a project
-						</span>
-					</span>
-				</button>
-			</form>
-		</div>
-	</section>
+	<Hero title="Start a project" />
+	<ContactForm />
+	<List type="social" data={socialData} />
 </Layout>

@@ -56,7 +56,8 @@
     }
 }
 
-.list-2col__unit--copy {
+.list-2col__unit--copy,
+.list-2col__unit--form {
     width: 100%;
     padding-block-start: rem(32px);
     border-block-start: rem(1px) solid $color-border;
