@@ -1,5 +1,5 @@
 ---
-interface Props {}
+import { actions } from "astro:actions";
 
 const url = new URL(Astro.request.url);
 const source = url.searchParams.get("source") ?? "direct";
@@ -15,7 +15,7 @@ const status = url.searchParams.get("status");
 
             <div class="list-2col__unit list-2col__unit--form">
                 {
-                    status === "sent" && (
+                    status == "sent" && (
                         <div class="form-notice">
                             Thanks for getting in touch. Your message has been
                             received and I will get back to you as soon as I
@@ -24,7 +24,7 @@ const status = url.searchParams.get("status");
                     )
                 }
 
-                <form class="form" method="post" action="/api/contact">
+                <form class="form" method="post" action={actions.send}>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <span class="form-required">*</span>
