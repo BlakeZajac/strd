@@ -1,0 +1,48 @@
+.form {
+    --spacer: #{rem(32px)};
+
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--spacer);
+}
+
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(8px) rem(4px);
+}
+
+.form-required {
+    color: $color-red;
+}
+
+label {
+    @include type-style-09;
+}
+
+input,
+textarea {
+    width: 100%;
+    height: rem(50px);
+    padding-inline: rem(16px);
+    background-color: white;
+    border: rem(1px) solid $color-border;
+    @include type-style-09;
+
+    @media (min-width: $break-grid-md) {
+        height: rem(60px);
+    }
+
+    &:focus-visible {
+        @include focus;
+    }
+}
+
+textarea {
+    padding-block: rem(16px);
+    height: rem(160px);
+}
+
+button[type="submit"] {
+    width: fit-content;
+}

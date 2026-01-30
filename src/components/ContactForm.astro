@@ -51,13 +51,34 @@ const status = url.searchParams.get("status");
 
                     <input type="hidden" name="source" value={source} />
 
-                    <button class="button" type="submit">
+                    <button
+                        class="button"
+                        type="submit"
+                        style="--total-words: 2;"
+                    >
                         <span class="button__labels">
                             <span class="button__label button__label--default">
-                                <span class="button__word"> Submit </span>
+                                <span
+                                    class="button__word"
+                                    style="--word-index: 1;">Send</span
+                                >
+                                <span
+                                    class="button__word"
+                                    style="--word-index: 2;">message</span
+                                >
                             </span>
-                            <span class="button__label button__label--hover">
-                                <span class="button__word"> Submit </span>
+                            <span
+                                class="button__label button__label--hover"
+                                aria-hidden="true"
+                            >
+                                <span
+                                    class="button__word"
+                                    style="--word-index: 1;">Send</span
+                                >
+                                <span
+                                    class="button__word"
+                                    style="--word-index: 2;">message</span
+                                >
                             </span>
                         </span>
                     </button>
