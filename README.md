@@ -15,22 +15,9 @@ These are the next steps to review and polish before committing the recent SEO a
      - Home, about, work, reading, `/services/...`, and `/contact`.
    - Use a structured data tester to validate:
      - `Service`, `FAQPage`, and `BreadcrumbList` JSON-LD on a couple of `/services` pages.
+     - Hidden `source` fields are set from query params.
 
-3. Polish the contact page
-   - File: `src/pages/contact.astro`.
-   - Check:
-     - Layout, spacing, and typography match the rest of the site.
-     - Thank-you message appears correctly when `?status=sent` is present.
-     - Hidden `source` and `campaign` fields are set from query params.
-
-4. Wire up real email delivery
-   - File: `src/pages/api/contact.ts`.
-   - Choose a mail provider and:
-     - Install and configure the client (e.g. Nodemailer).
-     - Add `.env` values (`SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`).
-     - Uncomment and adjust the email sending block to send to `contact@blakezajac.com`.
-
-5. Final visual QA
+3. Final visual QA
    - Run through:
      - `/services/wordpress-developer`
      - `/services/wordpress-developer/newcastle`
