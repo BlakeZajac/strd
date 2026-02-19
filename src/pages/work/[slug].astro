@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
@@ -27,6 +29,6 @@ const { Content } = await item.render();
 		url: `https://blakezajac.com/work/${item.slug}`,
 	}}
 >
-	<Hero title={item.data.title} />
+	<Hero title={item.data.title} description={item.data?.description} />
 	<Content />
 </Layout>
