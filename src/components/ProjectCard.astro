@@ -56,7 +56,10 @@ const getVideoType = (videoPath: string): string => {
 
     <div class="project-card__content">
         <div class="project-card__content-inner">
-            <span class="project-card__title">{title}</span>
+            <span class="project-card__title">
+                <a href={`/work/${slug}`} class="project-card__link">{title}</a
+                ></span
+            >
             <span class="project-card__text">{description}</span>
         </div>
     </div>
