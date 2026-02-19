@@ -53,14 +53,6 @@
     @include type-style-05;
 }
 
-.project-card__link {
-    &::before {
-        position: absolute;
-        inset: 0;
-        content: '';
-    }
-}
-
 .project-card__text {
     opacity: 0.75;
     @include type-style-09;
