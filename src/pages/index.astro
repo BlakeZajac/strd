@@ -7,7 +7,6 @@ import ListContent from "../components/ListContent.astro";
 import List from "../components/List.astro";
 
 import experienceData from "../content/experience.json";
-import educationData from "../content/education.json";
 import socialData from "../content/social.json";
 ---
 
@@ -30,12 +29,12 @@ import socialData from "../content/social.json";
 		title="Built to perform. <br /> Designed to last."
 		description="Making strides through WordPress and design. <br /> Built for businesses and individuals ready to move forward."
 	/>
-	<ProjectGrid columns={1} slugs={["peaches-pilates"]} />
+	<ProjectGrid columns={1} slugs={["club-training"]} />
+	<ProjectGrid columns={2} slugs={["peaches-pilates"]} />
 	<ListContent
 		borderTop={false}
 		content="<p class='h3'>Blake Zajac is a Newcastle-based WordPress developer and designer at Redback Solutions. He approaches development as problem solving—translating complex requirements into clean, scalable WordPress sites that balance function with form.</p> <p class='h3'>His work spans custom theme development, ecommerce solutions, and modern web applications. From concept to deployment, he focuses on building experiences that perform well, look better, and grow with the business.</p>"
 	/>
 	<List type="experience" data={experienceData} />
-	<List type="education" data={educationData} />
 	<List type="social" data={socialData} />
 </Layout>

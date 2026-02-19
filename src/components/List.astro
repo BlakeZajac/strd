@@ -1,13 +1,9 @@
 ---
 interface Props {
-    type: "education" | "experience" | "social";
+    type: "experience" | "social";
     data: {
         title?: string;
         items: Array<{
-            // Education Fields
-            year?: string;
-            institution?: string;
-            qualification?: string;
             // Experience Fields
             dates?: string;
             company?: string;
@@ -36,9 +32,7 @@ const { data, type } = Astro.props;
                     data?.items?.map((item) => (
                         <div class="list-3col">
                             <div class="list-text">
-                                {type === "social"
-                                    ? item.platform
-                                    : item.dates || item.year}
+                                {type === "social" ? item.platform : item.dates}
                             </div>
 
                             {item.url ? (
@@ -49,20 +43,18 @@ const { data, type } = Astro.props;
                                 >
                                     {type === "social"
                                         ? item.handle
-                                        : item.company || item.institution}
+                                        : item.company}
                                 </a>
                             ) : (
                                 <div class="list-text">
                                     {type === "social"
                                         ? item.handle
-                                        : item.company || item.institution}
+                                        : item.company}
                                 </div>
                             )}
 
                             {type !== "social" && (
-                                <div class="list-text">
-                                    {item.role || item.qualification}
-                                </div>
+                                <div class="list-text">{item.role}</div>
                             )}
                         </div>
                     ))

@@ -1,3 +1,9 @@
+.l-project-grid {
+    +.l-project-grid {
+        margin-block-start: var(--spacer-02);
+    }
+}
+
 .project-grid {
     --num-columns: 1;
 
@@ -16,7 +22,7 @@
     grid-row-gap: $l-grid-padding-02;
 }
 
-.project-grid--columns_2 {    
+.project-grid--columns_2 {
     @media (min-width: $break-grid-lg) {
         --num-columns: 2;
     }

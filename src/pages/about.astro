@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import List from "../components/List.astro";
 
 import experienceData from "../content/experience.json";
-import educationData from "../content/education.json";
 import socialData from "../content/social.json";
 import ListContent from "../components/ListContent.astro";
 ---
@@ -35,6 +34,5 @@ import ListContent from "../components/ListContent.astro";
 		content="<p class='h5'>I find immense joy in problem solving, learning new approaches to development, and working on projects that challenge me to think differently. Originally focused purely on design, I've spent the last several years bridging the gap between design and development—building sites that not only look good, but work well and scale sustainably.</p> <p class='medium'>My approach is grounded in simplicity and functionality. I believe in building websites that balance business goals with user needs, creating experiences that are visually engaging and built to last. When I'm not coding or designing, you’ll find me running long distances, cycling around Newcastle, or trying (and often failing) to stick to a consistent reading habit.</p>"
 	/>
 	<List type="experience" data={experienceData} />
-	<List type="education" data={educationData} />
 	<List type="social" data={socialData} />
 </Layout>
