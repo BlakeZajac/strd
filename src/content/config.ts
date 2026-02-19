@@ -7,6 +7,14 @@ const workCollection = defineCollection({
 		description: z.string().optional(),
 		featuredImage: z.string().optional(),
 		featuredVideo: z.string().optional(),
+		link: z.string().optional(),
+		role: z.array(z.string()).optional(),
+		stack: z.array(z.string()).optional(),
+		overview: z.string().optional(),
+		challenge: z.string().optional(),
+		solution: z.string().optional(),
+		highlights: z.array(z.string()).optional(),
+		impact: z.string().optional(),
 	}),
 });
 
