@@ -5,6 +5,8 @@ import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
+import ButtonGroup from "../../components/ButtonGroup.astro";
+import CustomContent from "../../components/Content.astro";
 
 export async function getStaticPaths() {
 	const workItems = await getCollection("work");
@@ -15,20 +17,45 @@ export async function getStaticPaths() {
 }
 
 const { item } = Astro.props;
+const data = item.data;
 const { Content } = await item.render();
+
+const primaryButton = data?.link
+	? {
+			label: "View website",
+			url: data?.link ?? "",
+			target: "_blank",
+		}
+	: undefined;
+const secondaryButton = {
+	label: "Back to all projects",
+	url: "/work",
+};
 ---
 
 <Layout
-	title={`${item.data.title} | WordPress project by Blake Zajac | STRD`}
-	description={item.data.description ??
+	title={`${data.title} | WordPress project by Blake Zajac | STRD`}
+	description={data.description ??
 		"A WordPress project designed and developed by Blake Zajac."}
 	schema={{
 		"@context": "https://schema.org",
 		"@type": "WebPage",
-		name: `${item.data.title} | WordPress project by Blake Zajac`,
+		name: `${data.title} | WordPress project by Blake Zajac`,
 		url: `https://blakezajac.com/work/${item.slug}`,
 	}}
 >
-	<Hero title={item.data.title} description="In progress" />
-	<Content />
+	<Hero title={data.title} description={data.description} />
+
+	<div class="l-section">
+		<div class="l-container">
+			<ButtonGroup
+				primaryButton={primaryButton}
+				secondaryButton={secondaryButton}
+			/>
+		</div>
+	</div>
+
+	<CustomContent>
+		<Content />
+	</CustomContent>
 </Layout>
