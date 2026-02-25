@@ -1,62 +1,41 @@
 ---
+import VideoImageBackground from "./VideoImageBackground.astro";
+
 interface Props {
     className?: string;
     title: string;
     description?: string;
     slug: string;
-    featuredImage?: string;
-    featuredVideo?: string;
+    imageSrcLandscape?: string;
+    imageSrcPortrait?: string;
+    imageAlt?: string;
+    videoSrc?: string;
 }
 
-const { className, title, description, slug, featuredImage, featuredVideo } =
-    Astro.props;
-
-const getVideoType = (videoPath: string): string => {
-    if (videoPath.endsWith(".webm")) return "video/webm";
-    if (videoPath.endsWith(".mp4")) return "video/mp4";
-    return "video/mp4";
-};
+const {
+    className,
+    title,
+    description,
+    slug,
+    imageSrcLandscape,
+    imageSrcPortrait,
+    imageAlt,
+    videoSrc,
+} = Astro.props;
 ---
 
 <a
-    class={`project-card ${className ?? ""}`}
+    class={`project-card ${className ?? ""} js-project-card`}
     href={`/work/${slug}`}
     aria-label={`View project: ${title}`}
+    data-content-slug={slug}
 >
-    <div class="project-card__background">
-        {
-            featuredVideo ? (
-                <video
-                    class="project-card__media project-card__media--video"
-                    poster={featuredImage}
-                    autoplay
-                    loop
-                    muted
-                    playsinline
-                >
-                    <source
-                        src={featuredVideo}
-                        type={getVideoType(featuredVideo)}
-                    />
-                    {featuredImage && (
-                        <img
-                            src={featuredImage}
-                            alt={title}
-                            class="project-card__media project-card__media--image"
-                        />
-                    )}
-                </video>
-            ) : (
-                featuredImage && (
-                    <img
-                        src={featuredImage}
-                        alt={title}
-                        class="project-card__media project-card__media--image"
-                    />
-                )
-            )
-        }
-    </div>
+    <VideoImageBackground
+        imageSrcLandscape={imageSrcLandscape}
+        imageSrcPortrait={imageSrcPortrait}
+        imageAlt={imageAlt ?? title}
+        videoSrc={videoSrc}
+    />
 
     <div class="project-card__content">
         <div class="project-card__content-inner">

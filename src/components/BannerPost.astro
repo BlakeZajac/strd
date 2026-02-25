@@ -1,0 +1,40 @@
+---
+import VideoImageBackground from "./VideoImageBackground.astro";
+
+interface Props {
+    title: string;
+    content?: string;
+    imageSrcLandscape?: string;
+    imageSrcPortrait?: string;
+    imageAlt?: string;
+    videoSrc?: string;
+}
+
+const {
+    title,
+    content,
+    imageSrcLandscape,
+    imageSrcPortrait,
+    imageAlt,
+    videoSrc,
+} = Astro.props;
+---
+
+<div class="banner-post u-inset">
+    <VideoImageBackground
+        imageSrcLandscape={imageSrcLandscape}
+        imageSrcPortrait={imageSrcPortrait}
+        imageAlt={imageAlt}
+        videoSrc={videoSrc}
+    />
+
+    <div class="banner-post__container l-container">
+        <div class="banner-post__content">
+            <h1 class="banner-post__title">
+                {title}
+            </h1>
+
+            {content && <p class="banner-post__description">{content}</p>}
+        </div>
+    </div>
+</div>

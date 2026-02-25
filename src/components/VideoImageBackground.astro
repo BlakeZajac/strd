@@ -1,0 +1,63 @@
+---
+interface Props {
+    imageSrcLandscape?: string;
+    imageSrcPortrait?: string;
+    imageAlt?: string;
+    videoSrc?: string;
+    className?: string;
+}
+
+const {
+    imageSrcLandscape = "",
+    imageSrcPortrait = "",
+    imageAlt = "",
+    videoSrc = "",
+    className = "",
+} = Astro.props;
+
+const getVideoType = (videoPath: string): string => {
+    if (videoPath.endsWith(".webm")) return "video/webm";
+    if (videoPath.endsWith(".mp4")) return "video/mp4";
+    return "video/mp4";
+};
+---
+
+<div
+    class={`video-image-background ${className ?? ""} js-video-image-background`}
+    .trim()
+>
+    <picture>
+        {
+            imageSrcLandscape && (
+                <source src={imageSrcLandscape} media="(min-width: 46.5em)" />
+            )
+        }
+
+        {imageSrcPortrait && <source src={imageSrcPortrait} />}
+
+        {
+            imageSrcLandscape && (
+                <img
+                    src={imageSrcLandscape}
+                    alt={imageAlt}
+                    class="video-image-background__media video-image-background__media--image js-parallax-media"
+                />
+            )
+        }
+    </picture>
+
+    {
+        videoSrc && (
+            <video
+                muted
+                loop
+                playsinline
+                autoplay
+                poster={imageSrcLandscape}
+                class="video-image-background__media video-image-background__media--video js-parallax-media"
+            >
+                <source src={videoSrc} type={getVideoType(videoSrc)} />
+            </video>
+        )
+    }
+</div>

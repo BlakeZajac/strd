@@ -4,7 +4,7 @@ export const prerender = true;
 import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
-import Hero from "../../components/Hero.astro";
+import BannerPost from "../../components/BannerPost.astro";
 import ButtonGroup from "../../components/ButtonGroup.astro";
 import CustomContent from "../../components/Content.astro";
 
@@ -44,7 +44,14 @@ const secondaryButton = {
 		url: `https://blakezajac.com/work/${item.slug}`,
 	}}
 >
-	<Hero title={data.title} description={data.description} />
+	<BannerPost
+		title={data.title}
+		content={data.description}
+		imageSrcLandscape={data.imageSrcLandscape}
+		imageSrcPortrait={data.imageSrcPortrait}
+		imageAlt={data.title}
+		videoSrc={data.videoSrc}
+	/>
 
 	<div class="l-section">
 		<div class="l-container">

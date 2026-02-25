@@ -5,8 +5,9 @@ const workCollection = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string().optional(),
-		featuredImage: z.string().optional(),
-		featuredVideo: z.string().optional(),
+		imageSrcLandscape: z.string().optional(),
+		imageSrcPortrait: z.string().optional(),
+		videoSrc: z.string().optional(),
 		link: z.string().optional(),
 	}),
 });

@@ -16,6 +16,7 @@
 @import "base/animation";
 
 // Components
+@import 'components/banner-post';
 @import 'components/button';
 @import 'components/button-group';
 @import 'components/hero';
@@ -24,6 +25,7 @@
 @import 'components/post-content';
 @import 'components/project-card';
 @import 'components/project-grid';
+@import 'components/video-image-background';
 
 // Layout
 @import 'layout/site-header';

@@ -57,7 +57,6 @@ $l-grid-padding-02: rem(20px);
 
 $site-header-height: rem(90px) !default;
 
-
 //---------------------------------------------------------------------------
 //	Transitions
 //---------------------------------------------------------------------------
@@ -103,6 +102,11 @@ $border-radius-01: rem(10px);
 //---------------------------------------------------------------------------
 
 :root {
+	--inset: #{rem(10px)};
+	--inset-border-radius: #{$border-radius-01};
+
+	--site-header-height: #{$site-header-height};
+
 	--spacer-01: #{rem(32px)};
 	--spacer-02: #{rem(48px)};
 	--spacer-03: #{rem(64px)};

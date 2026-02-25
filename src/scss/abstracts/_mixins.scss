@@ -74,3 +74,18 @@
 	outline: $width solid $color;
 	outline-offset: $offset;
 }
+
+@mixin inset {
+	margin-block-end: var(--inset);
+	margin-inline: max(var(--inset), calc((100vw - #{$l-container-max-width}) / 2));
+	border-radius: var(--inset-border-radius);
+
+	&:first-child {
+		margin-block-start: var(--inset);
+	}
+}
+
+@mixin inset-inline {
+	margin-inline: max(var(--inset), calc((100vw - #{$l-container-max-width}) / 2));
+	border-radius: var(--inset-border-radius);
+}

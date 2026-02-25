@@ -1,4 +1,5 @@
 .site-header {
+    height: var(--site-header-height);
     background-color: rgba(white, 75%);
     backdrop-filter: blur(10px);
     border-block-end: rem(1px) solid $color-black-6;

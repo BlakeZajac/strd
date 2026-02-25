@@ -1,0 +1,37 @@
+.banner-post {
+    --min-height: calc(100svh - var(--site-header-height) - (var(--inset) * 2));
+
+    display: flex;
+    flex-direction: column;
+    min-height: var(--min-height);
+    position: relative;
+    color: white;
+}
+
+.banner-post__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--spacer-01);
+    justify-content: flex-end;
+    flex-grow: 1;
+    width: 100%;
+    padding-block: var(--spacer-section) var(--spacer-03);
+    position: relative;
+    z-index: 1;
+}
+
+.banner-post__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(24px);
+    max-width: rem(1000px);
+}
+
+.banner-post__title {
+    margin-block-start: auto;
+    @include type-style-12;
+}
+
+.banner-post__description {
+    @include type-style-07;
+}
