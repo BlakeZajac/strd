@@ -1,5 +1,6 @@
 ---
 import VideoImageBackground from "./VideoImageBackground.astro";
+import ButtonGroup from "./ButtonGroup.astro";
 
 interface Props {
     title: string;
@@ -8,6 +9,16 @@ interface Props {
     imageSrcPortrait?: string;
     imageAlt?: string;
     videoSrc?: string;
+    primaryButton?: {
+        label: string;
+        url: string;
+        target?: string | "_self";
+    };
+    secondaryButton?: {
+        label: string;
+        url: string;
+        target?: string | "_self";
+    };
 }
 
 const {
@@ -17,6 +28,8 @@ const {
     imageSrcPortrait,
     imageAlt,
     videoSrc,
+    primaryButton,
+    secondaryButton,
 } = Astro.props;
 ---
 
@@ -36,5 +49,11 @@ const {
 
             {content && <p class="banner-post__description">{content}</p>}
         </div>
+
+        <ButtonGroup
+            className="banner-post__button-group"
+            primaryButton={primaryButton}
+            secondaryButton={secondaryButton}
+        />
     </div>
 </div>

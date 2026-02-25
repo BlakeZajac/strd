@@ -11,7 +11,7 @@
 .banner-post__container {
     display: flex;
     flex-direction: column;
-    row-gap: var(--spacer-01);
+    row-gap: var(--spacer-02);
     justify-content: flex-end;
     flex-grow: 1;
     width: 100%;
@@ -34,4 +34,9 @@
 
 .banner-post__description {
     @include type-style-07;
+}
+
+.banner-post__button-group {
+    padding-block-start: var(--spacer-02);
+    border-block-start: rem(1px) solid rgba(white, 20%);
 }
