@@ -6,6 +6,7 @@ interface Props {
     title: string;
     description?: string;
     slug: string;
+    overlay?: boolean;
     imageSrcLandscape?: string;
     imageSrcPortrait?: string;
     imageAlt?: string;
@@ -17,6 +18,7 @@ const {
     title,
     description,
     slug,
+    overlay = true,
     imageSrcLandscape,
     imageSrcPortrait,
     imageAlt,
@@ -31,6 +33,7 @@ const {
     data-content-slug={slug}
 >
     <VideoImageBackground
+        overlay={overlay}
         imageSrcLandscape={imageSrcLandscape}
         imageSrcPortrait={imageSrcPortrait}
         imageAlt={imageAlt ?? title}

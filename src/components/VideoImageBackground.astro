@@ -1,18 +1,20 @@
 ---
 interface Props {
+    className?: string;
+    overlay?: boolean;
     imageSrcLandscape?: string;
     imageSrcPortrait?: string;
     imageAlt?: string;
     videoSrc?: string;
-    className?: string;
 }
 
 const {
+    className = "",
+    overlay = true,
     imageSrcLandscape = "",
     imageSrcPortrait = "",
     imageAlt = "",
     videoSrc = "",
-    className = "",
 } = Astro.props;
 
 const getVideoType = (videoPath: string): string => {
@@ -23,8 +25,7 @@ const getVideoType = (videoPath: string): string => {
 ---
 
 <div
-    class={`video-image-background ${className ?? ""} js-video-image-background`}
-    .trim()
+    class={`video-image-background ${className ?? ""} ${overlay ? "video-image-background--overlay" : ""} js-video-image-background`}
 >
     <picture>
         {

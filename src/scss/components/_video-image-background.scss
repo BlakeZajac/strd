@@ -8,6 +8,10 @@
     background-color: $color-grey;
     border-radius: inherit;
 
+
+}
+
+.video-image-background--overlay {
     &::before {
         content: "";
         position: absolute;

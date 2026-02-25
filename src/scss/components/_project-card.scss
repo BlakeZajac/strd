@@ -3,6 +3,9 @@
     flex-direction: column;
     row-gap: rem(24px);
     position: relative;
+    aspect-ratio: 16 / 9;
+    background-color: $color-grey;
+    border-radius: $border-radius-01;
 
     @media (min-width: $break-grid-md) {
         color: white;
@@ -18,22 +21,6 @@
         pointer-events: none;
         border-radius: inherit;
     }
-}
-
-.project-card__background {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 16 / 9;
-    border-radius: $border-radius-01;
-    background-color: $color-grey;
-}
-
-.project-card__media {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    inset: 0;
-    object-fit: cover;
 }
 
 .project-card__content {
