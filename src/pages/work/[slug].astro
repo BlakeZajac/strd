@@ -5,8 +5,12 @@ import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
 import BannerPost from "../../components/BannerPost.astro";
-import ButtonGroup from "../../components/ButtonGroup.astro";
 import CustomContent from "../../components/Content.astro";
+import {
+	getWorkPageDescription,
+	getWorkPageTitle,
+	getWorkSchemaName,
+} from "../../lib/work";
 
 export async function getStaticPaths() {
 	const workItems = await getCollection("work");
@@ -34,13 +38,12 @@ const secondaryButton = {
 ---
 
 <Layout
-	title={`${data.title} | WordPress project by Blake Zajac | STRD`}
-	description={data.description ??
-		"A WordPress project designed and developed by Blake Zajac."}
+	title={getWorkPageTitle(data.title)}
+	description={getWorkPageDescription(data.description)}
 	schema={{
 		"@context": "https://schema.org",
 		"@type": "WebPage",
-		name: `${data.title} | WordPress project by Blake Zajac`,
+		name: getWorkSchemaName(data.title),
 		url: `https://blakezajac.com/work/${item.slug}`,
 	}}
 >

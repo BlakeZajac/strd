@@ -96,7 +96,7 @@ function cloneCard(card) {
  * @param {HTMLElement} clone - The cloned card element.
  * @returns {gsap.core.Timeline} GSAP timeline instance.
  */
-function animateClone(clone, data = {}) {
+function animateClone(clone) {
   const { inset, siteHeaderHeight } = getCssValues();
 
   const rect = clone.getBoundingClientRect();
@@ -166,15 +166,13 @@ async function fetchContent(slug) {
  * @param {number} [videoCurrentTime=0] - The time in seconds to seek the new video to (for seamless sync).
  */
 function replaceContent(data, url, videoCurrentTime = 0) {
-  document.title = data.title ?? document.title;
+  document.title = data.title;
 
-  if (data.meta?.description) {
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", data.meta.description);
-  }
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta) meta.setAttribute("content", data.meta.description);
 
   const main = document.querySelector("main");
-  if (main) main.innerHTML = data.content;
+  main.innerHTML = data.content;
 
   const mainVideo = main.querySelector("video");
   if (mainVideo) syncAndPlayVideo(mainVideo, videoCurrentTime);
@@ -196,11 +194,6 @@ async function handleCardTransition(card) {
 
   const url = card.href;
   const slug = card.getAttribute("data-content-slug");
-
-  if (!slug) {
-    isTransitioning = false;
-    return;
-  }
 
   try {
     fadeOutCards();

@@ -3,6 +3,10 @@ import { experimental_AstroContainer } from "astro/container";
 import { getEntry } from "astro:content";
 import mdxRenderer from "@astrojs/mdx/server.js";
 
+import {
+	getWorkPageDescription,
+	getWorkPageTitle,
+} from "../../../lib/work";
 import WorkPage from "../../work/[slug].astro";
 
 export const GET: APIRoute = async ({ params }) => {
@@ -40,15 +44,12 @@ export const GET: APIRoute = async ({ params }) => {
         const mainMatch = html.match(/<main[^>]*>([\s\S]*?)<\/main>/);
         const content = mainMatch ? mainMatch[1].trim() : html;
 
-        const title = `${entry.data.title} | WordPress project by Blake Zajac | STRD`;
-        const description =
-            entry.data.description ??
-            "A WordPress project designed and developed by Blake Zajac.";
-
         const response = {
-            title,
+            title: getWorkPageTitle(entry.data.title),
             content,
-            meta: { description },
+            meta: {
+                description: getWorkPageDescription(entry.data.description),
+            },
         };
 
         return new Response(JSON.stringify(response), {
