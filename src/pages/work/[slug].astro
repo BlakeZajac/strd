@@ -7,17 +7,17 @@ import Layout from "../../layouts/Layout.astro";
 import BannerPost from "../../components/BannerPost.astro";
 import CustomContent from "../../components/Content.astro";
 import {
-	getWorkPageDescription,
-	getWorkPageTitle,
-	getWorkSchemaName,
+  getWorkPageDescription,
+  getWorkPageSchema,
+  getWorkPageTitle,
 } from "../../lib/work";
 
 export async function getStaticPaths() {
-	const workItems = await getCollection("work");
-	return workItems.map((item) => ({
-		params: { slug: item.slug },
-		props: { item },
-	}));
+  const workItems = await getCollection("work");
+  return workItems.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
 }
 
 const { item } = Astro.props;
@@ -25,49 +25,35 @@ const data = item.data;
 const { Content } = await item.render();
 
 const primaryButton = data?.link
-	? {
-			label: "View website",
-			url: data?.link ?? "",
-			target: "_blank",
-		}
-	: undefined;
+  ? {
+      label: "View website",
+      url: data?.link ?? "",
+      target: "_blank",
+    }
+  : undefined;
 const secondaryButton = {
-	label: "Back to all projects",
-	url: "/work",
+  label: "Back to all projects",
+  url: "/work",
 };
 ---
 
 <Layout
-	title={getWorkPageTitle(data.title)}
-	description={getWorkPageDescription(data.description)}
-	schema={{
-		"@context": "https://schema.org",
-		"@type": "WebPage",
-		name: getWorkSchemaName(data.title),
-		url: `https://blakezajac.com/work/${item.slug}`,
-	}}
+  title={getWorkPageTitle(data.title)}
+  description={getWorkPageDescription(data.description)}
+  schema={getWorkPageSchema(item.slug, data.title)}
 >
-	<BannerPost
-		title={data.title}
-		content={data.description}
-		imageSrcLandscape={data.imageSrcLandscape}
-		imageSrcPortrait={data.imageSrcPortrait}
-		imageAlt={data.title}
-		videoSrc={data.videoSrc}
-		primaryButton={primaryButton}
-		secondaryButton={secondaryButton}
-	/>
+  <BannerPost
+    title={data.title}
+    content={data.description}
+    imageSrcLandscape={data.imageSrcLandscape}
+    imageSrcPortrait={data.imageSrcPortrait}
+    imageAlt={data.title}
+    videoSrc={data.videoSrc}
+    primaryButton={primaryButton}
+    secondaryButton={secondaryButton}
+  />
 
-	<!-- <div class="l-section">
-		<div class="l-container">
-			<ButtonGroup
-				primaryButton={primaryButton}
-				secondaryButton={secondaryButton}
-			/>
-		</div>
-	</div> -->
-
-	<CustomContent>
-		<Content />
-	</CustomContent>
+  <CustomContent>
+    <Content />
+  </CustomContent>
 </Layout>

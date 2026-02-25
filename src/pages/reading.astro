@@ -3,17 +3,13 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import ReadingList from "../components/ReadingList.astro";
 import readingData from "../content/reading.json";
+import { createWebPageSchema } from "../lib/schema";
 ---
 
 <Layout
 	title="What I'm reading | books and articles | STRD"
 	description="A growing list of books and articles Blake Zajac is reading, collecting ideas that influence his work as a WordPress developer and designer."
-	schema={{
-		"@context": "https://schema.org",
-		"@type": "WebPage",
-		name: "What I'm reading | books and articles",
-		url: "https://blakezajac.com/reading",
-	}}
+	schema={createWebPageSchema("What I'm reading | books and articles", "reading")}
 >
 	<Hero title="What I'm reading" />
 	<ReadingList data={readingData} />

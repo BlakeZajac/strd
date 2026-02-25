@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import List from "../components/List.astro";
+import { createPersonSchema } from "../lib/schema";
 
 import experienceData from "../content/experience.json";
 import socialData from "../content/social.json";
@@ -10,19 +11,12 @@ import ListContent from "../components/ListContent.astro";
 <Layout
 	title="About Blake Zajac | WordPress developer and designer in Newcastle | STRD"
 	description="Learn more about Blake Zajac, a Newcastle-based WordPress developer and designer focused on building considered, long-lasting WordPress sites for small businesses."
-	schema={{
-		"@context": "https://schema.org",
-		"@type": "Person",
+	schema={createPersonSchema({
 		name: "Blake Zajac",
 		jobTitle: "WordPress developer and designer",
-		address: {
-			"@type": "PostalAddress",
-			addressLocality: "Newcastle",
-			addressRegion: "NSW",
-			addressCountry: "AU",
-		},
-		url: "https://blakezajac.com/about",
-	}}
+		path: "about",
+		address: { locality: "Newcastle", region: "NSW", country: "AU" },
+	})}
 >
 	<ListContent
 		title="Introduction"

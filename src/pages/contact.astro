@@ -7,6 +7,7 @@ import Layout from "../layouts/Layout.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Hero from "../components/Hero.astro";
 import List from "../components/List.astro";
+import { createContactPageSchema } from "../lib/schema";
 
 import socialData from "../content/social.json";
 
@@ -20,12 +21,7 @@ if (result && !result.error) {
 <Layout
 	title="Start a project | STRD"
 	description="Share a few details about your project and Blake will be in touch to discuss how you can work together."
-	schema={{
-		"@context": "https://schema.org",
-		"@type": "ContactPage",
-		name: "Contact Blake Zajac | STRD",
-		url: "https://blakezajac.com/contact",
-	}}
+	schema={createContactPageSchema("Contact Blake Zajac | STRD", "contact")}
 >
 	<Hero title="Start a project" />
 	<ContactForm />

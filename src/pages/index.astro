@@ -1,10 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
 import Hero from "../components/Hero.astro";
 import ProjectGrid from "../components/ProjectGrid.astro";
 import ListContent from "../components/ListContent.astro";
 import List from "../components/List.astro";
+import { createWebSiteSchema } from "../lib/schema";
+import { url } from "../lib/site";
 
 import experienceData from "../content/experience.json";
 import socialData from "../content/social.json";
@@ -13,17 +14,14 @@ import socialData from "../content/social.json";
 <Layout
 	title="WordPress developer and designer in Newcastle | STRD"
 	description="WordPress developer and designer in Newcastle, Australia, helping small businesses take considered strides with fast, reliable websites built to last."
-	schema={{
-		"@context": "https://schema.org",
-		"@type": "WebSite",
-		name: "STRD | WordPress developer and designer",
-		url: "https://blakezajac.com/",
-		potentialAction: {
-			"@type": "SearchAction",
-			target: "https://blakezajac.com/?s={search_term_string}",
-			"query-input": "required name=search_term_string",
-		},
-	}}
+	schema={createWebSiteSchema(
+		"STRD | WordPress developer and designer",
+		"",
+		{
+			targetTemplate: `${url("")}?s={search_term_string}`,
+			queryInput: "required name=search_term_string",
+		}
+	)}
 >
 	<Hero
 		title="Built to perform. <br /> Designed to last."
