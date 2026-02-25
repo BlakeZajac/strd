@@ -14,12 +14,12 @@
     &.is-transitioning {
         width: var(--width);
         height: var(--height);
+        max-height: calc(100svh - var(--site-header-height) - (var(--inset) * 2));
         position: fixed;
         inset-block-start: var(--top);
         inset-inline-start: var(--left);
         z-index: 9999;
         pointer-events: none;
-        border-radius: inherit;
     }
 }
 

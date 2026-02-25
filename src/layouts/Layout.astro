@@ -7,17 +7,17 @@ import Footer from "../components/Footer.astro";
 import "../scss/style.scss";
 
 interface Props {
-	title?: string;
-	description?: string;
-	schema?: any;
-	currentPage?: string;
+  title?: string;
+  description?: string;
+  schema?: any;
+  currentPage?: string;
 }
 
 const {
-	title = "WordPress developer and designer in Newcastle | STRD",
-	description = "Blake Zajac is a Newcastle-based WordPress developer and designer building custom WordPress sites that perform well, look considered, and help small businesses move forward.",
-	schema,
-	currentPage,
+  title = "WordPress developer and designer in Newcastle | STRD",
+  description = "Blake Zajac is a Newcastle-based WordPress developer and designer building custom WordPress sites that perform well, look considered, and help small businesses move forward.",
+  schema,
+  currentPage,
 } = Astro.props;
 
 const url = Astro.url.href;
@@ -25,49 +25,50 @@ const url = Astro.url.href;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		{/* Base viewport and page description */}
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content={description} />
+    {/* Base viewport and page description */}
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
 
-		{/* Open Graph (Facebook, LinkedIn, etc.) */}
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={url} />
+    {/* Open Graph (Facebook, LinkedIn, etc.) */}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
 
-		{/* Twitter cards */}
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
+    {/* Twitter cards */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
 
-		{/* Site assets and generator */}
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
-		<link rel="stylesheet" href="https://use.typekit.net/lec4mqw.css" />
-		<meta name="generator" content={Astro.generator} />
+    {/* Site assets and generator */}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <link rel="stylesheet" href="https://use.typekit.net/lec4mqw.css" />
+    <meta name="generator" content={Astro.generator} />
 
-		{/* Document title */}
-		<title>{title}</title>
+    {/* Document title */}
+    <title>{title}</title>
 
-		{/* Structured data (JSON-LD) */}
-		{
-			schema && (
-				<script
-					type="application/ld+json"
-					set:html={JSON.stringify(schema)}
-				/>
-			)
-		}
-	</head>
-	<body>
-		<Header currentPage={currentPage} />
-		<main class="site-main">
-			<slot />
-		</main>
-		<Footer />
-		<Analytics />
-	</body>
+    {/* Structured data (JSON-LD) */}
+    {
+      schema && (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      )
+    }
+  </head>
+  <body>
+    <Header currentPage={currentPage} />
+    <main class="site-main">
+      <slot />
+    </main>
+    <Footer />
+    <Analytics />
+
+    <script>
+      import "../js/card-transitions.js";
+    </script>
+  </body>
 </html>
