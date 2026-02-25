@@ -12,27 +12,24 @@ import socialData from "../content/social.json";
 ---
 
 <Layout
-	title="WordPress developer and designer in Newcastle | STRD"
-	description="WordPress developer and designer in Newcastle, Australia, helping small businesses take considered strides with fast, reliable websites built to last."
-	schema={createWebSiteSchema(
-		"STRD | WordPress developer and designer",
-		"",
-		{
-			targetTemplate: `${url("")}?s={search_term_string}`,
-			queryInput: "required name=search_term_string",
-		}
-	)}
+  title="WordPress developer and designer in Newcastle | STRD"
+  description="WordPress developer and designer in Newcastle, Australia, helping small businesses take considered strides with fast, reliable websites built to last."
+  schema={createWebSiteSchema("STRD | WordPress developer and designer", "", {
+    targetTemplate: `${url("")}?s={search_term_string}`,
+    queryInput: "required name=search_term_string",
+  })}
 >
-	<Hero
-		title="Built to perform. <br /> Designed to last."
-		description="Making strides through WordPress and design. <br /> Built for businesses and individuals ready to move forward."
-	/>
-	<ProjectGrid columns={1} slugs={["club-training"]} />
-	<!-- <ProjectGrid columns={2} slugs={["peaches-pilates"]} /> -->
-	<ListContent
-		borderTop={false}
-		content="<p class='h3'>Blake Zajac is a Newcastle-based WordPress developer and designer at Redback Solutions. He approaches development as problem solving—translating complex requirements into clean, scalable WordPress sites that balance function with form.</p> <p class='h3'>His work spans custom theme development, ecommerce solutions, and modern web applications. From concept to deployment, he focuses on building experiences that perform well, look better, and grow with the business.</p>"
-	/>
-	<List type="experience" data={experienceData} />
-	<List type="social" data={socialData} />
+  <Hero
+    title="Built to perform. <br /> Designed to last."
+    description="Making strides through WordPress and design. <br /> Built for businesses and individuals ready to move forward."
+  />
+  <ProjectGrid columns={1} slugs={["club-training"]} />
+  <ProjectGrid columns={2} slugs={["fulbright", "southerly-ten"]} />
+  <ProjectGrid columns={2} slugs={["peaches-pilates"]} />
+  <ListContent
+    borderTop={false}
+    content="<p class='h3'>Blake Zajac is a Newcastle-based WordPress developer and designer at Redback Solutions. He approaches development as problem solving—translating complex requirements into clean, scalable WordPress sites that balance function with form.</p> <p class='h3'>His work spans custom theme development, ecommerce solutions, and modern web applications. From concept to deployment, he focuses on building experiences that perform well, look better, and grow with the business.</p>"
+  />
+  <List type="experience" data={experienceData} />
+  <List type="social" data={socialData} />
 </Layout>

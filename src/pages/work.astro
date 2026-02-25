@@ -1,20 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
 import ProjectGrid from "../components/ProjectGrid.astro";
 import {
-	getWorkIndexDescription,
-	getWorkIndexSchema,
-	getWorkIndexTitle,
+  getWorkIndexDescription,
+  getWorkIndexSchema,
+  getWorkIndexTitle,
 } from "../lib/work";
 ---
 
 <Layout
-	title={getWorkIndexTitle()}
-	description={getWorkIndexDescription()}
-	schema={getWorkIndexSchema()}
+  title={getWorkIndexTitle()}
+  description={getWorkIndexDescription()}
+  schema={getWorkIndexSchema()}
 >
-	<ProjectGrid
-		sectionClass="l-section--margin-top_sm"
-		slugs={["club-training", "peaches-pilates"]}
-	/>
+  <Hero title="Selected work" />
+  <ProjectGrid
+    slugs={["club-training", "fulbright", "southerly-ten", "peaches-pilates"]}
+  />
 </Layout>
