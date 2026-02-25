@@ -3,6 +3,8 @@ import { z } from "astro/zod";
 import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
+const fromEmail = import.meta.env.RESEND_FROM_EMAIL;
+const toEmail = import.meta.env.RESEND_TO_EMAIL;
 
 export const server = {
     send: defineAction({
@@ -34,8 +36,8 @@ export const server = {
             <p>${input.message.replace(/\n/g, '<br />')}</p>
             `
             const { data, error } = await resend.emails.send({
-                from: 'Blake Zajac <website@blakezajac.com>',
-                to: ['contact@blakezajac.com'],
+                from: `Blake Zajac <${fromEmail}>`,
+                to: [toEmail],
                 subject: `New contact form submission from ${input.name}`,
                 html,
             });
