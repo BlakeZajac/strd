@@ -2,48 +2,50 @@
 import VideoImageBackground from "./VideoImageBackground.astro";
 
 interface Props {
-    className?: string;
-    title: string;
-    description?: string;
-    slug: string;
-    overlay?: boolean;
-    imageSrcLandscape?: string;
-    imageSrcPortrait?: string;
-    imageAlt?: string;
-    videoSrc?: string;
+  className?: string;
+  title: string;
+  description?: string;
+  slug: string;
+  overlay?: boolean;
+  imageSrcLandscape?: string;
+  imageSrcPortrait?: string;
+  imageAlt?: string;
+  videoSrc?: string;
 }
 
 const {
-    className,
-    title,
-    description,
-    slug,
-    overlay = true,
-    imageSrcLandscape,
-    imageSrcPortrait,
-    imageAlt,
-    videoSrc,
+  className,
+  title,
+  description,
+  slug,
+  overlay = true,
+  imageSrcLandscape,
+  imageSrcPortrait,
+  imageAlt,
+  videoSrc,
 } = Astro.props;
 ---
 
 <a
-    class={`project-card ${className ?? ""} js-project-card`}
-    href={`/work/${slug}`}
-    aria-label={`View project: ${title}`}
-    data-content-slug={slug}
+  class={`project-card ${className ?? ""} js-project-card`}
+  href={`/work/${slug}`}
+  aria-label={`View project: ${title}`}
+  data-content-slug={slug}
 >
+  <div class="project-card__background">
     <VideoImageBackground
-        overlay={overlay}
-        imageSrcLandscape={imageSrcLandscape}
-        imageSrcPortrait={imageSrcPortrait}
-        imageAlt={imageAlt ?? title}
-        videoSrc={videoSrc}
+      overlay={overlay}
+      imageSrcLandscape={imageSrcLandscape}
+      imageSrcPortrait={imageSrcPortrait}
+      imageAlt={imageAlt ?? title}
+      videoSrc={videoSrc}
     />
+  </div>
 
-    <div class="project-card__content">
-        <div class="project-card__content-inner">
-            <span class="project-card__title">{title}</span>
-            <span class="project-card__text">{description}</span>
-        </div>
+  <div class="project-card__content">
+    <div class="project-card__content-inner">
+      <span class="project-card__title">{title}</span>
+      <span class="project-card__text">{description}</span>
     </div>
+  </div>
 </a>

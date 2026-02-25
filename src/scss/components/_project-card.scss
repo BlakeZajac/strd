@@ -3,9 +3,6 @@
     flex-direction: column;
     row-gap: rem(24px);
     position: relative;
-    aspect-ratio: 16 / 9;
-    background-color: $color-grey;
-    border-radius: $border-radius-01;
 
     @media (min-width: $break-grid-md) {
         color: white;
@@ -20,7 +17,15 @@
         inset-inline-start: var(--left);
         z-index: 9999;
         pointer-events: none;
+        border-radius: $border-radius-01;
     }
+}
+
+.project-card__background {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background-color: inherit;
+    border-radius: $border-radius-01;
 }
 
 .project-card__content {
@@ -48,7 +53,7 @@
 }
 
 .project-card__title {
-    @include type-style-05;
+    @include type-style-04;
 }
 
 .project-card__text {
