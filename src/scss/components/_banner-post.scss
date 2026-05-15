@@ -26,7 +26,7 @@
     display: flex;
     flex-direction: column;
     row-gap: rem(24px);
-    max-width: rem(1000px);
+    max-width: $l-content-max-width;
 }
 
 .banner-post__title {

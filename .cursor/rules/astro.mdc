@@ -45,6 +45,7 @@ Modifiers: `block--modifier`, `block__element--modifier`.
 - **Co-locate** with the component that owns the behaviour; markup-only siblings stay script-free (e.g. `OffcanvasTrigger.astro`).
 - **Select only `js-*` classes** — never `.site-offcanvas__panel`, `.offcanvas-menu__link`, etc.
 - Pair each hook with BEM on the same node; don’t style `js-*` in SCSS.
+- Add a `js-*` class only when a script exists or ships in the same change.
 
 ### Reference: offcanvas
 

@@ -10,9 +10,9 @@ alwaysApply: false
 
 `style.scss` loads partials with `@use` only — **no abstracts here**. Register every new partial explicitly (not a glob):
 
-1. **Base** — `reset`, `base`, `layout`, `forms`, `utilities`, `copy`, `animation`
+1. **Base** — `reset`, `base`, `layout`, `forms`, `utilities`, `copy`
 2. **Components** — `components/_*.scss`
-3. **Layout** — `layout/site-*`
+3. **Layout** — `layout/site-*` (including `site-content` for `ContentLayout`)
 4. **Pages** — reserved
 
 **New component styles** → `components/_<name>.scss` + `@use` line in `style.scss`.  
@@ -59,7 +59,6 @@ Breakpoints: `$break-grid-2xs` … `$break-grid-3xl` (via `em()`). Layout-specif
 
 - Easing: `$transition-cubic-bezier`, `$transition-cubic-01` (1s), `$transition-cubic-02` (1.2s)
 - Underlines: `link-underline-animated` mixins + `$transition-elastic-*`
-- Scroll entrance: `.scroll-trigger`, `animate--*` in `base/_animation.scss` + `prefers-reduced-motion`
 - UI panels (offcanvas): CSS `transition` on transform/opacity; keep JS timeouts aligned with `$transition-cubic-01`
 
 ## Selectors

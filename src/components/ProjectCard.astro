@@ -27,7 +27,7 @@ const {
 ---
 
 <a
-  class={`project-card ${className ?? ""} js-project-card`}
+  class:list={["project-card", className]}
   href={`/work/${slug}`}
   aria-label={`View project: ${title}`}
   data-content-slug={slug}

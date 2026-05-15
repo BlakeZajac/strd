@@ -1,30 +1,43 @@
-# STRD – SEO services and contact TODOs
+# STRD
 
-These are the next steps to review and polish before committing the recent SEO and contact changes.
+Blake Zajac portfolio and marketing site ([blakezajac.com](https://blakezajac.com)). Built with Astro 5, deployed on Vercel.
 
-1. Review `/services` pages
-   - Check copy, headings, and tone (Australian English) for:
-     - `src/pages/services/[service].astro`
-     - `src/pages/services/[service]/[location].astro`
-     - `src/content/services/wordpress-developer.mdx`
-     - `src/content/service-locations/wordpress-developer-*.mdx`
-   - Confirm each CTA button points to `/contact/?source=seo&campaign=...` with the correct service and location slug.
+## Setup
 
-2. Verify SEO and schema
-   - Ensure `<title>` and meta descriptions are correct on:
-     - Home, about, work, reading, `/services/...`, and `/contact`.
-   - Use a structured data tester to validate:
-     - `Service`, `FAQPage`, and `BreadcrumbList` JSON-LD on a couple of `/services` pages.
-     - Hidden `source` fields are set from query params.
+```bash
+npm install
+cp .env.example .env
+# Add Resend credentials to .env (required for the contact form)
+npm run dev
+```
 
-3. Final visual QA
-   - Run through:
-     - `/services/wordpress-developer`
-     - `/services/wordpress-developer/newcastle`
-     - `/services/wordpress-developer/melbourne`
-     - `/services/wordpress-developer/remote-australia`
-     - `/contact`
-   - Check:
-     - Mobile and desktop spacing.
-     - Sentence case in headings and buttons.
-     - No obvious content or UX regressions.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Local dev server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build |
+
+## Project conventions
+
+Coding standards and file layout are documented in [`.cursor/rules/`](.cursor/rules/) (`project.mdc` is always applied; `astro.mdc`, `scss.mdc`, and `typescript.mdc` apply by file type).
+
+## Environment variables
+
+| Variable | Purpose |
+|----------|---------|
+| `RESEND_API_KEY` | Resend API key for contact form |
+| `RESEND_FROM_EMAIL` | Sender address for outbound mail |
+| `RESEND_TO_EMAIL` | Inbox that receives form submissions |
+
+## Content
+
+- **MDX collections**: `work`, `services`, `service-locations` — see `src/content/config.ts`
+- **Static JSON**: `menu.json`, `reading.json`, `experience.json`, `social.json`
+
+Service location MDX files exist under `src/content/service-locations/`, but location routes (`/services/[service]/[location]`) are not implemented yet. Only `/services/[service]` is live.
+
+## SEO & polish TODOs
+
+1. Review `/services` pages — copy, Australian English, CTAs to `/contact/?source=seo&campaign=...`
+2. Verify `<title>`, meta descriptions, and JSON-LD on key pages
+3. Visual QA: home, about, work, reading, `/services/wordpress-developer`, `/contact`

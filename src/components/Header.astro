@@ -16,9 +16,10 @@ const currentPath = Astro.url.pathname;
         Menu.items.map((item) => (
           <a
             href={item.href}
-            class={`site-header__link ${
-              currentPath === item.href ? "site-header__link--active" : ""
-            }`}
+            class:list={[
+              "site-header__link",
+              { "site-header__link--active": currentPath === item.href },
+            ]}
           >
             {item.label}
           </a>

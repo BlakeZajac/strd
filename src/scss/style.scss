@@ -7,7 +7,6 @@
 @use "base/forms";
 @use "base/utilities";
 @use "base/copy";
-@use "base/animation";
 
 // Components
 @use "components/banner-post";
@@ -24,6 +23,7 @@
 // Layout
 @use "layout/site-header";
 @use "layout/site-main";
+@use "layout/site-content";
 @use "layout/site-footer";
 @use "layout/site-offcanvas";
 

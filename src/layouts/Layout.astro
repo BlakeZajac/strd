@@ -11,14 +11,12 @@ interface Props {
   title?: string;
   description?: string;
   schema?: any;
-  currentPage?: string;
 }
 
 const {
   title = "WordPress developer and designer in Newcastle | STRD",
   description = "Blake Zajac is a Newcastle-based WordPress developer and designer building custom WordPress sites that perform well, look considered, and help small businesses move forward.",
   schema,
-  currentPage,
 } = Astro.props;
 
 const url = Astro.url.href;
@@ -61,7 +59,7 @@ const url = Astro.url.href;
     }
   </head>
   <body>
-    <Header currentPage={currentPage} />
+    <Header />
     <main class="site-main">
       <slot />
     </main>
