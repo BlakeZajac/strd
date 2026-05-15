@@ -8,7 +8,7 @@ alwaysApply: false
 
 Use TypeScript (with types) in:
 
-- `src/lib/` — `site.ts`, `schema.ts`, `work.ts`, etc.
+- `src/lib/` — `site.ts`, `schema.ts`, `work.ts`, `actions.ts`, etc.
 - `src/actions/` — Astro Actions
 - `src/content/config.ts` — collection schemas (Zod)
 - `src/pages/api/**/*.ts` — API routes
@@ -20,21 +20,22 @@ Use TypeScript (with types) in:
 | Collection | Purpose |
 |------------|---------|
 | `work` | Case study MDX frontmatter |
-| `services` | Service page copy + FAQs, schema fields |
-| `service-locations` | Geo/service landing pages |
+| `services` | Service pillar copy + FAQs, schema fields |
+| `service-locations` | Service + location SEO landing pages |
 
 Extend Zod schemas when adding frontmatter fields; keep MDX under `src/content/<collection>/`.
 
 ## Actions (`actions/index.ts`)
 
 - Contact `send`: Zod input, Resend email, `ActionError` on failure.
-- Form: `ContactForm.astro` → `method="post"` `action={actions.send}`.
+- Form: `LayoutContactForm` → `method="post"` `action={actions.send}`.
 - **Env** (Vercel): `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `RESEND_TO_EMAIL`.
 
 ## Lib helpers
 
 - **`url(path)`** in `site.ts` — absolute URLs for schema/sitemap.
-- **`schema.ts` / `work.ts`** — page titles, descriptions, JSON-LD builders; reuse instead of duplicating strings in pages.
+- **`schema.ts` / `work.ts`** — page titles, descriptions, JSON-LD builders; reuse in pages instead of duplicating strings.
+- **`actions.ts`** — `Action` type, `DEFAULT_PRIMARY_ACTION`, `DEFAULT_SECONDARY_ACTION` for `BlockButtonGroup` / hero layouts.
 
 ## API routes
 

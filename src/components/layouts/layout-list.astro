@@ -1,0 +1,44 @@
+---
+import LayoutList2col from "./layout-list-2col.astro";
+
+interface Props {
+	type: "experience" | "social";
+	data: {
+		title?: string;
+		items: Array<{
+			dates?: string;
+			company?: string;
+			role?: string;
+			platform?: string;
+			handle?: string;
+			url?: string;
+		}>;
+	};
+}
+
+const { data, type } = Astro.props;
+---
+
+<LayoutList2col title={data?.title} copyUnit="list">
+	{
+		data?.items?.map((item) => (
+			<div class="list-3col">
+				<div class="list-text">
+					{type === "social" ? item.platform : item.dates}
+				</div>
+
+				{item.url ? (
+					<a href={item.url} target="_blank" class="list-link">
+						{type === "social" ? item.handle : item.company}
+					</a>
+				) : (
+					<div class="list-text">
+						{type === "social" ? item.handle : item.company}
+					</div>
+				)}
+
+				{type !== "social" && <div class="list-text">{item.role}</div>}
+			</div>
+		))
+	}
+</LayoutList2col>

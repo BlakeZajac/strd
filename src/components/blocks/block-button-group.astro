@@ -1,0 +1,33 @@
+---
+import BlockButton from "./block-button.astro";
+import BlockLink from "./block-link.astro";
+import {
+	DEFAULT_PRIMARY_ACTION,
+	DEFAULT_SECONDARY_ACTION,
+	type Action,
+} from "../../lib/actions";
+
+interface Props {
+	primaryAction?: Action | null;
+	secondaryAction?: Action | null;
+	className?: string;
+}
+
+const { primaryAction, secondaryAction, className = "" } = Astro.props;
+
+const primary =
+	primaryAction === undefined ? DEFAULT_PRIMARY_ACTION : primaryAction;
+const secondary =
+	secondaryAction === undefined ? DEFAULT_SECONDARY_ACTION : secondaryAction;
+
+if (!primary && !secondary) return;
+---
+
+<div class:list={["button-group", className]}>
+	{primary && (
+		<BlockButton {...primary} className="button-group__button" />
+	)}
+	{secondary && (
+		<BlockLink {...secondary} className="button-group__button" />
+	)}
+</div>

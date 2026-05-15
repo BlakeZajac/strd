@@ -11,25 +11,24 @@ alwaysApply: false
 `style.scss` loads partials with `@use` only — **no abstracts here**. Register every new partial explicitly (not a glob):
 
 1. **Base** — `reset`, `base`, `layout`, `forms`, `utilities`, `copy`
-2. **Components** — `components/_*.scss`
-3. **Layout** — `layout/site-*` (including `site-content` for `ContentLayout`)
-4. **Pages** — reserved
+2. **Components** — `components/_*.scss` (BEM blocks for `block-*` / shared UI)
+3. **Layout** — `layout/site-*` (header, footer, offcanvas, `site-content`)
+4. **Pages** — `pages/_*.scss` when a route needs page-specific rules (e.g. `service-location`)
 
-**New component styles** → `components/_<name>.scss` + `@use` line in `style.scss`.  
+**New block styles** → `components/_<block-name>.scss` + `@use` in `style.scss`.  
 **Site chrome** → `layout/_site-<area>.scss`.
 
 ## Module graph
 
 - **`@use` / `@forward` only** — no `@import`.
-- **Abstracts barrel** — `src/scss/abstracts/_index.scss` forwards, in order: `functions` → `variables` → `mixins` → `type-styles`.
-- **Every partial that needs tokens/mixins** (all base except `reset`, all components, all layout) starts with:
+- **Abstracts barrel** — `src/scss/abstracts/_index.scss` forwards: `functions` → `variables` → `mixins` → `type-styles`.
+- **Every partial that needs tokens/mixins** starts with:
 
   ```scss
   @use "abstracts" as *;
   ```
 
-  Resolved via Vite `loadPaths: ["./src/scss"]` in `astro.config.mjs` (bare `abstracts`, not `../abstracts`).
-- **Inside `abstracts/`**: `_variables.scss` `@use "functions" as *`; `_mixins.scss` and `_type-styles.scss` `@use "functions"` + `"variables" as *`.
+  Resolved via Vite `loadPaths: ["./src/scss"]` in `astro.config.mjs`.
 - Use `sass:math` + `math.div()` in `_functions.scss`; plain CSS like `aspect-ratio: 16 / 9` is fine.
 
 ## Tokens (`abstracts/`)
@@ -59,9 +58,9 @@ Breakpoints: `$break-grid-2xs` … `$break-grid-3xl` (via `em()`). Layout-specif
 
 - Easing: `$transition-cubic-bezier`, `$transition-cubic-01` (1s), `$transition-cubic-02` (1.2s)
 - Underlines: `link-underline-animated` mixins + `$transition-elastic-*`
-- UI panels (offcanvas): CSS `transition` on transform/opacity; keep JS timeouts aligned with `$transition-cubic-01`
+- Offcanvas: CSS `transition` on transform/opacity; keep JS timeouts aligned with `$transition-cubic-01`
 
 ## Selectors
 
 - **BEM / layout / utilities only** — never target `js-*` in SCSS.
-- Component block name should match the Astro component (`project-card`, `offcanvas-menu`).
+- Block name matches the Astro block or BEM in layouts (`detail-list`, `accordion`, `project-card`, `hero`).

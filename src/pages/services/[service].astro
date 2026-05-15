@@ -2,86 +2,81 @@
 import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
-import Hero from "../../components/Hero.astro";
-import ProjectGrid from "../../components/ProjectGrid.astro";
-import Button from "../../components/Button.astro";
+import {
+	LayoutHero,
+	LayoutProjectGrid,
+	LayoutList2col,
+	BlockDetailList,
+	BlockButton,
+} from "@components";
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const services = await getCollection("services");
+	const services = await getCollection("services");
 
-  return services.map((entry) => ({
-    params: { service: entry.slug },
-    props: { entry },
-  }));
+	return services.map((entry) => ({
+		params: { service: entry.slug },
+		props: { entry },
+	}));
 }
 
 const { entry } = Astro.props;
 const data = entry.data;
 
 const schema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: data.heroHeading ?? data.title,
-  description: data.summary,
-  provider: {
-    "@type": "Person",
-    name: "Blake Zajac",
-  },
-  areaServed: "Australia",
+	"@context": "https://schema.org",
+	"@type": "Service",
+	name: data.heroHeading ?? data.title,
+	description: data.summary,
+	provider: {
+		"@type": "Person",
+		name: "Blake Zajac",
+	},
+	areaServed: "Australia",
 };
 ---
 
 <Layout title={data.title} description={data.summary} schema={schema}>
-  <Hero title={data.heroHeading} description={data.heroSubheading} />
+	<LayoutHero
+		title={data.heroHeading}
+		description={data.heroSubheading}
+		primaryAction={null}
+		secondaryAction={null}
+	/>
 
-  <section class="l-section">
-    <div class="l-container">
-      <div class="l-stack l-stack--gap_lg">
-        <div class="l-stack l-stack--gap_sm">
-          <h2 class="h3">Who this service is for</h2>
-          <p class="medium">{data.audience}</p>
-        </div>
+	<LayoutList2col title="Who this service is for">
+		<p class="medium">{data.audience}</p>
+	</LayoutList2col>
 
-        {
-          data.servicesList && (
-            <div class="l-stack l-stack--gap_sm">
-              <h2 class="h3">How I help with WordPress</h2>
-              <ul class="list">
-                {data.servicesList.map((item) => (
-                  <li class="list__item">
-                    <h3 class="h5">{item.title}</h3>
-                    <p class="medium">{item.description}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        }
+	{
+		data.servicesList && (
+			<LayoutList2col title="How I help with WordPress">
+				<BlockDetailList items={data.servicesList} />
+			</LayoutList2col>
+		)
+	}
 
-        <div class="l-stack l-stack--gap_sm">
-          <h2 class="h3">Ready to make your next stride?</h2>
-          <p class="medium">
-            If this sounds like the kind of WordPress work you need, the next
-            step is a short conversation about your project and what you are
-            trying to achieve.
-          </p>
-          <Button
-            label="Start a project"
-            url="/contact/?source=seo&campaign=services-wordpress-developer"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+	<LayoutList2col title="Ready to make your next stride?">
+		<div class="l-stack l-stack--gap_sm">
+			<p class="medium">
+				If this sounds like the kind of WordPress work you need, the next
+				step is a short conversation about your project and what you are
+				trying to achieve.
+			</p>
+			<BlockButton
+				label="Start a project"
+				url="/contact/?source=seo&campaign=services-wordpress-developer"
+			/>
+		</div>
+	</LayoutList2col>
 
-  {
-    data.featuredWorkSlugs && (
-      <ProjectGrid
-        sectionClass="l-section--margin-top_sm"
-        slugs={data.featuredWorkSlugs}
-      />
-    )
-  }
+	{
+		data.featuredWorkSlugs && (
+			<LayoutProjectGrid
+				sectionClass="l-section--margin-top_sm"
+				slugs={data.featuredWorkSlugs}
+			/>
+		)
+	}
 </Layout>

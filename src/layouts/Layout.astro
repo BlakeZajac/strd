@@ -1,9 +1,9 @@
 ---
 import Analytics from "@vercel/analytics/astro";
 
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import Offcanvas from "../components/Offcanvas.astro";
+import LayoutHeader from "../components/layouts/layout-header.astro";
+import LayoutFooter from "../components/layouts/layout-footer.astro";
+import LayoutOffcanvas from "../components/layouts/layout-offcanvas.astro";
 
 import "../scss/style.scss";
 
@@ -59,12 +59,12 @@ const url = Astro.url.href;
     }
   </head>
   <body>
-    <Header />
+    <LayoutHeader />
     <main class="site-main">
       <slot />
     </main>
-    <Footer />
-    <Offcanvas />
+    <LayoutFooter />
+    <LayoutOffcanvas />
     <Analytics />
   </body>
 </html>

@@ -1,0 +1,61 @@
+---
+import BlockMedia from "../blocks/block-media.astro";
+import BlockButtonGroup from "../blocks/block-button-group.astro";
+import type { Action } from "../../lib/actions";
+
+interface Props {
+	mediaType?: "image" | "video";
+	mediaPosition?: "left" | "right";
+	mediaPositionStacked?: "top" | "bottom";
+	imageSrc?: string;
+	imageAlt?: string;
+	imageLoading?: "eager" | "lazy";
+	videoSrc?: string;
+	title?: string;
+	content?: string;
+	primaryAction?: Action | null;
+	secondaryAction?: Action | null;
+}
+
+const {
+	mediaType = "image",
+	mediaPosition = "left",
+	mediaPositionStacked = "top",
+	imageSrc = "",
+	imageAlt = "",
+	imageLoading = "lazy",
+	videoSrc = "",
+	title = "",
+	content = "",
+	primaryAction,
+	secondaryAction,
+} = Astro.props;
+---
+
+<div class="l-section">
+	<div class="l-container">
+		<div
+			class={`media-content media-content--image_${mediaPosition} media-content--image_${mediaPositionStacked}`}
+		>
+			<div class="media-content__cell media-content__cell--media">
+				<BlockMedia
+					className="media-content__media"
+					{mediaType}
+					{imageSrc}
+					{imageAlt}
+					loading={imageLoading}
+					{videoSrc}
+				/>
+			</div>
+
+			<div class="media-content__cell media-content__cell--copy">
+				<div class="media-content__copy copy">
+					{title && <h2 class="media-content__title">{title}</h2>}
+					<Fragment set:html={content} />
+				</div>
+
+				<BlockButtonGroup {primaryAction} {secondaryAction} />
+			</div>
+		</div>
+	</div>
+</div>

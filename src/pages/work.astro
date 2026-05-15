@@ -1,19 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import ProjectGrid from "../components/ProjectGrid.astro";
+import { LayoutHero, LayoutProjectGrid } from "@components";
 import {
-  getWorkIndexDescription,
-  getWorkIndexSchema,
-  getWorkIndexTitle,
+	getWorkIndexDescription,
+	getWorkIndexSchema,
+	getWorkIndexTitle,
 } from "../lib/work";
 ---
 
 <Layout
-  title={getWorkIndexTitle()}
-  description={getWorkIndexDescription()}
-  schema={getWorkIndexSchema()}
+	title={getWorkIndexTitle()}
+	description={getWorkIndexDescription()}
+	schema={getWorkIndexSchema()}
 >
-  <Hero title="Selected work" />
-  <ProjectGrid slugs={["club-training", "southerly-ten", "fulbright"]} />
+	<LayoutHero
+		title="Selected work"
+		primaryAction={null}
+		secondaryAction={null}
+	/>
+	<LayoutProjectGrid slugs={["club-training", "southerly-ten", "fulbright"]} />
 </Layout>

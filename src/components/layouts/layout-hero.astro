@@ -1,0 +1,28 @@
+---
+import BlockButtonGroup from "../blocks/block-button-group.astro";
+import type { Action } from "../../lib/actions";
+
+interface Props {
+	title?: string;
+	description?: string;
+	primaryAction?: Action | null;
+	secondaryAction?: Action | null;
+}
+
+const {
+	title = "",
+	description = "",
+	primaryAction,
+	secondaryAction,
+} = Astro.props;
+
+if (!title && !description) return;
+---
+
+<div class="hero l-section">
+	<div class="hero__container l-container">
+		{title && <h1 set:html={title} class="hero__title" />}
+		{description && <p set:html={description} class="hero__text" />}
+		<BlockButtonGroup {primaryAction} {secondaryAction} />
+	</div>
+</div>

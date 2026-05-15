@@ -4,56 +4,56 @@ export const prerender = true;
 import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
-import BannerPost from "../../components/BannerPost.astro";
-import CustomContent from "../../components/Content.astro";
+import { LayoutBannerPost, LayoutContent } from "@components";
 import {
-  getWorkPageDescription,
-  getWorkPageSchema,
-  getWorkPageTitle,
+	getWorkPageDescription,
+	getWorkPageSchema,
+	getWorkPageTitle,
 } from "../../lib/work";
 
 export async function getStaticPaths() {
-  const workItems = await getCollection("work");
-  return workItems.map((item) => ({
-    params: { slug: item.slug },
-    props: { item },
-  }));
+	const workItems = await getCollection("work");
+	return workItems.map((item) => ({
+		params: { slug: item.slug },
+		props: { item },
+	}));
 }
 
 const { item } = Astro.props;
 const data = item.data;
 const { Content } = await item.render();
 
-const primaryButton = data?.link
-  ? {
-      label: "View website",
-      url: data?.link ?? "",
-      target: "_blank",
-    }
-  : undefined;
-const secondaryButton = {
-  label: "Back to all projects",
-  url: "/work",
+const primaryAction = data?.link
+	? {
+			label: "View website",
+			url: data.link,
+			target: "_blank" as const,
+		}
+	: null;
+
+const secondaryAction = {
+	label: "Back to all projects",
+	url: "/work",
 };
 ---
 
 <Layout
-  title={getWorkPageTitle(data.title)}
-  description={getWorkPageDescription(data.description)}
-  schema={getWorkPageSchema(item.slug, data.title)}
+	title={getWorkPageTitle(data.title)}
+	description={getWorkPageDescription(data.description)}
+	schema={getWorkPageSchema(item.slug, data.title)}
 >
-  <BannerPost
-    title={data.title}
-    content={data.description}
-    imageSrcLandscape={data.imageSrcLandscape}
-    imageSrcPortrait={data.imageSrcPortrait}
-    imageAlt={data.title}
-    videoSrc={data.videoSrc}
-    primaryButton={primaryButton}
-    secondaryButton={secondaryButton}
-  />
+	<LayoutBannerPost
+		title={data.title}
+		content={data.description}
+		imageSrcLandscape={data.imageSrcLandscape}
+		imageSrcPortrait={data.imageSrcPortrait}
+		imageAlt={data.title}
+		videoSrc={data.videoSrc}
+		{primaryAction}
+		{secondaryAction}
+	/>
 
-  <CustomContent>
-    <Content />
-  </CustomContent>
+	<LayoutContent>
+		<Content />
+	</LayoutContent>
 </Layout>

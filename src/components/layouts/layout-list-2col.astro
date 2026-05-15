@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+	title?: string;
+	content?: string;
+	imageSrc?: string;
+	imageAlt?: string;
+	borderTop?: boolean;
+	sectionClass?: string;
+	copyUnit?: "copy" | "form" | "list";
+	id?: string;
+}
+
+const {
+	title,
+	content,
+	imageSrc,
+	imageAlt,
+	borderTop = true,
+	sectionClass = "",
+	copyUnit = "copy",
+	id,
+} = Astro.props;
+
+const copyUnitClass = `list-2col__unit--${copyUnit}`;
+const hasSlot = Astro.slots.has("default");
+---
+
+<div class:list={["l-section", sectionClass]} {id}>
+	<div class="l-container">
+		<div
+			class:list={[
+				"list-2col",
+				{ "list-2col--no-border-top": !borderTop },
+			]}
+		>
+			<div class="list-2col__unit list-2col__unit--title">
+				{title && <div class="list-title">{title}</div>}
+			</div>
+
+			<div class:list={["list-2col__unit", copyUnitClass]}>
+				{content && <div set:html={content} class="copy" />}
+				{hasSlot && <slot />}
+			</div>
+
+			{
+				imageSrc && (
+					<div class="list-2col__unit list-2col__unit--image">
+						<Image
+							width={280}
+							height={280}
+							src={imageSrc}
+							alt={imageAlt ?? ""}
+							class="list-2col__image"
+							loading="eager"
+						/>
+					</div>
+				)
+			}
+		</div>
+	</div>
+</div>
+

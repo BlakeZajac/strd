@@ -1,0 +1,31 @@
+---
+import BlockLogo from "../blocks/block-logo.astro";
+import BlockOffcanvasTrigger from "../blocks/block-offcanvas-trigger.astro";
+import Menu from "../../content/menu.json";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+	<div class="site-header__container l-container">
+		<BlockLogo loading="eager" />
+
+		<nav class="site-header__menu">
+			{
+				Menu.items.map((item) => (
+					<a
+						href={item.href}
+						class:list={[
+							"site-header__link",
+							{ "site-header__link--active": currentPath === item.href },
+						]}
+					>
+						{item.label}
+					</a>
+				))
+			}
+		</nav>
+
+		<BlockOffcanvasTrigger />
+	</div>
+</header>

@@ -12,6 +12,7 @@ alwaysApply: true
 - Astro 5 (`output: "server"`), `@astrojs/vercel`, MDX, sitemap, Sass, Zod content collections
 - Site URL: `https://blakezajac.com` — sync `astro.config.mjs` `site` ↔ `src/lib/site.ts` `SITE_URL`
 - Fonts: Typekit in `Layout.astro`; token `$font-family-01`
+- UI import alias: `@components` → `src/components/index.ts`
 
 ## Commands
 
@@ -21,11 +22,13 @@ alwaysApply: true
 
 | Path | Role |
 |------|------|
-| `src/components/` | Astro UI (PascalCase `.astro`) |
-| `src/layouts/` | `Layout.astro`, `ContentLayout.astro` |
+| `src/components/blocks/` | `block-*.astro` — markup-only UI |
+| `src/components/layouts/` | `layout-*.astro` — section shells + composition |
+| `src/components/index.ts` | Re-exports blocks and layouts for `@components` |
+| `src/layouts/` | `Layout.astro`, `ContentLayout.astro` (HTML document) |
 | `src/pages/` | Routes + `api/` |
 | `src/content/` | MDX collections + static JSON |
-| `src/lib/` | Shared TS (schema, SEO helpers) |
+| `src/lib/` | Shared TS (`site`, `schema`, `actions`, SEO helpers) |
 | `src/actions/` | Astro Actions (contact → Resend) |
 | `src/scss/style.scss` | **Only** global CSS entry (imported in `Layout.astro`) |
 | `public/` | Static assets |
@@ -42,15 +45,16 @@ alwaysApply: true
 
 ## New UI checklist
 
-1. Component in `src/components/` + BEM classes  
-2. SCSS partial + register in `style.scss`  
-3. `js-*` on nodes used by script; script in owning `.astro`  
-4. `@use "abstracts" as *;` at top of SCSS partial; type/spacing from mixins/tokens  
-5. MQ4: `(width >= …)` / `(width < …)`  
-6. Content: extend `content/config.ts` + MDX/JSON — **no CMS**
+1. **Block or layout?** Reusable markup without section shell → `blocks/block-<name>.astro` + SCSS `components/_<name>.scss`. Full section → `layouts/layout-<name>.astro`. Export both from `index.ts` if public to pages.
+2. Register SCSS in `style.scss` (`components/` for blocks; `layout/` for site chrome; `pages/` for page-specific).
+3. Pages compose **layouts** from `@components`; drop **blocks** into layout slots when needed.
+4. `js-*` on scripted nodes; client script in the owning `.astro` only.
+5. `@use "abstracts" as *;` in SCSS; MQ4 `(width >= …)` / `(width < …)`.
+6. CTAs: `primaryAction` / `secondaryAction` via `BlockButtonGroup` or `LayoutHero`; defaults in `src/lib/actions.ts`. Pass `null` to suppress on pages that already have their own CTA (contact, work index, service pillar, etc.).
+7. Content: extend `content/config.ts` + MDX/JSON — **no CMS**
 
 ## Tone & deploy
 
-- Australian English; sentence case for headings/buttons unless design says otherwise  
-- Contact: `/contact/?source=...` for campaign tracking  
+- Australian English; sentence case for headings/buttons unless design says otherwise
+- Contact: `/contact/?source=...` for campaign tracking; SEO landings use `?source=seo&campaign=...`
 - Vercel adapter; env: `RESEND_*` for form — never commit `.env`

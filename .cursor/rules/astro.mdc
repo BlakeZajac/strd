@@ -6,21 +6,41 @@ alwaysApply: false
 
 # Astro
 
-## Layouts
+## Page layouts (`src/layouts/`)
 
-- **`Layout.astro`**: `<html>`, meta/OG/Twitter, optional JSON-LD `schema`, Typekit, global SCSS, `Header`, `<main class="site-main">`, `Footer`, `Offcanvas`, Analytics.
+- **`Layout.astro`**: `<html>`, meta/OG/Twitter, optional JSON-LD `schema`, Typekit, global SCSS, `LayoutHeader`, `<main class="site-main">`, `LayoutFooter`, `LayoutOffcanvas`, Analytics.
 - **`ContentLayout.astro`**: Wraps `Layout` with `<article class="site-content">`.
-- **Pages**: Thin composition only — `getCollection()` / `getStaticPaths()` for dynamic routes. SEO via `title`, `description`, `schema` props + `src/lib/*`.
+- **Pages**: Thin composition — `getCollection()` / `getStaticPaths()` for dynamic routes. SEO via `title`, `description`, `schema` + `src/lib/*`.
 
-**Prerender**: `export const prerender = true` per page when static HTML is wanted (e.g. work detail). Default is server from `astro.config.mjs`.
+**Prerender**: `export const prerender = true` per page when static HTML is wanted. Default is server (`astro.config.mjs`).
 
-## Components
+## UI components (`src/components/`)
 
-- **Path/name**: `src/components/ComponentName.astro` (PascalCase).
-- **Props**: `interface Props { ... }`; destructure with defaults (`className = ""`).
-- **Classes**: `className` prop for modifiers; `class:list={[...]}` for conditionals.
-- **Composition**: Small pieces (`Button`, `Hero`, `List`, `ProjectCard`) — not monolithic page templates.
-- **Chrome**: `Header`, `Footer`, `Offcanvas`, `OffcanvasTrigger` live in layout/header — don’t duplicate per page.
+Import page sections from `@components` (`src/components/index.ts`, Vite alias in `astro.config.mjs`).
+
+### Blocks (`blocks/block-*.astro`)
+
+Markup-only pieces with **no** `l-section` / `l-container`. BEM block name matches the file (e.g. `detail-list`, `button`, `project-card`).
+
+Examples: `BlockButton`, `BlockButtonGroup`, `BlockDetailList`, `BlockProjectCard`, `BlockOffcanvasTrigger`.
+
+### Layouts (`layouts/layout-*.astro`)
+
+Section shells: own `l-section` / `l-container` (and related layout) as needed. Compose blocks and/or slots.
+
+Examples: `LayoutHero`, `LayoutList2col`, `LayoutProjectGrid`, `LayoutAccordion`, `LayoutHeader`, `LayoutFooter`, `LayoutOffcanvas`.
+
+**When to add a block:** only when markup is reused inside another layout’s slot (e.g. `BlockDetailList` inside `LayoutList2col`). If a layout is the sole consumer, keep all markup in that layout file — no paired `block-*`.
+
+### Site chrome
+
+`LayoutHeader`, `LayoutFooter`, and `LayoutOffcanvas` are wired in `Layout.astro` only — do not duplicate on pages. Mobile menu trigger: `BlockOffcanvasTrigger` (used inside `LayoutHeader`).
+
+### Props & composition
+
+- `interface Props { ... }`; destructure with defaults.
+- `className` for modifiers; `class:list={[...]}` for conditionals.
+- **`BlockButtonGroup` / `LayoutHero` / layouts with CTAs:** `primaryAction` and `secondaryAction` props (`Action` from `src/lib/actions.ts`). Omit prop → sitewide default; pass `null` → hide that action.
 
 ## BEM (markup)
 
@@ -29,23 +49,22 @@ alwaysApply: false
 | `site-*` | Header, footer, offcanvas |
 | `l-*` | `l-section`, `l-container` |
 | `u-*` | Utilities (`u-visually-hidden`) |
-| block name | Matches component (`project-card`, `offcanvas-menu`) |
+| block name | Matches component (`project-card`, `accordion`, `detail-list`) |
 
 Modifiers: `block--modifier`, `block__element--modifier`.
 
 ## Content in `.astro`
 
 - **Collections**: `getCollection("work" | "services" | "service-locations")` — schemas in `src/content/config.ts`.
-- **Static JSON**: `import Menu from "../content/menu.json"` — fixed data (`menu`, `reading`, `experience`, `social`).
-- **MDX**: `await item.render()` + `<Content />` on work/service pages.
+- **Static JSON**: `import … from "../content/menu.json"` — `menu`, `reading`, `experience`, `social`.
+- **MDX**: `await item.render()` + `<Content />` on work pages; service routes use layout components + frontmatter.
 
 ## Client `<script>` (in `.astro`)
 
 - **Plain JS** — no `!`, no `as HTMLButtonElement`, no param types unless explicitly requested.
-- **Co-locate** with the component that owns the behaviour; markup-only siblings stay script-free (e.g. `OffcanvasTrigger.astro`).
+- **Co-locate** with the component that owns the behaviour (`layout-offcanvas.astro` has the menu script; `block-offcanvas-trigger.astro` stays script-free).
 - **Select only `js-*` classes** — never `.site-offcanvas__panel`, `.offcanvas-menu__link`, etc.
 - Pair each hook with BEM on the same node; don’t style `js-*` in SCSS.
-- Add a `js-*` class only when a script exists or ships in the same change.
 
 ### Reference: offcanvas
 

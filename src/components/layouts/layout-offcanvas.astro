@@ -1,0 +1,154 @@
+---
+import BlockButton from "../blocks/block-button.astro";
+import Menu from "../../content/menu.json";
+
+const currentPath = Astro.url.pathname;
+---
+
+<div
+	class="site-offcanvas js-site-offcanvas"
+	id="site-offcanvas"
+	aria-hidden="true"
+	inert
+>
+	<div
+		class="site-offcanvas__backdrop js-site-offcanvas-backdrop"
+		tabindex="-1"
+		aria-hidden="true"
+	>
+	</div>
+
+	<div
+		class="site-offcanvas__panel js-site-offcanvas-panel"
+		role="dialog"
+		aria-modal="true"
+		aria-label="Menu"
+	>
+		<div class="site-offcanvas__container l-container">
+			<div class="site-offcanvas__header">
+				<button
+					type="button"
+					class="site-offcanvas__close js-site-offcanvas-close"
+				>
+					<span class="u-visually-hidden">Close</span>
+				</button>
+			</div>
+
+			<div class="site-offcanvas__content">
+				<nav class="offcanvas-menu">
+					<ul class="offcanvas-menu__list">
+						{
+							Menu.items.map((item) => (
+								<li class="offcanvas-menu__item">
+									<a
+										href={item.href}
+										class:list={[
+											"offcanvas-menu__link",
+											"js-offcanvas-menu-link",
+											{
+												"offcanvas-menu__link--active":
+													currentPath === item.href,
+											},
+										]}
+									>
+										{item.label}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</nav>
+
+				<BlockButton
+					label="Start a project"
+					url="/contact"
+					className="offcanvas-menu__button"
+				/>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	const PANEL_TRANSITION_MS = 1000;
+	const CLOSE_FALLBACK_MS = PANEL_TRANSITION_MS + 100;
+
+	const OPEN_CLASS = "offcanvas-active";
+	const CLOSING_CLASS = "offcanvas-closing";
+
+	const offcanvas = document.querySelector(".js-site-offcanvas");
+	const panel = offcanvas.querySelector(".js-site-offcanvas-panel");
+	const backdrop = offcanvas.querySelector(".js-site-offcanvas-backdrop");
+	const trigger = document.querySelector(".js-site-offcanvas-trigger");
+	const closeBtn = offcanvas.querySelector(".js-site-offcanvas-close");
+
+	let closeTimeoutId = 0;
+
+	const isOpen = () => document.body.classList.contains(OPEN_CLASS);
+	const isClosing = () => document.body.classList.contains(CLOSING_CLASS);
+
+	const setAriaOpen = (open) => {
+		trigger.setAttribute("aria-expanded", String(open));
+		offcanvas.setAttribute("aria-hidden", String(!open));
+		offcanvas.toggleAttribute("inert", !open);
+	};
+
+	const open = () => {
+		if (isOpen() || isClosing()) return;
+
+		window.clearTimeout(closeTimeoutId);
+		document.body.classList.remove(CLOSING_CLASS);
+		document.body.classList.add(OPEN_CLASS);
+		document.body.style.overflow = "hidden";
+		setAriaOpen(true);
+		closeBtn.focus();
+	};
+
+	const finishClose = () => {
+		if (!isClosing()) return;
+
+		window.clearTimeout(closeTimeoutId);
+		panel.removeEventListener("transitionend", onPanelTransitionEnd);
+		document.body.classList.remove(CLOSING_CLASS);
+		document.body.style.overflow = "";
+		setAriaOpen(false);
+		trigger.focus();
+	};
+
+	const onPanelTransitionEnd = (event) => {
+		if (event.target !== panel || event.propertyName !== "transform") return;
+		finishClose();
+	};
+
+	const close = () => {
+		if (!isOpen() || isClosing()) return;
+
+		document.body.classList.remove(OPEN_CLASS);
+		document.body.classList.add(CLOSING_CLASS);
+		trigger.setAttribute("aria-expanded", "false");
+
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			finishClose();
+			return;
+		}
+
+		panel.addEventListener("transitionend", onPanelTransitionEnd);
+		closeTimeoutId = window.setTimeout(finishClose, CLOSE_FALLBACK_MS);
+	};
+
+	trigger.addEventListener("click", () => {
+		if (isOpen()) close();
+		else open();
+	});
+
+	closeBtn.addEventListener("click", close);
+	backdrop.addEventListener("click", close);
+
+	offcanvas.addEventListener("click", (event) => {
+		if (event.target.closest(".js-offcanvas-menu-link")) close();
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && isOpen()) close();
+	});
+</script>

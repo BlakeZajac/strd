@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import BlockProjectCard from "../blocks/block-project-card.astro";
+
+interface Props {
+	sectionClass?: string;
+	columns?: number;
+	slugs?: string[];
+	id?: string;
+}
+
+const { sectionClass = "", columns = 2, slugs, id } = Astro.props;
+const cardClassName = columns === 3 ? "project-card--alt" : "";
+
+const workItems = await getCollection("work");
+const sortedWorkItems = slugs
+	? slugs
+			.map((slug) => workItems.find((item) => item.slug === slug))
+			.filter(
+				(item): item is NonNullable<typeof item> => item !== undefined,
+			)
+	: Array.from(workItems);
+---
+
+<div class:list={["l-project-grid", "l-section", sectionClass]} {id}>
+	<div class="l-container">
+		<div class={`project-grid project-grid--columns_${columns}`}>
+			{
+				sortedWorkItems.map((item) => (
+					<BlockProjectCard
+						className={cardClassName}
+						title={item.data.title}
+						description={item.data.description}
+						slug={item.slug}
+						overlay={false}
+						imageSrcLandscape={item.data.imageSrcLandscape}
+						imageSrcPortrait={item.data.imageSrcPortrait}
+						imageAlt={item.data.title}
+						videoSrc={item.data.videoSrc}
+					/>
+				))
+			}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,49 @@
+---
+import BlockVideoImageBackground from "../blocks/block-video-image-background.astro";
+import BlockButtonGroup from "../blocks/block-button-group.astro";
+import type { Action } from "../../lib/actions";
+
+interface Props {
+	title: string;
+	content?: string;
+	imageSrcLandscape?: string;
+	imageSrcPortrait?: string;
+	imageAlt?: string;
+	videoSrc?: string;
+	primaryAction?: Action | null;
+	secondaryAction?: Action | null;
+}
+
+const {
+	title,
+	content,
+	imageSrcLandscape,
+	imageSrcPortrait,
+	imageAlt,
+	videoSrc,
+	primaryAction,
+	secondaryAction,
+} = Astro.props;
+---
+
+<div class="banner-post u-inset">
+	<BlockVideoImageBackground
+		imageSrcLandscape={imageSrcLandscape}
+		imageSrcPortrait={imageSrcPortrait}
+		imageAlt={imageAlt}
+		videoSrc={videoSrc}
+	/>
+
+	<div class="banner-post__container l-container">
+		<div class="banner-post__content">
+			<h1 class="banner-post__title">{title}</h1>
+			{content && <p class="banner-post__description">{content}</p>}
+		</div>
+
+		<BlockButtonGroup
+			className="banner-post__button-group"
+			{primaryAction}
+			{secondaryAction}
+		/>
+	</div>
+</div>

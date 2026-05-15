@@ -1,0 +1,21 @@
+@use "abstracts" as *;
+
+.detail-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.detail-list__item {
+	padding-block: rem(24px);
+	border-block-start: rem(1px) solid $color-border;
+
+	&:last-child {
+		border-block-end: rem(1px) solid $color-border;
+	}
+}
+
+.detail-list__title {
+	margin-block-end: rem(8px);
+	@include type-style-04;
+}

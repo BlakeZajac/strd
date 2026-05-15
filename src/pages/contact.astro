@@ -4,9 +4,7 @@ export const prerender = false;
 import { actions } from "astro:actions";
 
 import Layout from "../layouts/Layout.astro";
-import ContactForm from "../components/ContactForm.astro";
-import Hero from "../components/Hero.astro";
-import List from "../components/List.astro";
+import { LayoutHero, LayoutContactForm, LayoutList } from "@components";
 import { createContactPageSchema } from "../lib/schema";
 
 import socialData from "../content/social.json";
@@ -23,7 +21,11 @@ if (result && !result.error) {
 	description="Share a few details about your project and Blake will be in touch to discuss how you can work together."
 	schema={createContactPageSchema("Contact Blake Zajac | STRD", "contact")}
 >
-	<Hero title="Start a project" />
-	<ContactForm />
-	<List type="social" data={socialData} />
+	<LayoutHero
+		title="Start a project"
+		primaryAction={null}
+		secondaryAction={null}
+	/>
+	<LayoutContactForm />
+	<LayoutList type="social" data={socialData} />
 </Layout>
