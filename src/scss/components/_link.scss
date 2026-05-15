@@ -1,14 +1,59 @@
 @use "abstracts" as *;
 
 .link {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
     padding-block: rem(8px);
-    @include link-underline-animated;
-
-    &:hover {
-        @include link-underline-animated-hover;
-    }
 
     &:focus-visible {
         @include focus;
+    }
+}
+
+.link__labels {
+    display: flex;
+    flex-direction: column;
+    height: rem(24px);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.link__label {
+    @include type-style-11;
+    transition: transform $transition-elastic-02;
+}
+
+.link__label--default {
+    .link:hover & {
+        .link__word {
+            transform: translateY(-100%);
+        }
+    }
+}
+
+.link__label--hover {
+    transform: translateY(100%);
+
+    .link__word {
+        transform: translateY(100%);
+    }
+
+    .link:hover & {
+        transform: translateY(-100%);
+
+        .link__word {
+            transform: translateY(0);
+        }
+    }
+}
+
+.link__word {
+    display: inline-block;
+    transition: transform $transition-elastic-02;
+    transition-delay: calc((var(--total-words) - var(--word-index) - 1) * 0.05s);
+
+    .link:hover & {
+        transition-delay: calc(var(--word-index) * 0.05s);
     }
 }
