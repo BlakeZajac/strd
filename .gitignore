@@ -26,6 +26,10 @@ pnpm-debug.log*
 # cursor
 .cursor/
 
+# cursor rules
+!.cursor/rules/
+!.cursor/rules/**.mdc
+
 # docs
 docs/
 .vercel

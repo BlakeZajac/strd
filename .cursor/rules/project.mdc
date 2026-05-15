@@ -1,0 +1,56 @@
+---
+description: STRD Astro site — stack, layout, and where conventions live.
+alwaysApply: true
+---
+
+# Project (always read)
+
+**STRD** — Blake Zajac portfolio/marketing site. Work in progress; follow existing patterns before introducing new architecture.
+
+## Stack
+
+- Astro 5 (`output: "server"`), `@astrojs/vercel`, MDX, sitemap, Sass, Zod content collections
+- Site URL: `https://blakezajac.com` — sync `astro.config.mjs` `site` ↔ `src/lib/site.ts` `SITE_URL`
+- Fonts: Typekit in `Layout.astro`; token `$font-family-01`
+
+## Commands
+
+`npm run dev` · `npm run build` · `npm run preview`
+
+## Source layout
+
+| Path | Role |
+|------|------|
+| `src/components/` | Astro UI (PascalCase `.astro`) |
+| `src/layouts/` | `Layout.astro`, `ContentLayout.astro` |
+| `src/pages/` | Routes + `api/` |
+| `src/content/` | MDX collections + static JSON |
+| `src/lib/` | Shared TS (schema, SEO helpers) |
+| `src/actions/` | Astro Actions (contact → Resend) |
+| `src/scss/style.scss` | **Only** global CSS entry (imported in `Layout.astro`) |
+| `public/` | Static assets |
+
+**Do not edit `dist/`** as source. No Gulp — Vite/Astro compile everything.
+
+## Rule files (detail by area)
+
+| File | When it applies |
+|------|-----------------|
+| `astro.mdc` | `src/**/*.astro` |
+| `scss.mdc` | `src/scss/**` |
+| `typescript.mdc` | `src/lib`, `actions`, `content/config`, `pages/api` |
+
+## New UI checklist
+
+1. Component in `src/components/` + BEM classes  
+2. SCSS partial + register in `style.scss`  
+3. `js-*` on nodes used by script; script in owning `.astro`  
+4. Type/spacing from `_type-styles.scss` / `_variables.scss`  
+5. MQ4: `(width >= …)` / `(width < …)`  
+6. Content: extend `content/config.ts` + MDX/JSON — **no CMS**
+
+## Tone & deploy
+
+- Australian English; sentence case for headings/buttons unless design says otherwise  
+- Contact: `/contact/?source=...` for campaign tracking  
+- Vercel adapter; env: `RESEND_*` for form — never commit `.env`

@@ -1,0 +1,42 @@
+---
+description: TypeScript for lib, actions, content schemas, and API routes.
+globs: src/lib/**,src/actions/**,src/content/**,src/pages/api/**
+alwaysApply: false
+---
+
+# TypeScript
+
+Use TypeScript (with types) in:
+
+- `src/lib/` — `site.ts`, `schema.ts`, `work.ts`, etc.
+- `src/actions/` — Astro Actions
+- `src/content/config.ts` — collection schemas (Zod)
+- `src/pages/api/**/*.ts` — API routes
+
+**Not** in Astro component `<script>` blocks — those stay plain JS (see `astro.mdc`).
+
+## Content collections (`content/config.ts`)
+
+| Collection | Purpose |
+|------------|---------|
+| `work` | Case study MDX frontmatter |
+| `services` | Service page copy + FAQs, schema fields |
+| `service-locations` | Geo/service landing pages |
+
+Extend Zod schemas when adding frontmatter fields; keep MDX under `src/content/<collection>/`.
+
+## Actions (`actions/index.ts`)
+
+- Contact `send`: Zod input, Resend email, `ActionError` on failure.
+- Form: `ContactForm.astro` → `method="post"` `action={actions.send}`.
+- **Env** (Vercel): `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `RESEND_TO_EMAIL`.
+
+## Lib helpers
+
+- **`url(path)`** in `site.ts` — absolute URLs for schema/sitemap.
+- **`schema.ts` / `work.ts`** — page titles, descriptions, JSON-LD builders; reuse instead of duplicating strings in pages.
+
+## API routes
+
+- Follow `src/pages/api/work/[slug].json.ts` for JSON endpoints.
+- Validate inputs; return appropriate HTTP status codes.

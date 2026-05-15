@@ -1,0 +1,60 @@
+---
+description: Astro components, layouts, pages, and co-located client scripts.
+globs: src/**/*.astro
+alwaysApply: false
+---
+
+# Astro
+
+## Layouts
+
+- **`Layout.astro`**: `<html>`, meta/OG/Twitter, optional JSON-LD `schema`, Typekit, global SCSS, `Header`, `<main class="site-main">`, `Footer`, `Offcanvas`, Analytics.
+- **`ContentLayout.astro`**: Wraps `Layout` with `<article class="site-content">`.
+- **Pages**: Thin composition only — `getCollection()` / `getStaticPaths()` for dynamic routes. SEO via `title`, `description`, `schema` props + `src/lib/*`.
+
+**Prerender**: `export const prerender = true` per page when static HTML is wanted (e.g. work detail). Default is server from `astro.config.mjs`.
+
+## Components
+
+- **Path/name**: `src/components/ComponentName.astro` (PascalCase).
+- **Props**: `interface Props { ... }`; destructure with defaults (`className = ""`).
+- **Classes**: `className` prop for modifiers; `class:list={[...]}` for conditionals.
+- **Composition**: Small pieces (`Button`, `Hero`, `List`, `ProjectCard`) — not monolithic page templates.
+- **Chrome**: `Header`, `Footer`, `Offcanvas`, `OffcanvasTrigger` live in layout/header — don’t duplicate per page.
+
+## BEM (markup)
+
+| Prefix | Use |
+|--------|-----|
+| `site-*` | Header, footer, offcanvas |
+| `l-*` | `l-section`, `l-container` |
+| `u-*` | Utilities (`u-visually-hidden`) |
+| block name | Matches component (`project-card`, `offcanvas-menu`) |
+
+Modifiers: `block--modifier`, `block__element--modifier`.
+
+## Content in `.astro`
+
+- **Collections**: `getCollection("work" | "services" | "service-locations")` — schemas in `src/content/config.ts`.
+- **Static JSON**: `import Menu from "../content/menu.json"` — fixed data (`menu`, `reading`, `experience`, `social`).
+- **MDX**: `await item.render()` + `<Content />` on work/service pages.
+
+## Client `<script>` (in `.astro`)
+
+- **Plain JS** — no `!`, no `as HTMLButtonElement`, no param types unless explicitly requested.
+- **Co-locate** with the component that owns the behaviour; markup-only siblings stay script-free (e.g. `OffcanvasTrigger.astro`).
+- **Select only `js-*` classes** — never `.site-offcanvas__panel`, `.offcanvas-menu__link`, etc.
+- Pair each hook with BEM on the same node; don’t style `js-*` in SCSS.
+
+### Reference: offcanvas
+
+- Body state (for CSS): `offcanvas-active`, `offcanvas-closing` — toggled, not queried.
+- Hooks: `js-site-offcanvas`, `js-site-offcanvas-panel`, `js-site-offcanvas-backdrop`, `js-site-offcanvas-trigger`, `js-site-offcanvas-close`, `js-offcanvas-menu-link`.
+- ARIA: `aria-expanded` on trigger; `aria-hidden` + `inert` on root; `id="site-offcanvas"` for `aria-controls` only; `role="dialog"` on panel.
+- Close: remove open class → add closing → `transitionend` on panel `transform` + timeout fallback (`1000ms + 100ms` ↔ `$transition-cubic-01`).
+- Dismiss: close btn, backdrop, delegated menu links, `Escape`. Lock `body` overflow while open. Honor `prefers-reduced-motion`.
+
+### Events
+
+- Native events first (`click`, `keydown`, `transitionend`).
+- Delegate from a stable parent when many children share behaviour.

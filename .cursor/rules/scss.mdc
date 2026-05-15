@@ -1,0 +1,61 @@
+---
+description: Global Sass architecture, tokens, and component styles.
+globs: src/scss/**
+alwaysApply: false
+---
+
+# SCSS
+
+## Entry & order (`src/scss/style.scss`)
+
+Register every new partial here (explicit `@import`, not a glob):
+
+1. **Abstracts** — `functions`, `variables`, `mixins`, `type-styles`
+2. **Base** — `reset`, `base`, `layout`, `forms`, `utilities`, `copy`, `animation`
+3. **Components** — `components/_*.scss`
+4. **Layout** — `layout/site-*`
+5. **Pages** — reserved
+
+**New component styles** → `components/_<name>.scss` + line in `style.scss`.  
+**Site chrome** → `layout/_site-<area>.scss`.
+
+## Module graph
+
+- Today: `@import` from `style.scss`; layout partials often `@import "../abstracts/variables"` / `functions`.
+- **New/edited partials**: prefer `@use` / `@forward` when touching imports.
+- Use `sass:math` + `math.div()` in expressions; plain CSS like `aspect-ratio: 16 / 9` is fine.
+
+## Tokens (`abstracts/`)
+
+- **Type**: `@include type-style-NN` from `_type-styles.scss` — don’t duplicate font-size/line-height/letter-spacing on blocks.
+- **Colour/spacing**: `$color-*`, `$break-grid-*`, `$l-*`, `:root` vars (`--spacer-*`, `--site-header-height`, `--inset`).
+- **Functions**: `rem()`, `em()` from `_functions.scss`.
+
+## Layout classes
+
+- `.l-section` — section top margin (`--spacer-section`)
+- `.l-container` — centered max-width + horizontal padding
+- `.u-inset`, `.u-inset-inline` — inset mixins (`_utilities.scss`)
+
+## Media queries
+
+**MQ4 range syntax only:**
+
+```scss
+@media (width >= $break-grid-md) { ... }
+@media (width < $site-header-break-full) { ... }
+```
+
+Breakpoints: `$break-grid-2xs` … `$break-grid-3xl` (via `em()`). Layout-specific: e.g. `$site-header-break-full`.
+
+## Motion
+
+- Easing: `$transition-cubic-bezier`, `$transition-cubic-01` (1s), `$transition-cubic-02` (1.2s)
+- Underlines: `link-underline-animated` mixins + `$transition-elastic-*`
+- Scroll entrance: `.scroll-trigger`, `animate--*` in `base/_animation.scss` + `prefers-reduced-motion`
+- UI panels (offcanvas): CSS `transition` on transform/opacity; keep JS timeouts aligned with `$transition-cubic-01`
+
+## Selectors
+
+- **BEM / layout / utilities only** — never target `js-*` in SCSS.
+- Component block name should match the Astro component (`project-card`, `offcanvas-menu`).
