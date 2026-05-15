@@ -1,0 +1,29 @@
+@use "abstracts" as *;
+
+.locations__inner {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacer-01);
+  max-width: $l-content-max-width;
+}
+
+.locations__title {
+  @include type-style-04;
+}
+
+.locations__intro {
+  color: $color-black-80;
+}
+
+.locations__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacer-01) var(--spacer-02);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.locations__item {
+  margin: 0;
+}

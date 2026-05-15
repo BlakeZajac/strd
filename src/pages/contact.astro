@@ -14,12 +14,17 @@ const result = Astro.getActionResult(actions.send);
 if (result && !result.error) {
 	return Astro.redirect("/contact?status=sent");
 }
+
+const description =
+	"Share a few details about your project and Blake will be in touch to discuss how you can work together.";
 ---
 
 <Layout
 	title="Start a project | STRD"
-	description="Share a few details about your project and Blake will be in touch to discuss how you can work together."
-	schema={createContactPageSchema("Contact Blake Zajac | STRD", "contact")}
+	{description}
+	schema={createContactPageSchema("Contact Blake Zajac | STRD", "contact", {
+		description,
+	})}
 >
 	<LayoutHero
 		title="Start a project"

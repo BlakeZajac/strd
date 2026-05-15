@@ -6,21 +6,29 @@ import {
 	LayoutList2col,
 	LayoutList,
 } from "@components";
-import { createWebSiteSchema } from "../lib/schema";
+import { createHomePageSchema } from "../lib/schema";
 import { url } from "../lib/site";
 
 import experienceData from "../content/experience.json";
 import socialData from "../content/social.json";
----
 
-<Layout
-	title="WordPress developer and designer in Newcastle | STRD"
-	description="WordPress developer and designer in Newcastle, Australia, helping small businesses take considered strides with fast, reliable websites built to last."
-	schema={createWebSiteSchema("STRD | WordPress developer and designer", "", {
+const title = "WordPress developer and designer in Newcastle | STRD";
+const description =
+	"WordPress developer and designer in Newcastle, Australia, helping small businesses take considered strides with fast, reliable websites built to last.";
+
+const schema = createHomePageSchema({
+	siteName: "STRD",
+	siteDescription: description,
+	personName: "Blake Zajac",
+	personJobTitle: "WordPress developer and designer",
+	searchAction: {
 		targetTemplate: `${url("")}?s={search_term_string}`,
 		queryInput: "required name=search_term_string",
-	})}
->
+	},
+});
+---
+
+<Layout {title} {description} {schema}>
 	<LayoutHero
 		title="Built to perform. <br /> Designed to last."
 		description="Making strides through WordPress and design. <br /> Built for businesses and individuals ready to move forward."

@@ -32,8 +32,11 @@ export function getWorkSchemaName(title: string): string {
 /**
  * Returns the schema.org WebPage object for a work entry.
  */
-export function getWorkPageSchema(slug: string, title: string) {
-	return createWebPageSchema(getWorkSchemaName(title), `work/${slug}`);
+export function getWorkPageSchema(slug: string, title: string, description?: string) {
+	return createWebPageSchema(getWorkSchemaName(title), `work/${slug}`, {
+		description: description ?? WORK_DESCRIPTION_FALLBACK,
+		linkToPerson: true,
+	});
 }
 
 /**
@@ -54,5 +57,8 @@ export function getWorkIndexDescription(): string {
  * Returns the schema.org WebPage object for the work index.
  */
 export function getWorkIndexSchema() {
-	return createWebPageSchema(WORK_INDEX_SCHEMA_NAME, "work");
+	return createWebPageSchema(WORK_INDEX_SCHEMA_NAME, "work", {
+		description: WORK_INDEX_DESCRIPTION,
+		linkToPerson: true,
+	});
 }

@@ -1,0 +1,40 @@
+@use "abstracts" as *;
+
+.service-cta {
+  margin-block-start: var(--spacer-section);
+}
+
+.service-cta__container {
+  padding-block: var(--spacer-03);
+  padding-inline: var(--inset);
+  background-color: $color-black;
+  border-radius: var(--inset-border-radius);
+  color: white;
+
+  @media (width >= $break-grid-md) {
+    padding-block: var(--spacer-04);
+    padding-inline: var(--spacer-03);
+  }
+}
+
+.service-cta__inner {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacer-02);
+  align-items: flex-start;
+  max-width: $l-content-max-width;
+}
+
+.service-cta__title {
+  @include type-style-02;
+  color: white;
+}
+
+.service-cta__text {
+  color: rgba(white, 85%);
+  max-width: rem(560px);
+}
+
+.service-cta .button-group {
+  margin-block-start: var(--spacer-01);
+}

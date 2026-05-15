@@ -21,3 +21,5 @@ export { default as LayoutList2col } from "./layouts/layout-list-2col.astro";
 export { default as LayoutMediaContent } from "./layouts/layout-media-content.astro";
 export { default as LayoutProjectGrid } from "./layouts/layout-project-grid.astro";
 export { default as LayoutReadingList } from "./layouts/layout-reading-list.astro";
+export { default as LayoutServiceCta } from "./layouts/layout-service-cta.astro";
+export { default as LayoutLocations } from "./layouts/layout-locations.astro";

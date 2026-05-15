@@ -3,13 +3,28 @@ import Layout from "../layouts/Layout.astro";
 import { LayoutHero, LayoutReadingList } from "@components";
 import readingData from "../content/reading.json";
 import { createWebPageSchema } from "../lib/schema";
+
+const title = "What I'm reading | books and articles | STRD";
+const description =
+  "A growing list of books and articles Blake Zajac is reading, collecting ideas that influence his work as a WordPress developer and designer.";
 ---
 
 <Layout
-	title="What I'm reading | books and articles | STRD"
-	description="A growing list of books and articles Blake Zajac is reading, collecting ideas that influence his work as a WordPress developer and designer."
-	schema={createWebPageSchema("What I'm reading | books and articles", "reading")}
+  {title}
+  {description}
+  schema={createWebPageSchema(
+    "What I'm reading | books and articles",
+    "reading",
+    {
+      description,
+      linkToPerson: true,
+    },
+  )}
 >
-	<LayoutHero title="What I'm reading" primaryAction={null} secondaryAction={null} />
-	<LayoutReadingList data={readingData} />
+  <LayoutHero
+    title="What I'm reading"
+    primaryAction={null}
+    secondaryAction={null}
+  />
+  <LayoutReadingList data={readingData} />
 </Layout>

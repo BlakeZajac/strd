@@ -1,0 +1,42 @@
+---
+import BlockLink from "../blocks/block-link.astro";
+
+interface LocationLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title?: string;
+  intro?: string;
+  links: LocationLink[];
+  sectionClass?: string;
+}
+
+const {
+  title = "Where I work",
+  intro = "",
+  links,
+  sectionClass = "",
+} = Astro.props;
+
+if (!links.length) return;
+---
+
+<div class:list={["l-section", "locations", sectionClass]}>
+  <div class="l-container">
+    <div class="locations__inner">
+      {title && <h2 class="locations__title">{title}</h2>}
+      {intro && <p class="locations__intro medium">{intro}</p>}
+      <ul class="locations__list">
+        {
+          links.map(({ label, href }) => (
+            <li class="locations__item">
+              <BlockLink label={`WordPress developer in ${label}`} url={href} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</div>

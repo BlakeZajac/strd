@@ -14,15 +14,126 @@ type SchemaGraph = {
   [key: string]: unknown;
 };
 
+const PERSON_ID = url("about");
+
 /**
  * Creates a WebPage schema.org object.
  */
-export function createWebPageSchema(name: string, path: string): SchemaBase {
-  return {
+export function createWebPageSchema(
+  name: string,
+  path: string,
+  options?: { description?: string; linkToPerson?: boolean },
+): SchemaBase {
+  const schema: SchemaBase = {
     "@context": SCHEMA_CONTEXT,
     "@type": "WebPage",
     name,
     url: url(path),
+  };
+  if (options?.description) {
+    schema.description = options.description;
+  }
+  if (options?.linkToPerson) {
+    schema.about = { "@id": PERSON_ID };
+  }
+  return schema;
+}
+
+/**
+ * Home page @graph: WebSite + Person (Blake).
+ */
+export function createHomePageSchema(params: {
+  siteName: string;
+  siteDescription: string;
+  personName: string;
+  personJobTitle: string;
+  searchAction?: { targetTemplate: string; queryInput: string };
+}): SchemaGraph {
+  const website: Record<string, unknown> = {
+    "@type": "WebSite",
+    name: params.siteName,
+    description: params.siteDescription,
+    url: url(""),
+    publisher: { "@id": PERSON_ID },
+  };
+  if (params.searchAction) {
+    website.potentialAction = {
+      "@type": "SearchAction",
+      target: params.searchAction.targetTemplate,
+      "query-input": params.searchAction.queryInput,
+    };
+  }
+  return {
+    "@context": SCHEMA_CONTEXT,
+    "@graph": [
+      website,
+      {
+        "@id": PERSON_ID,
+        "@type": "Person",
+        name: params.personName,
+        jobTitle: params.personJobTitle,
+        url: PERSON_ID,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Newcastle",
+          addressRegion: "NSW",
+          addressCountry: "AU",
+        },
+      },
+    ],
+  };
+}
+
+/**
+ * Service pillar @graph: Service, BreadcrumbList, optional FAQPage.
+ */
+export function createServicePillarSchema(params: {
+  name: string;
+  description: string;
+  serviceSlug: string;
+  pageUrl: string;
+  faqs?: Array<{ question: string; answer: string }>;
+}): SchemaGraph {
+  const graph: unknown[] = [
+    {
+      "@type": "Service",
+      name: params.name,
+      description: params.description,
+      provider: { "@id": PERSON_ID },
+      areaServed: "Australia",
+      url: params.pageUrl,
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Services",
+          item: url("services"),
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: params.name,
+          item: params.pageUrl,
+        },
+      ],
+    },
+  ];
+  if (params.faqs && params.faqs.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      mainEntity: params.faqs.map(({ question, answer }) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      })),
+    });
+  }
+  return {
+    "@context": SCHEMA_CONTEXT,
+    "@graph": graph,
   };
 }
 
@@ -32,13 +143,19 @@ export function createWebPageSchema(name: string, path: string): SchemaBase {
 export function createContactPageSchema(
   name: string,
   path: string,
+  options?: { description?: string },
 ): SchemaBase {
-  return {
+  const schema: SchemaBase = {
     "@context": SCHEMA_CONTEXT,
     "@type": "ContactPage",
     name,
     url: url(path),
+    about: { "@id": PERSON_ID },
   };
+  if (options?.description) {
+    schema.description = options.description;
+  }
+  return schema;
 }
 
 /**
@@ -48,15 +165,20 @@ export function createPersonSchema(base: {
   name: string;
   jobTitle: string;
   path: string;
+  description?: string;
   address?: { locality: string; region: string; country: string };
 }): SchemaBase {
   const schema: SchemaBase = {
     "@context": SCHEMA_CONTEXT,
     "@type": "Person",
+    "@id": url(base.path),
     name: base.name,
     jobTitle: base.jobTitle,
     url: url(base.path),
   };
+  if (base.description) {
+    schema.description = base.description;
+  }
   if (base.address) {
     schema.address = {
       "@type": "PostalAddress",
@@ -86,11 +208,7 @@ export function createServiceLocationSchema(params: {
       "@type": "ProfessionalService",
       name: params.heading,
       description: params.description,
-      provider: {
-        "@type": "Person",
-        name: "Blake Zajac",
-        url: url("about"),
-      },
+      provider: { "@id": PERSON_ID },
       areaServed: params.areaServed,
       url: params.pageUrl,
     },

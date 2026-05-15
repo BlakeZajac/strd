@@ -7,8 +7,13 @@ import {
 	LayoutProjectGrid,
 	LayoutList2col,
 	BlockDetailList,
-	BlockButton,
+	LayoutAccordion,
+	LayoutLocations,
+	LayoutServiceCta,
 } from "@components";
+import { createServicePillarSchema } from "../../lib/schema";
+import { getServiceLocationLinks } from "../../lib/service-locations";
+import { url } from "../../lib/site";
 
 export const prerender = true;
 
@@ -23,18 +28,18 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const data = entry.data;
+const serviceSlug = entry.slug;
+const pagePath = `services/${serviceSlug}`;
+const ctaUrl = `/contact/?source=seo&campaign=services-${serviceSlug}`;
+const locationLinks = await getServiceLocationLinks(serviceSlug);
 
-const schema = {
-	"@context": "https://schema.org",
-	"@type": "Service",
+const schema = createServicePillarSchema({
 	name: data.heroHeading ?? data.title,
 	description: data.summary,
-	provider: {
-		"@type": "Person",
-		name: "Blake Zajac",
-	},
-	areaServed: "Australia",
-};
+	serviceSlug,
+	pageUrl: url(pagePath),
+	faqs: data.faqs,
+});
 ---
 
 <Layout title={data.title} description={data.summary} schema={schema}>
@@ -57,19 +62,27 @@ const schema = {
 		)
 	}
 
-	<LayoutList2col title="Ready to make your next stride?">
-		<div class="l-stack l-stack--gap_sm">
-			<p class="medium">
-				If this sounds like the kind of WordPress work you need, the next
-				step is a short conversation about your project and what you are
-				trying to achieve.
-			</p>
-			<BlockButton
-				label="Start a project"
-				url="/contact/?source=seo&campaign=services-wordpress-developer"
+	{
+		locationLinks.length > 0 && (
+			<LayoutLocations
+				title="Locations"
+				intro="I work with clients across Australia. Explore WordPress developer pages for specific areas."
+				links={locationLinks}
 			/>
-		</div>
-	</LayoutList2col>
+		)
+	}
+
+	{
+		data.faqs && data.faqs.length > 0 && (
+			<LayoutAccordion
+				title="FAQs"
+				items={data.faqs.map(({ question, answer }) => ({
+					title: question,
+					content: answer,
+				}))}
+			/>
+		)
+	}
 
 	{
 		data.featuredWorkSlugs && (
@@ -79,4 +92,10 @@ const schema = {
 			/>
 		)
 	}
+
+	<LayoutServiceCta
+		title="Ready to make your next stride?"
+		description="If this sounds like the kind of WordPress work you need, share a few details about your project and what you are trying to achieve."
+		primaryAction={{ label: "Start a project", url: ctaUrl }}
+	/>
 </Layout>

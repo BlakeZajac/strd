@@ -14,6 +14,8 @@
 @use "components/button";
 @use "components/button-group";
 @use "components/detail-list";
+@use "components/locations";
+@use "components/service-cta";
 @use "components/hero";
 @use "components/link";
 @use "components/list";
@@ -31,4 +33,3 @@
 @use "layout/site-offcanvas";
 
 // Pages
-@use "pages/service-location";

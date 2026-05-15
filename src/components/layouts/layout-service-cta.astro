@@ -1,0 +1,41 @@
+---
+import BlockButtonGroup from "../blocks/block-button-group.astro";
+import type { Action } from "../../lib/actions";
+
+interface Props {
+  title?: string;
+  description?: string;
+  primaryAction?: Action | null;
+  secondaryAction?: Action | null;
+  sectionClass?: string;
+  id?: string;
+}
+
+const {
+  title = "Ready to make your next stride?",
+  description = "",
+  primaryAction,
+  secondaryAction = null,
+  sectionClass = "",
+  id,
+} = Astro.props;
+
+if (
+  !title &&
+  !description &&
+  primaryAction === null &&
+  secondaryAction === null
+) {
+  return;
+}
+---
+
+<div class:list={["l-section", "service-cta", sectionClass]} {id}>
+  <div class="service-cta__container l-container">
+    <div class="service-cta__inner">
+      {title && <h2 class="service-cta__title">{title}</h2>}
+      {description && <p class="service-cta__text medium">{description}</p>}
+      <BlockButtonGroup {primaryAction} {secondaryAction} />
+    </div>
+  </div>
+</div>
