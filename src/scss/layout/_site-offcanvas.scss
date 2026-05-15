@@ -1,3 +1,5 @@
+@use "abstracts" as *;
+
 $offcanvas-z-index: 100;
 $offcanvas-stagger-step: 0.12s;
 $offcanvas-stagger-base: 0.2s;

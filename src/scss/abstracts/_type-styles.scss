@@ -1,4 +1,5 @@
-@use "sass:math";
+@use "functions" as *;
+@use "variables" as *;
 
 // H1
 @mixin type-style-01 {}

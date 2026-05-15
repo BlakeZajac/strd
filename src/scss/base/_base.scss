@@ -1,5 +1,4 @@
-@import "../abstracts/variables";
-@import "../abstracts/functions";
+@use "abstracts" as *;
 
 $color-selection-bg: $color-black-80 !default;
 $color-selection: white !default;

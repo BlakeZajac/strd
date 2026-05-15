@@ -45,7 +45,7 @@ alwaysApply: true
 1. Component in `src/components/` + BEM classes  
 2. SCSS partial + register in `style.scss`  
 3. `js-*` on nodes used by script; script in owning `.astro`  
-4. Type/spacing from `_type-styles.scss` / `_variables.scss`  
+4. `@use "abstracts" as *;` at top of SCSS partial; type/spacing from mixins/tokens  
 5. MQ4: `(width >= …)` / `(width < …)`  
 6. Content: extend `content/config.ts` + MDX/JSON — **no CMS**
 

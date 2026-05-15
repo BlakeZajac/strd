@@ -10,4 +10,13 @@ export default defineConfig({
   adapter: vercel(),
   site: "https://blakezajac.com",
   integrations: [mdx(), sitemap()],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          loadPaths: ["./src/scss"],
+        },
+      },
+    },
+  },
 });

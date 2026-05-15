@@ -1,3 +1,5 @@
+@use "abstracts" as *;
+
 .u-visually-hidden {
 	@include visually-hidden;
 }

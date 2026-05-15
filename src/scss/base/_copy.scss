@@ -1,3 +1,5 @@
+@use "abstracts" as *;
+
 .copy {
 	--copy-spacer: #{rem(24px)};
 

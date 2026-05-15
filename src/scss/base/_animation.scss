@@ -1,3 +1,5 @@
+@use "abstracts" as *;
+
 $animation-duration: 1.2s !default;
 $animation-timing-function: $transition-cubic-bezier !default;
 $animation-distance: rem(32px) !default;

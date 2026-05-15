@@ -1,36 +1,30 @@
 // Vendor
 
-// Abstracts
-@import "abstracts/functions";
-@import "abstracts/variables";
-@import "abstracts/mixins";
-@import "abstracts/type-styles";
-
 // Base
-@import "base/reset";
-@import "base/base";
-@import "base/layout";
-@import "base/forms";
-@import "base/utilities";
-@import "base/copy";
-@import "base/animation";
+@use "base/reset";
+@use "base/base";
+@use "base/layout";
+@use "base/forms";
+@use "base/utilities";
+@use "base/copy";
+@use "base/animation";
 
 // Components
-@import 'components/banner-post';
-@import 'components/button';
-@import 'components/button-group';
-@import 'components/hero';
-@import 'components/list';
-@import 'components/media-content';
-@import 'components/post-content';
-@import 'components/project-card';
-@import 'components/project-grid';
-@import 'components/video-image-background';
+@use "components/banner-post";
+@use "components/button";
+@use "components/button-group";
+@use "components/hero";
+@use "components/list";
+@use "components/media-content";
+@use "components/post-content";
+@use "components/project-card";
+@use "components/project-grid";
+@use "components/video-image-background";
 
 // Layout
-@import 'layout/site-header';
-@import 'layout/site-main';
-@import 'layout/site-footer';
-@import 'layout/site-offcanvas';
+@use "layout/site-header";
+@use "layout/site-main";
+@use "layout/site-footer";
+@use "layout/site-offcanvas";
 
 // Pages

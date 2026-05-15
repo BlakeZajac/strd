@@ -8,22 +8,29 @@ alwaysApply: false
 
 ## Entry & order (`src/scss/style.scss`)
 
-Register every new partial here (explicit `@import`, not a glob):
+`style.scss` loads partials with `@use` only — **no abstracts here**. Register every new partial explicitly (not a glob):
 
-1. **Abstracts** — `functions`, `variables`, `mixins`, `type-styles`
-2. **Base** — `reset`, `base`, `layout`, `forms`, `utilities`, `copy`, `animation`
-3. **Components** — `components/_*.scss`
-4. **Layout** — `layout/site-*`
-5. **Pages** — reserved
+1. **Base** — `reset`, `base`, `layout`, `forms`, `utilities`, `copy`, `animation`
+2. **Components** — `components/_*.scss`
+3. **Layout** — `layout/site-*`
+4. **Pages** — reserved
 
-**New component styles** → `components/_<name>.scss` + line in `style.scss`.  
+**New component styles** → `components/_<name>.scss` + `@use` line in `style.scss`.  
 **Site chrome** → `layout/_site-<area>.scss`.
 
 ## Module graph
 
-- Today: `@import` from `style.scss`; layout partials often `@import "../abstracts/variables"` / `functions`.
-- **New/edited partials**: prefer `@use` / `@forward` when touching imports.
-- Use `sass:math` + `math.div()` in expressions; plain CSS like `aspect-ratio: 16 / 9` is fine.
+- **`@use` / `@forward` only** — no `@import`.
+- **Abstracts barrel** — `src/scss/abstracts/_index.scss` forwards, in order: `functions` → `variables` → `mixins` → `type-styles`.
+- **Every partial that needs tokens/mixins** (all base except `reset`, all components, all layout) starts with:
+
+  ```scss
+  @use "abstracts" as *;
+  ```
+
+  Resolved via Vite `loadPaths: ["./src/scss"]` in `astro.config.mjs` (bare `abstracts`, not `../abstracts`).
+- **Inside `abstracts/`**: `_variables.scss` `@use "functions" as *`; `_mixins.scss` and `_type-styles.scss` `@use "functions"` + `"variables" as *`.
+- Use `sass:math` + `math.div()` in `_functions.scss`; plain CSS like `aspect-ratio: 16 / 9` is fine.
 
 ## Tokens (`abstracts/`)
 

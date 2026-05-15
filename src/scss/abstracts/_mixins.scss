@@ -1,4 +1,5 @@
-@use "sass:math";
+@use "functions" as *;
+@use "variables" as *;
 
 @mixin visually-hidden {
 	position: absolute !important;

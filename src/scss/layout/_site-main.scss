@@ -1,3 +1,5 @@
+@use "abstracts" as *;
+
 .site-main {
     min-height: calc(100svh - $site-header-height);
     padding-block-end: var(--spacer-section);
