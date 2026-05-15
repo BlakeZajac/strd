@@ -1,0 +1,73 @@
+@use "abstracts" as *;
+
+.accordion__item {
+  border-block-start: rem(1px) solid $color-border;
+
+  &:last-child {
+    border-block-end: rem(1px) solid $color-border;
+  }
+}
+
+.accordion__summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: rem(24px);
+  padding-block: rem(20px);
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:focus-visible {
+    @include focus;
+  }
+}
+
+.accordion__title {
+  @include type-style-04;
+}
+
+.accordion__icon {
+  flex-shrink: 0;
+  width: rem(20px);
+  height: rem(20px);
+  margin-block-start: rem(4px);
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    transform: translate(-50%, -50%);
+    background-color: currentColor;
+    content: "";
+    transition:
+      transform $transition-default,
+      opacity $transition-default;
+  }
+
+  &::before {
+    width: rem(14px);
+    height: rem(1px);
+  }
+
+  &::after {
+    width: rem(1px);
+    height: rem(14px);
+  }
+
+  .accordion__item[open] & {
+    &::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
+  }
+}
+
+.accordion__body {
+  padding-block-end: rem(20px);
+}
