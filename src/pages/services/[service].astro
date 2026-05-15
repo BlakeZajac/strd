@@ -3,13 +3,13 @@ import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
 import {
-	LayoutHero,
-	LayoutProjectGrid,
-	LayoutList2col,
-	BlockDetailList,
-	LayoutAccordion,
-	LayoutLocations,
-	LayoutServiceCta,
+  LayoutHero,
+  LayoutProjectGrid,
+  LayoutList2col,
+  BlockDetailList,
+  LayoutAccordion,
+  LayoutLocations,
+  LayoutServiceCta,
 } from "@components";
 import { createServicePillarSchema } from "../../lib/schema";
 import { getServiceLocationLinks } from "../../lib/service-locations";
@@ -18,12 +18,12 @@ import { url } from "../../lib/site";
 export const prerender = true;
 
 export async function getStaticPaths() {
-	const services = await getCollection("services");
+  const services = await getCollection("services");
 
-	return services.map((entry) => ({
-		params: { service: entry.slug },
-		props: { entry },
-	}));
+  return services.map((entry) => ({
+    params: { service: entry.slug },
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props;
@@ -34,35 +34,35 @@ const ctaUrl = `/contact/?source=seo&campaign=services-${serviceSlug}`;
 const locationLinks = await getServiceLocationLinks(serviceSlug);
 
 const schema = createServicePillarSchema({
-	name: data.heroHeading ?? data.title,
-	description: data.summary,
-	serviceSlug,
-	pageUrl: url(pagePath),
-	faqs: data.faqs,
+  name: data.heroHeading ?? data.title,
+  description: data.summary,
+  serviceSlug,
+  pageUrl: url(pagePath),
+  faqs: data.faqs,
 });
 ---
 
 <Layout title={data.title} description={data.summary} schema={schema}>
-	<LayoutHero
-		title={data.heroHeading}
-		description={data.heroSubheading}
-		primaryAction={null}
-		secondaryAction={null}
-	/>
+  <LayoutHero
+    title={data.heroHeading}
+    description={data.heroSubheading}
+    primaryAction={null}
+    secondaryAction={null}
+  />
 
-	<LayoutList2col title="Who this service is for">
-		<p class="medium">{data.audience}</p>
-	</LayoutList2col>
+  <LayoutList2col title="Who this service is for">
+    <p class="medium">{data.audience}</p>
+  </LayoutList2col>
 
-	{
-		data.servicesList && (
-			<LayoutList2col title="How I help with WordPress">
-				<BlockDetailList items={data.servicesList} />
-			</LayoutList2col>
-		)
-	}
+  {
+    data.servicesList && (
+      <LayoutList2col title="How I help with WordPress">
+        <BlockDetailList items={data.servicesList} />
+      </LayoutList2col>
+    )
+  }
 
-	{
+  <!-- {
 		locationLinks.length > 0 && (
 			<LayoutLocations
 				title="Locations"
@@ -70,32 +70,32 @@ const schema = createServicePillarSchema({
 				links={locationLinks}
 			/>
 		)
-	}
+	} -->
 
-	{
-		data.faqs && data.faqs.length > 0 && (
-			<LayoutAccordion
-				title="FAQs"
-				items={data.faqs.map(({ question, answer }) => ({
-					title: question,
-					content: answer,
-				}))}
-			/>
-		)
-	}
+  {
+    data.faqs && data.faqs.length > 0 && (
+      <LayoutAccordion
+        title="FAQs"
+        items={data.faqs.map(({ question, answer }) => ({
+          title: question,
+          content: answer,
+        }))}
+      />
+    )
+  }
 
-	{
-		data.featuredWorkSlugs && (
-			<LayoutProjectGrid
-				sectionClass="l-section--margin-top_sm"
-				slugs={data.featuredWorkSlugs}
-			/>
-		)
-	}
+  {
+    data.featuredWorkSlugs && (
+      <LayoutProjectGrid
+        sectionClass="l-section--margin-top_sm"
+        slugs={data.featuredWorkSlugs}
+      />
+    )
+  }
 
-	<LayoutServiceCta
-		title="Ready to make your next stride?"
-		description="If this sounds like the kind of WordPress work you need, share a few details about your project and what you are trying to achieve."
-		primaryAction={{ label: "Start a project", url: ctaUrl }}
-	/>
+  <LayoutServiceCta
+    title="Ready to make your next stride?"
+    description="If this sounds like the kind of WordPress work you need, share a few details about your project and what you are trying to achieve."
+    primaryAction={{ label: "Start a project", url: ctaUrl }}
+  />
 </Layout>
