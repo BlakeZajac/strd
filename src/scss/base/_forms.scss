@@ -47,4 +47,8 @@ textarea {
 
 button[type="submit"] {
     width: fit-content;
+
+    &:focus-visible {
+        @include focus($color: $color-black);
+    }
 }

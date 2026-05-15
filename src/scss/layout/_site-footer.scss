@@ -55,6 +55,10 @@
     &:hover {
         @include link-underline-animated-hover(true);
     }
+
+    &:focus-visible {
+        @include focus;
+    }
 }
 
 .site-footer__text {

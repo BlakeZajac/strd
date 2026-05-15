@@ -36,3 +36,9 @@
     pointer-events: none;
     opacity: 0.5;
 }
+
+.site-brand {
+    a:focus-visible & {
+        @include focus;
+    }
+}

@@ -25,6 +25,10 @@ $offcanvas-menu-item-count: 4;
             inset: 0;
             content: '';
         }
+
+        &:focus-visible {
+            @include focus;
+        }
         
         .site-offcanvas-trigger__icon {
             --width: #{rem(32px)};
@@ -180,6 +184,10 @@ $offcanvas-menu-item-count: 4;
         &:hover {
             opacity: 0.7;
         }
+
+        &:focus-visible {
+            @include focus($color: white)
+        }
     }
     
     .site-offcanvas__content {
@@ -233,6 +241,10 @@ $offcanvas-menu-item-count: 4;
             position: absolute;
             inset: 0;
             content: '';
+        }
+
+        &:focus-visible {
+            @include focus;
         }
     }
 

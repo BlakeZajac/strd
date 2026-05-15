@@ -7,11 +7,6 @@
     @media (width >= $break-grid-md) {
         color: white;
     }
-
-    &:focus-visible {
-        border-radius: $border-radius-01;
-        @include focus($color: $color-black);
-    }
 }
 
 .project-card__background {
@@ -19,6 +14,10 @@
     aspect-ratio: 16 / 9;
     background-color: inherit;
     border-radius: $border-radius-01;
+
+    .project-card:focus-visible & {
+        @include focus($color: $color-black);
+    }
 }
 
 .project-card__content {

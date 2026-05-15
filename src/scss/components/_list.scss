@@ -101,6 +101,10 @@
     &:has(.list-link:hover) {
         background-color: $color-black-6;
     }
+
+    &:has(.list-link:focus-visible) {
+        @include focus;
+    }
 }
 
 
