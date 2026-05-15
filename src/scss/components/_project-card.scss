@@ -7,6 +7,11 @@
     @media (width >= $break-grid-md) {
         color: white;
     }
+
+    &:focus-visible {
+        border-radius: $border-radius-01;
+        @include focus($color: $color-black);
+    }
 }
 
 .project-card__background {

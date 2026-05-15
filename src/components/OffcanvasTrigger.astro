@@ -1,17 +1,9 @@
-<button class="site-offcanvas-trigger js-site-offcanvas-trigger">
-  <span class="site-offcanvas-trigger__icon"></span>
+<button
+  type="button"
+  class="site-offcanvas-trigger js-site-offcanvas-trigger"
+  aria-expanded="false"
+  aria-controls="site-offcanvas"
+>
+  <span class="site-offcanvas-trigger__icon" aria-hidden="true"></span>
   <span class="u-visually-hidden">Menu</span>
 </button>
-
-<script>
-  const trigger = document.querySelector(".js-site-offcanvas-trigger");
-  const close = document.querySelector(".js-site-offcanvas-close");
-
-  trigger?.addEventListener("click", () => {
-    document.body.classList.add("offcanvas-active");
-  });
-
-  close?.addEventListener("click", () => {
-    document.body.classList.remove("offcanvas-active");
-  });
-</script>

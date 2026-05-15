@@ -5,44 +5,158 @@ import Menu from "../content/menu.json";
 const currentPath = Astro.url.pathname;
 ---
 
-<div class="site-offcanvas js-site-offcanvas">
-  <div class="site-offcanvas__container l-container">
-    <div class="site-offcanvas__header">
-      <button
-        type="button"
-        class="site-offcanvas__close js-site-offcanvas-close"
-      >
-        <span class="u-visually-hidden">Close</span>
-      </button>
-    </div>
+<div
+  class="site-offcanvas js-site-offcanvas"
+  id="site-offcanvas"
+  aria-hidden="true"
+  inert
+>
+  <div
+    class="site-offcanvas__backdrop js-site-offcanvas-backdrop"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="site-offcanvas__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu"
+  >
+    <div class="site-offcanvas__container l-container">
+      <div class="site-offcanvas__header">
+        <button
+          type="button"
+          class="site-offcanvas__close js-site-offcanvas-close"
+        >
+          <span class="u-visually-hidden">Close</span>
+        </button>
+      </div>
 
-    <div class="site-offcanvas__content">
-      <nav class="offcanvas-menu">
-        <ul class="offcanvas-menu__list">
-          {
-            Menu.items.map((item) => (
-              <li class="offcanvas-menu__item">
-                <a
-                  href={item.href}
-                  class={`offcanvas-menu__link ${
-                    currentPath === item.href
-                      ? "offcanvas-menu__link--active"
-                      : ""
-                  }`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
+      <div class="site-offcanvas__content">
+        <nav class="offcanvas-menu">
+          <ul class="offcanvas-menu__list">
+            {
+              Menu.items.map((item) => (
+                <li class="offcanvas-menu__item">
+                  <a
+                    href={item.href}
+                    class={`offcanvas-menu__link ${
+                      currentPath === item.href
+                        ? "offcanvas-menu__link--active"
+                        : ""
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
 
-      <Button
-        label="Start a project"
-        url="/contact"
-        className="offcanvas-menu__button"
-      />
+        <Button
+          label="Start a project"
+          url="/contact"
+          className="offcanvas-menu__button"
+        />
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  const OPEN_CLASS = "offcanvas-active";
+  const CLOSING_CLASS = "offcanvas-closing";
+  const CLOSE_FALLBACK_MS = 1600;
+
+  const offcanvas = document.querySelector(".js-site-offcanvas");
+  const panel = document.querySelector(".site-offcanvas__panel");
+  const backdrop = document.querySelector(".js-site-offcanvas-backdrop");
+  const trigger = document.querySelector(".js-site-offcanvas-trigger");
+  const closeBtn = document.querySelector(".js-site-offcanvas-close");
+  const links = document.querySelectorAll(".offcanvas-menu__link");
+
+  const isOpen = () => document.body.classList.contains(OPEN_CLASS);
+  const isClosing = () => document.body.classList.contains(CLOSING_CLASS);
+
+  const setExpanded = (open: boolean) => {
+    trigger?.setAttribute("aria-expanded", open ? "true" : "false");
+  };
+
+  const setOffcanvasHidden = (hidden: boolean) => {
+    if (!offcanvas) return;
+
+    offcanvas.setAttribute("aria-hidden", hidden ? "true" : "false");
+
+    if (hidden) {
+      offcanvas.setAttribute("inert", "");
+    } else {
+      offcanvas.removeAttribute("inert");
+    }
+  };
+
+  const open = () => {
+    if (isOpen() || isClosing()) return;
+
+    document.body.classList.remove(CLOSING_CLASS);
+    document.body.classList.add(OPEN_CLASS);
+    document.body.style.overflow = "hidden";
+    setExpanded(true);
+    setOffcanvasHidden(false);
+    closeBtn?.focus();
+  };
+
+  const finishClose = () => {
+    document.body.classList.remove(CLOSING_CLASS);
+    document.body.style.overflow = "";
+    setOffcanvasHidden(true);
+    setExpanded(false);
+    trigger?.focus();
+  };
+
+  const close = () => {
+    if (!isOpen() || isClosing()) return;
+
+    document.body.classList.remove(OPEN_CLASS);
+    document.body.classList.add(CLOSING_CLASS);
+    setExpanded(false);
+
+    const onTransitionEnd = (event: TransitionEvent) => {
+      if (event.target !== panel || event.propertyName !== "transform") return;
+
+      panel.removeEventListener("transitionend", onTransitionEnd);
+      finishClose();
+    };
+
+    panel.addEventListener("transitionend", onTransitionEnd);
+
+    window.setTimeout(() => {
+      if (!document.body.classList.contains(CLOSING_CLASS)) return;
+
+      panel.removeEventListener("transitionend", onTransitionEnd);
+      finishClose();
+    }, CLOSE_FALLBACK_MS);
+  };
+
+  trigger?.addEventListener("click", () => {
+    if (isOpen()) {
+      close();
+    } else {
+      open();
+    }
+  });
+
+  closeBtn?.addEventListener("click", close);
+  backdrop?.addEventListener("click", close);
+
+  links.forEach((link) => {
+    link.addEventListener("click", close);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isOpen()) {
+      close();
+    }
+  });
+</script>
