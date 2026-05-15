@@ -31,7 +31,7 @@ textarea {
     border: rem(1px) solid $color-border;
     @include type-style-09;
 
-    @media (min-width: $break-grid-md) {
+    @media (width >= $break-grid-md) {
         height: rem(60px);
     }
 

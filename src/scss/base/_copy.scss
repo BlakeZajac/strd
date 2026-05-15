@@ -1,7 +1,7 @@
 .copy {
 	--copy-spacer: #{rem(24px)};
 
-	@media (min-width: $break-grid-md) {
+	@media (width >= $break-grid-md) {
 		--copy-spacer: #{rem(32px)};
 	}
 

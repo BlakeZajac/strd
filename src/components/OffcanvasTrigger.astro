@@ -5,8 +5,13 @@
 
 <script>
   const trigger = document.querySelector(".js-site-offcanvas-trigger");
+  const close = document.querySelector(".js-site-offcanvas-close");
 
   trigger?.addEventListener("click", () => {
-    document.body.classList.add("site-offcanvas-open");
+    document.body.classList.add("offcanvas-active");
+  });
+
+  close?.addEventListener("click", () => {
+    document.body.classList.remove("offcanvas-active");
   });
 </script>

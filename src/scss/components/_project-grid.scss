@@ -23,13 +23,13 @@
 }
 
 .project-grid--columns_2 {
-    @media (min-width: $break-grid-xl) {
+    @media (width >= $break-grid-xl) {
         --num-columns: 2;
     }
 }
 
 .project-grid--columns_3 {
-    @media (min-width: $break-grid-3xl) {
+    @media (width >= $break-grid-3xl) {
         --num-columns: 3;
     }
 }

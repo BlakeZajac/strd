@@ -20,6 +20,7 @@ $color-yellow: #dbfc0d;
 $color-red: #fa5555;
 
 $color-border: $color-black-6;
+$color-border-inverted: rgba(white, 10%);
 $color-grey: #999999;
 
 //---------------------------------------------------------------------------
@@ -117,7 +118,7 @@ $border-radius-01: rem(10px);
 	--spacer-section: var(--spacer-03);
 }
 
-@media (min-width: $break-grid-lg) {
+@media (width >= $break-grid-lg) {
 	:root {
 		--spacer-section: var(--spacer-04);
 	}

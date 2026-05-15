@@ -4,7 +4,7 @@
     row-gap: rem(24px);
     position: relative;
 
-    @media (min-width: $break-grid-md) {
+    @media (width >= $break-grid-md) {
         color: white;
     }
 
@@ -32,7 +32,7 @@
     display: grid;
     align-content: flex-end;
 
-    @media (min-width: $break-grid-md) {
+    @media (width >= $break-grid-md) {
         width: 100%;
         height: 100%;
         position: absolute;
@@ -45,7 +45,7 @@
     display: grid;
     row-gap: rem(4px);
 
-    @media (min-width: $break-grid-md) {
+    @media (width >= $break-grid-md) {
         padding: rem(32px);
         position: sticky;
         inset-block-end: 0;
@@ -61,7 +61,7 @@
     @include type-style-09;
     transition: height $transition-cubic-01;
 
-    @media (min-width: $break-grid-md) {
+    @media (width >= $break-grid-md) {
         height: 0;
         overflow: hidden;
 

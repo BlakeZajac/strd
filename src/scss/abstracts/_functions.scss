@@ -27,8 +27,3 @@ $font-size-base: 16px !default;
 		@return math.div(strip-units($pixels), strip-units($context));
 	}
 }
-
-// Return max-width breakpoint
-@function max-width($value) {
-	@return $value - em(1px);
-}

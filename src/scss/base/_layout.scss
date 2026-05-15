@@ -22,11 +22,11 @@
 	margin-inline: auto;
 	padding-inline: $l-container-padding-xs;
 
-	@media (min-width: $break-grid-lg) {
+	@media (width >= $break-grid-lg) {
 		padding-inline: $l-container-padding-lg;
 	}
 
-	@media (min-width: $break-grid-2xl) {
+	@media (width >= $break-grid-2xl) {
 		padding-inline: $l-container-padding-xl;
 	}
 }

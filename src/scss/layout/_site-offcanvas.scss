@@ -1,3 +1,7 @@
+//---------------------------------------------------------------------------
+//	Trigger
+//---------------------------------------------------------------------------
+
 .site-offcanvas-trigger {
     display: none;
 }
@@ -7,8 +11,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: rem(32px);
-        height: rem(32px);
+        width: rem(48px);
+        height: rem(48px);
         position: relative;
     
         &::before {
@@ -48,3 +52,103 @@
         }
     }
 }
+
+//---------------------------------------------------------------------------
+//	Offcanvas
+//---------------------------------------------------------------------------
+
+.site-offcanvas {
+    display: none;
+}
+
+@media (width < $site-header-break-full) {
+    .site-offcanvas {
+        display: flex;
+        flex-direction: column;
+        width: 100svw;
+        height: 100svh;
+        position: fixed;
+        inset: 0;
+        transform: translateX(100%);
+        background-color: $color-black;
+        color: white;
+        transition: transform $transition-cubic-01;
+
+        .offcanvas-active & {
+            transform: translateX(0);
+        }
+    }
+    
+    .site-offcanvas__container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        row-gap: rem(32px);
+        width: 100%;
+    }
+    
+    .site-offcanvas__header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: var(--site-header-height);
+        border-block-end: rem(1px) solid $color-border-inverted;
+    }
+
+    .site-offcanvas__close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: rem(48px);
+        height: rem(48px);
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 5L5 19' stroke='white' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5 5L19 19' stroke='white' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+        background-size: rem(32px);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .site-offcanvas__content {
+        display: flex;
+        flex-direction: column;
+        row-gap: rem(32px);
+        flex-grow: 1;
+        padding-block-end: rem(32px);
+    }
+}
+
+
+//---------------------------------------------------------------------------
+//	Menu
+//---------------------------------------------------------------------------
+
+@media (width < $site-header-break-full) {
+    .offcanvas-menu__list {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .offcanvas-menu__item {
+        padding-block: rem(16px);
+        position: relative;
+    }
+    
+    .offcanvas-menu__link {
+        @include type-style-03;
+    
+        &::before {
+            position: absolute;
+            inset: 0;
+            content: '';
+        }
+    }
+
+    .offcanvas-menu__link--active {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+    
+    .offcanvas-menu__button {
+        justify-content: center;
+        margin-block-start: auto;
+    }
+}    

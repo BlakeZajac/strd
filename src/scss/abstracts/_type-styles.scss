@@ -9,7 +9,7 @@
 	line-height: 1.1;
 	letter-spacing: -0.03em;
 
-	@media (min-width: $break-grid-md) {
+	@media (width >= $break-grid-md) {
 		font-size: rem(64px);
 	}
 }
@@ -20,7 +20,7 @@
 	line-height: 1.2;
 	letter-spacing: -0.03em;
 
-	@media (min-width: $break-grid-md) {
+	@media (width >= $break-grid-md) {
 		font-size: rem(36px);
 	}
 }
@@ -31,7 +31,7 @@
 	line-height: 1.2;
 	letter-spacing: -0.03em;
 
-	@media (min-width: $break-grid-md) {
+	@media (width >= $break-grid-md) {
 		font-size: rem(24px);
 	}
 }
@@ -51,7 +51,7 @@
 	font-size: rem(16px);
 	line-height: 1.6;
 
-	@media (min-width: $break-grid-md) {
+	@media (width >= $break-grid-md) {
 		font-size: rem(18px);
 	}
 }
@@ -80,11 +80,11 @@
 	line-height: 1.05;
 	letter-spacing: -0.02em;
 
-	@media (min-width: $break-grid-md) {
+	@media (width >= $break-grid-md) {
 		font-size: rem(80px);
 	}
 
-	@media (min-width: $break-grid-lg) {
+	@media (width >= $break-grid-lg) {
 		font-size: rem(100px);
 	}
 }
