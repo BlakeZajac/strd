@@ -1,46 +1,50 @@
 @use "abstracts" as *;
 
 .site-header {
-    height: var(--site-header-height);
-    background-color: rgba(white, 75%);
-    backdrop-filter: blur(10px);
-    border-block-end: rem(1px) solid $color-black-6;
+  height: var(--site-header-height);
+  background-color: rgba(white, 75%);
+  backdrop-filter: blur(10px);
+  border-block-end: rem(1px) solid $color-black-6;
 }
 
 .site-header__container {
-    display: flex;
-    gap: rem(32px);
-    align-items: center;
-    justify-content: space-between;
-    padding-block: rem(24px);
+  display: flex;
+  gap: rem(32px);
+  align-items: center;
+  justify-content: space-between;
+  padding-block: rem(24px);
 }
 
 .site-header__menu {
-    display: none;
+  display: none;
 
-    @media (width >= $site-header-break-full) {
-        display: flex;
-        gap: rem(32px);
-        align-items: center;
-    }
+  @media (width >= $site-header-break-full) {
+    display: flex;
+    gap: rem(32px);
+    align-items: center;
+  }
 }
 
 .site-header__link {
-    @include type-style-13;
-    @include link-underline-animated(true);
+  @include type-style-13;
+  @include link-underline-animated(true);
 
-    &:hover {
-        @include link-underline-animated-hover(true);
-    }
+  &:hover {
+    @include link-underline-animated-hover(true);
+  }
+
+  &:focus-visible {
+    @include focus;
+  }
 }
 
 .site-header__link--active {
-    pointer-events: none;
-    opacity: 0.5;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .site-brand {
-    a:focus-visible & {
-        @include focus;
-    }
+  a:focus-visible & {
+    @include focus;
+  }
 }
