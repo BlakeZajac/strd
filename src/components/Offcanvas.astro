@@ -1,6 +1,8 @@
 ---
 import Button from "./Button.astro";
 import Menu from "../content/menu.json";
+
+const currentPath = Astro.url.pathname;
 ---
 
 <div class="site-offcanvas js-site-offcanvas">
@@ -20,7 +22,14 @@ import Menu from "../content/menu.json";
           {
             Menu.items.map((item) => (
               <li class="offcanvas-menu__item">
-                <a href={item.href} class="offcanvas-menu__link">
+                <a
+                  href={item.href}
+                  class={`offcanvas-menu__link ${
+                    currentPath === item.href
+                      ? "offcanvas-menu__link--active"
+                      : ""
+                  }`}
+                >
                   {item.label}
                 </a>
               </li>
