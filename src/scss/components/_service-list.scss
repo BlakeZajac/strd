@@ -1,0 +1,21 @@
+@use "abstracts" as *;
+
+.service-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.service-list__item {
+  padding-block: rem(24px);
+  border-block-start: rem(1px) solid $color-border;
+
+  &:last-child {
+    border-block-end: rem(1px) solid $color-border;
+  }
+}
+
+.service-list__title {
+  margin-block-end: rem(8px);
+  @include type-style-04;
+}

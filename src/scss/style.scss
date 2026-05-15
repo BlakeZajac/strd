@@ -9,6 +9,7 @@
 @use "base/copy";
 
 // Components
+@use "components/accordion";
 @use "components/banner-post";
 @use "components/button";
 @use "components/button-group";
@@ -19,6 +20,7 @@
 @use "components/post-content";
 @use "components/project-card";
 @use "components/project-grid";
+@use "components/service-list";
 @use "components/video-image-background";
 
 // Layout
