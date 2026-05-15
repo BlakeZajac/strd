@@ -1,0 +1,179 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import ListContent from "../../../components/ListContent.astro";
+import ServiceList from "../../../components/ServiceList.astro";
+import Accordion from "../../../components/Accordion.astro";
+import ProjectGrid from "../../../components/ProjectGrid.astro";
+import ButtonGroup from "../../../components/ButtonGroup.astro";
+
+import { createServiceLocationSchema } from "../../../lib/schema";
+import { url } from "../../../lib/site";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const locations = await getCollection("service-locations");
+
+  return locations.map((entry) => ({
+    params: {
+      service: entry.data.serviceSlug,
+      location: entry.data.locationSlug,
+    },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+
+const pagePath = `services/${data.serviceSlug}/${data.locationSlug}`;
+const ctaUrl = `/contact/?source=seo&campaign=services-${data.serviceSlug}-${data.locationSlug}`;
+
+const schema = createServiceLocationSchema({
+  heading: data.heroHeading,
+  description: data.heroSubheading,
+  areaServed: data.schema?.areaServedOverride ?? data.locationName,
+  pageUrl: url(pagePath),
+  serviceSlug: data.serviceSlug,
+  locationName: data.locationName,
+  faqs: data.faqs,
+});
+
+const PROCESS_STEPS = [
+  {
+    title: "Discover",
+    description:
+      "A focused conversation to understand your business, goals, and what a good outcome looks like.",
+  },
+  {
+    title: "Define",
+    description:
+      "Scope, structure, and approach agreed in writing before design or development begins.",
+  },
+  {
+    title: "Design",
+    description:
+      "Considered layouts and visual direction that serve your content and your audience.",
+  },
+  {
+    title: "Develop",
+    description:
+      "Clean, maintainable WordPress code built for reliability and longevity beyond launch day.",
+  },
+  {
+    title: "Deliver",
+    description:
+      "A thorough handover with documentation and a clear plan for what comes next.",
+  },
+];
+
+const aboutContent = `<p>I'm Blake, a Newcastle-based WordPress developer and designer. I work remotely with small businesses and studios across ${data.locationName} and Australia, building WordPress websites that are considered in their design, clean in their code, and built to last.</p><p>I work directly with clients — no account managers or intermediaries — which means clear communication and a consistent point of contact from brief to handover.</p>`;
+---
+
+<Layout title={data.title} description={data.metaDescription} schema={schema}>
+  <Hero
+    title={data.heroHeading}
+    description={data.heroSubheading}
+    primaryButton={{ label: "Start a project", url: ctaUrl }}
+    secondaryButton={{ label: "View recent work", url: "#work" }}
+  />
+
+  <ListContent title="About Blake" content={aboutContent} borderTop={true} />
+
+  <ListContent
+    title="Who I work with"
+    content={`<p>${data.audience}</p>`}
+    borderTop={true}
+  />
+
+  {
+    data.servicesList && data.servicesList.length > 0 && (
+      <div class="l-section">
+        <div class="l-container">
+          <div class="list-2col">
+            <div class="list-2col__unit list-2col__unit--title">
+              <div class="list-title">What I do</div>
+            </div>
+            <div class="list-2col__unit list-2col__unit--copy">
+              <ServiceList items={data.servicesList} />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="l-section">
+    <div class="l-container">
+      <div class="list-2col">
+        <div class="list-2col__unit list-2col__unit--title">
+          <div class="list-title">How it works</div>
+        </div>
+        <div class="list-2col__unit list-2col__unit--copy">
+          <ServiceList items={PROCESS_STEPS} />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ListContent
+    title="Working together"
+    content={`<p>${data.locationContext}</p>`}
+    borderTop={true}
+  />
+
+  {
+    data.featuredWorkSlugs && data.featuredWorkSlugs.length > 0 && (
+      <div id="work">
+        <ProjectGrid slugs={data.featuredWorkSlugs} />
+      </div>
+    )
+  }
+
+  {
+    data.faqs && data.faqs.length > 0 && (
+      <div class="l-section">
+        <div class="l-container">
+          <div class="list-2col">
+            <div class="list-2col__unit list-2col__unit--title">
+              <div class="list-title">FAQs</div>
+            </div>
+            <div class="list-2col__unit list-2col__unit--copy">
+              <Accordion
+                items={data.faqs.map(({ question, answer }) => ({
+                  title: question,
+                  content: answer,
+                }))}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  <div class="l-section">
+    <div class="l-container">
+      <div class="list-2col">
+        <div class="list-2col__unit list-2col__unit--title">
+          <div class="list-title">Next steps</div>
+        </div>
+
+        <div
+          class="list-2col__unit list-2col__unit--copy service-location__cta"
+        >
+          <p class="medium">
+            Ready to make your next stride? Share a few details about your
+            project and I will get back to you within one business day.
+          </p>
+
+          <ButtonGroup
+            primaryButton={{ label: "Start a project", url: ctaUrl }}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
