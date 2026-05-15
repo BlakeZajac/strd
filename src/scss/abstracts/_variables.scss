@@ -25,9 +25,6 @@ $color-grey: #999999;
 
 //---------------------------------------------------------------------------
 //  Breakpoints
-//
-//  Global breakpoints used across the site. Use t-shirt sizing for naming.
-//  Add larger and smaller sizes with the format 2xs or 2xl.
 //---------------------------------------------------------------------------
 
 $break-grid-2xs: em(375px);
@@ -72,25 +69,27 @@ $transition-cubic-bezier: cubic-bezier(0.16, 1, 0.3, 1);
 $transition-cubic-01: 1s $transition-cubic-bezier;
 $transition-cubic-02: 1.2s $transition-cubic-bezier;
 
-$transition-elastic-ease-out: linear(0,
-		0.5737 7.6%,
-		0.8382 11.87%,
-		0.9463 14.19%,
-		1.0292 16.54%,
-		1.0886 18.97%,
-		1.1258 21.53%,
-		1.137 22.97%,
-		1.1424 24.48%,
-		1.1423 26.1%,
-		1.1366 27.86%,
-		1.1165 31.01%,
-		1.0507 38.62%,
-		1.0219 42.57%,
-		0.9995 46.99%,
-		0.9872 51.63%,
-		0.9842 58.77%,
-		1.0011 81.26%,
-		1);
+$transition-elastic-ease-out: linear(
+  0,
+  0.5737 7.6%,
+  0.8382 11.87%,
+  0.9463 14.19%,
+  1.0292 16.54%,
+  1.0886 18.97%,
+  1.1258 21.53%,
+  1.137 22.97%,
+  1.1424 24.48%,
+  1.1423 26.1%,
+  1.1366 27.86%,
+  1.1165 31.01%,
+  1.0507 38.62%,
+  1.0219 42.57%,
+  0.9995 46.99%,
+  0.9872 51.63%,
+  0.9842 58.77%,
+  1.0011 81.26%,
+  1
+);
 $transition-elastic-01: 1s $transition-elastic-ease-out;
 $transition-elastic-02: 1.2s $transition-elastic-ease-out;
 
@@ -105,22 +104,22 @@ $border-radius-01: rem(10px);
 //---------------------------------------------------------------------------
 
 :root {
-	--inset: #{rem(20px)};
-	--inset-border-radius: #{$border-radius-01};
+  --inset: #{rem(20px)};
+  --inset-border-radius: #{$border-radius-01};
 
-	--site-header-height: #{$site-header-height};
+  --site-header-height: #{$site-header-height};
 
-	--spacer-01: #{rem(32px)};
-	--spacer-02: #{rem(48px)};
-	--spacer-03: #{rem(64px)};
-	--spacer-04: #{rem(128px)};
-	--spacer-05: #{rem(160px)};
+  --spacer-01: #{rem(32px)};
+  --spacer-02: #{rem(48px)};
+  --spacer-03: #{rem(64px)};
+  --spacer-04: #{rem(128px)};
+  --spacer-05: #{rem(160px)};
 
-	--spacer-section: var(--spacer-03);
+  --spacer-section: var(--spacer-03);
 }
 
 @media (width >= $break-grid-lg) {
-	:root {
-		--spacer-section: var(--spacer-04);
-	}
+  :root {
+    --spacer-section: var(--spacer-04);
+  }
 }
