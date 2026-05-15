@@ -1,0 +1,21 @@
+{
+    "title": "Menu",
+    "items": [
+      {
+        "label": "Work",
+        "href": "/work"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Reading",
+        "href": "/reading"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ]
+  }

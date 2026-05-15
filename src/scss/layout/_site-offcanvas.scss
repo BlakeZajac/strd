@@ -1,0 +1,50 @@
+.site-offcanvas-trigger {
+    display: none;
+}
+
+@media (width < $site-header-break-full) {
+    .site-offcanvas-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: rem(32px);
+        height: rem(32px);
+        position: relative;
+    
+        &::before {
+            position: absolute;
+            inset: 0;
+            content: ''
+        }
+        
+        .site-offcanvas-trigger__icon {
+            --width: #{rem(32px)};
+            --height: #{rem(1px)};
+            --spacer: #{rem(8px)};
+        
+            display: block;
+            width: var(--width);
+            height: var(--height);
+            position: relative;
+            background-color: $color-black;
+        
+            &::before,
+            &::after {
+                display: block;
+                width: var(--width);
+                height: var(--height);
+                position: absolute;
+                background-color: currentColor;
+                content: '';
+            }
+        
+            &::before {
+                inset-block-start: calc(var(--spacer) * -1);
+            }  
+        
+            &::after {
+                inset-block-end: calc(var(--spacer) * -1);
+            }
+        }
+    }
+}

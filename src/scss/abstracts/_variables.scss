@@ -55,7 +55,8 @@ $l-grid-padding-02: rem(20px);
 //	Site Header
 //---------------------------------------------------------------------------
 
-$site-header-height: rem(90px) !default;
+$site-header-height: rem(90px);
+$site-header-break-full: $break-grid-md;
 
 //---------------------------------------------------------------------------
 //	Transitions

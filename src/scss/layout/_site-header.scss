@@ -14,12 +14,12 @@
 }
 
 .site-header__menu {
-    display: flex;
-    gap: rem(24px);
-    align-items: center;
+    display: none;
 
-    @media (min-width: $break-grid-2xs) {
+    @media (width >= $site-header-break-full) {
+        display: flex;
         gap: rem(32px);
+        align-items: center;
     }
 }
 

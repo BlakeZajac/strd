@@ -23,7 +23,7 @@
 }
 
 .project-grid--columns_2 {
-    @media (min-width: $break-grid-lg) {
+    @media (min-width: $break-grid-xl) {
         --num-columns: 2;
     }
 }

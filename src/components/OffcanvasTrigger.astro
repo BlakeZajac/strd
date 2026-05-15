@@ -1,0 +1,12 @@
+<button class="site-offcanvas-trigger js-site-offcanvas-trigger">
+  <span class="site-offcanvas-trigger__icon"></span>
+  <span class="u-visually-hidden">Menu</span>
+</button>
+
+<script>
+  const trigger = document.querySelector(".js-site-offcanvas-trigger");
+
+  trigger?.addEventListener("click", () => {
+    document.body.classList.add("site-offcanvas-open");
+  });
+</script>

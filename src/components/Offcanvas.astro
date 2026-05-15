@@ -1,0 +1,39 @@
+---
+import Button from "./Button.astro";
+import Menu from "../content/menu.json";
+---
+
+<div class="site-offcanvas js-site-offcanvas">
+  <div class="site-offcanvas__container l-container">
+    <div class="site-offcanvas__header">
+      <button
+        type="button"
+        class="site-offcanvas__close js-site-offcanvas-close"
+      >
+        <span class="u-visually-hidden">Close</span>
+      </button>
+    </div>
+
+    <div class="site-offcanvas__content">
+      <nav class="offcanvas-menu">
+        <ul class="offcanvas-menu__list">
+          {
+            Menu.items.map((item) => (
+              <li class="offcanvas-menu__item">
+                <a href={item.href} class="offcanvas-menu__link">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <Button
+        label="Start a project"
+        url="/contact"
+        className="offcanvas-menu__button"
+      />
+    </div>
+  </div>
+</div>
