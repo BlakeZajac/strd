@@ -1,0 +1,14 @@
+@use "abstracts" as *;
+
+.link {
+    padding-block: rem(8px);
+    @include link-underline-animated;
+
+    &:hover {
+        @include link-underline-animated-hover;
+    }
+
+    &:focus-visible {
+        @include focus;
+    }
+}

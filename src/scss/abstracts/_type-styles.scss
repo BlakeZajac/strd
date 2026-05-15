@@ -58,7 +58,18 @@
 }
 
 // Body Featured
-@mixin type-style-08 {}
+@mixin type-style-08 {
+	font-size: rem(18px);
+	line-height: 1.6;
+
+	@media (width >= $break-grid-md) {
+		font-size: rem(20px);
+	}
+
+	@media (width >= $break-grid-lg) {
+		font-size: rem(22px);
+	}
+}
 
 // Body Medium
 @mixin type-style-09 {

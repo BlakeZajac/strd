@@ -13,7 +13,7 @@
 }
 
 .hero__text {
-    @include type-style-07;
+    @include type-style-08;
 
     @media (width < $break-grid-xs) {
         br {

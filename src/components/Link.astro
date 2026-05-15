@@ -1,9 +1,9 @@
 ---
 interface Props {
-    label: string;
-    url: string;
-    target?: string;
-    className?: string;
+  label: string;
+  url: string;
+  target?: string;
+  className?: string;
 }
 
 const { label, url, target = "_self", className = "" } = Astro.props;
@@ -12,7 +12,7 @@ if (!url && !label) return;
 ---
 
 <a href={url} target={target} class={`link ${className}`}>
-    <span class="link__label">
-        {label}
-    </span>
+  <span class="link__label">
+    {label}
+  </span>
 </a>

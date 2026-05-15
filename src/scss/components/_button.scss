@@ -3,6 +3,7 @@
 .button {
     display: inline-flex;
     align-items: center;
+    width: fit-content;
     padding: rem(16px) rem(24px);
     background-color: $color-yellow;
     color: $color-black;
