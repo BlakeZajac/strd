@@ -1,21 +1,11 @@
 ---
-import { Image } from "astro:assets";
-
 interface Props {
-	loading?: "eager" | "lazy";
 	inverted?: boolean;
 }
 
-const { inverted = false, loading = "lazy" } = Astro.props;
+const { inverted = false } = Astro.props;
 ---
 
-<a href="/">
-	<Image
-		width={32}
-		height={40}
-		src={inverted ? "/logo-inverted.svg" : "/logo.svg"}
-		alt="STRD logo"
-		class="site-brand"
-		loading={loading}
-	/>
+<a href="/" class:list={["site-brand", { "site-brand--inverted": inverted }]}>
+	Blake Zajac
 </a>

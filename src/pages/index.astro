@@ -1,46 +1,42 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import {
-	LayoutHero,
-	LayoutProjectGrid,
-	LayoutList2col,
-	LayoutList,
-} from "@components";
 import { createHomePageSchema } from "../lib/schema";
-import { url } from "../lib/site";
 
-import experienceData from "../content/experience.json";
-import socialData from "../content/social.json";
-
-const title = "WordPress developer and designer in Newcastle | STRD";
+const title = "Blake Zajac Photography | Newcastle, NSW";
 const description =
-	"WordPress developer and designer in Newcastle, Australia, helping small businesses take considered strides with fast, reliable websites built to last.";
+  "Blake Zajac is a Newcastle-based photographer specialising in commercial, events, portraiture, lifestyle and automotive photography.";
 
 const schema = createHomePageSchema({
-	siteName: "STRD",
-	siteDescription: description,
-	personName: "Blake Zajac",
-	personJobTitle: "WordPress developer and designer",
-	searchAction: {
-		targetTemplate: `${url("")}?s={search_term_string}`,
-		queryInput: "required name=search_term_string",
-	},
+  siteName: "Blake Zajac",
+  siteDescription: description,
+  personName: "Blake Zajac",
+  personJobTitle: "Photographer",
 });
 ---
 
-<Layout {title} {description} {schema}>
-	<LayoutHero
-		title="Built to perform. <br /> Designed to last."
-		description="Making strides through WordPress and design. <br /> Built for businesses and individuals ready to move forward."
-		primaryAction={{ label: "View work", url: "/work" }}
-		secondaryAction={{ label: "Start a project", url: "/contact" }}
-	/>
-	<LayoutProjectGrid columns={1} slugs={["club-training"]} />
-	<LayoutProjectGrid columns={2} slugs={["southerly-ten", "fulbright"]} />
-	<LayoutList2col
-		borderTop={false}
-		content="<p class='h3'>Blake Zajac is a Newcastle-based WordPress developer and designer at Redback Solutions. He approaches development as problem solving—translating complex requirements into clean, scalable WordPress sites that balance function with form.</p> <p class='h3'>His work spans custom theme development, ecommerce solutions, and modern web applications. From concept to deployment, he focuses on building experiences that perform well, look better, and grow with the business.</p>"
-	/>
-	<LayoutList type="experience" data={experienceData} />
-	<LayoutList type="social" data={socialData} />
+<Layout {title} {description} {schema} showChrome={false}>
+  <section class="coming-soon">
+    <div class="coming-soon__container l-container">
+      <div class="coming-soon__content">
+        <p class="coming-soon__label">Coming Soon</p>
+        <h1 class="coming-soon__name">Blake Zajac</h1>
+        <p class="coming-soon__disciplines">
+          Commercial · Lifestyle · Automotive
+        </p>
+        <div class="coming-soon__contact">
+          <a href="mailto:contact@blakezajac.com" class="coming-soon__link">
+            contact@blakezajac.com
+          </a>
+          <a
+            href="https://instagram.com/zajacphoto"
+            class="coming-soon__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @zajacphoto
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

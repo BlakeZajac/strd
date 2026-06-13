@@ -1,0 +1,66 @@
+@use "abstracts" as *;
+
+.site-main:has(.coming-soon) {
+	min-height: 100svh;
+	padding-block-end: 0;
+}
+
+.coming-soon {
+	display: flex;
+	align-items: center;
+	min-height: 100svh;
+	padding-block: var(--spacer-03);
+}
+
+.coming-soon__container {
+	width: 100%;
+}
+
+.coming-soon__content {
+	display: flex;
+	flex-direction: column;
+}
+
+.coming-soon__label {
+	@include type-style-14;
+
+	color: $color-grey;
+	margin-block-end: rem(40px);
+}
+
+.coming-soon__name {
+	@include type-style-02;
+}
+
+.coming-soon__disciplines {
+	@include type-style-09;
+
+	margin-block-start: rem(12px);
+}
+
+.coming-soon__contact {
+	display: flex;
+	flex-direction: column;
+	gap: rem(6px);
+	margin-block-start: rem(48px);
+
+	@media (width >= $break-grid-sm) {
+		flex-direction: row;
+		gap: rem(24px);
+	}
+}
+
+.coming-soon__link {
+	@include type-style-07;
+	@include link-underline-animated(true);
+
+	width: fit-content;
+
+	&:hover {
+		@include link-underline-animated-hover(true);
+	}
+
+	&:focus-visible {
+		@include focus;
+	}
+}

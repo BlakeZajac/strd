@@ -5,11 +5,13 @@ export type Action = {
 };
 
 export const DEFAULT_PRIMARY_ACTION: Action = {
-  label: "Start a project",
-  url: "/contact/",
+  label: "Get in touch",
+  url: "mailto:contact@blakezajac.com",
+  target: "_self",
 };
 
 export const DEFAULT_SECONDARY_ACTION: Action = {
-  label: "View work",
-  url: "/work/",
+  label: "@zajacphoto",
+  url: "https://instagram.com/zajacphoto",
+  target: "_blank",
 };

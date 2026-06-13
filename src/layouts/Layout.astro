@@ -11,12 +11,14 @@ interface Props {
   title?: string;
   description?: string;
   schema?: any;
+  showChrome?: boolean;
 }
 
 const {
-  title = "WordPress developer and designer in Newcastle | STRD",
-  description = "Blake Zajac is a Newcastle-based WordPress developer and designer building custom WordPress sites that perform well, look considered, and help small businesses move forward.",
+  title = "Blake Zajac — Photographer | Newcastle, NSW",
+  description = "Blake Zajac is a Newcastle-based photographer specialising in commercial, events, portraiture, lifestyle and automotive photography. Open to travel.",
   schema,
+  showChrome = true,
 } = Astro.props;
 
 const url = Astro.url.href;
@@ -59,12 +61,12 @@ const url = Astro.url.href;
     }
   </head>
   <body>
-    <LayoutHeader />
+    {showChrome && <LayoutHeader />}
     <main class="site-main">
       <slot />
     </main>
-    <LayoutFooter />
-    <LayoutOffcanvas />
+    {showChrome && <LayoutFooter />}
+    {showChrome && <LayoutOffcanvas />}
     <Analytics />
   </body>
 </html>

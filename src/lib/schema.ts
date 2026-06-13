@@ -73,6 +73,10 @@ export function createHomePageSchema(params: {
         name: params.personName,
         jobTitle: params.personJobTitle,
         url: PERSON_ID,
+        sameAs: [
+          "https://www.instagram.com/zajacphoto/",
+          "https://www.linkedin.com/in/blake-zajac/",
+        ],
         address: {
           "@type": "PostalAddress",
           addressLocality: "Newcastle",

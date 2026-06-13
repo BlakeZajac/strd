@@ -44,7 +44,14 @@
 }
 
 .site-brand {
-  a:focus-visible & {
+  @include type-style-13;
+
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+  letter-spacing: -0.01em;
+
+  &:focus-visible {
     @include focus;
   }
 }
