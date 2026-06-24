@@ -1,0 +1,51 @@
+@use "abstracts" as *;
+
+.gallery-feature {
+  display: block;
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  color: white;
+  text-decoration: none;
+
+  &:focus-visible {
+    @include focus($color: white);
+  }
+}
+
+.gallery-feature__media-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: $color-grey;
+}
+
+.gallery-feature__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-feature__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba($color-black, 10%) 0%,
+    rgba($color-black, 55%) 100%
+  );
+}
+
+.gallery-feature__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100svh;
+  position: relative;
+  z-index: 1;
+  padding-block: rem(48px);
+}
+
+.gallery-feature__title {
+  @include type-style-02;
+}

@@ -6,7 +6,7 @@ export const SITE_URL = "https://blakezajac.com";
 /**
  * Returns the full URL for a path.
  *
- * @param path - Path with or without leading slash (e.g. "work" or "/work/club-training").
+ * @param path - Path with or without leading slash (e.g. "landscape" or "/automotive/").
  */
 export function url(path: string): string {
 	const normalized = path.startsWith("/") ? path : `/${path}`;

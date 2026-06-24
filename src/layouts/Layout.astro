@@ -3,7 +3,6 @@ import Analytics from "@vercel/analytics/astro";
 
 import LayoutHeader from "../components/layouts/layout-header.astro";
 import LayoutFooter from "../components/layouts/layout-footer.astro";
-import LayoutOffcanvas from "../components/layouts/layout-offcanvas.astro";
 
 import "../scss/style.scss";
 
@@ -11,14 +10,14 @@ interface Props {
   title?: string;
   description?: string;
   schema?: any;
-  showChrome?: boolean;
+  invertedHeader?: boolean;
 }
 
 const {
   title = "Blake Zajac — Photographer | Newcastle, NSW",
   description = "Blake Zajac is a Newcastle-based photographer specialising in commercial, events, portraiture, lifestyle and automotive photography. Open to travel.",
   schema,
-  showChrome = true,
+  invertedHeader = false,
 } = Astro.props;
 
 const url = Astro.url.href;
@@ -61,12 +60,13 @@ const url = Astro.url.href;
     }
   </head>
   <body>
-    {showChrome && <LayoutHeader />}
+    <LayoutHeader inverted={invertedHeader} />
+
     <main class="site-main">
       <slot />
     </main>
-    {showChrome && <LayoutFooter />}
-    {showChrome && <LayoutOffcanvas />}
+
+    <!-- <LayoutFooter /> -->
     <Analytics />
   </body>
 </html>

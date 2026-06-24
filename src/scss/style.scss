@@ -1,5 +1,3 @@
-// Vendor
-
 // Base
 @use "base/reset";
 @use "base/base";
@@ -14,15 +12,18 @@
 @use "components/button";
 @use "components/button-group";
 @use "components/detail-list";
-@use "components/locations";
-@use "components/service-cta";
+@use "components/gallery-feature";
+@use "components/gallery-grid";
+@use "components/gallery-lightbox";
 @use "components/hero";
 @use "components/link";
 @use "components/list";
+@use "components/locations";
 @use "components/media-content";
 @use "components/post-content";
 @use "components/project-card";
 @use "components/project-grid";
+@use "components/service-cta";
 @use "components/video-image-background";
 
 // Layout
@@ -30,7 +31,7 @@
 @use "layout/site-main";
 @use "layout/site-content";
 @use "layout/site-footer";
-@use "layout/site-offcanvas";
 
 // Pages
 @use "pages/coming-soon";
+@use "pages/gallery";

@@ -1,0 +1,25 @@
+---
+interface Props {
+	title: string;
+	alt: string;
+	fullImage: string;
+	index: number;
+}
+
+const { title, alt, fullImage, index } = Astro.props;
+---
+
+<button
+	type="button"
+	class="gallery-item js-gallery-item"
+	data-index={index}
+	aria-label={`View ${title}`}
+>
+	<img
+		src={fullImage}
+		alt={alt}
+		class="gallery-item__image"
+		loading="lazy"
+		decoding="async"
+	/>
+</button>

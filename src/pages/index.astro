@@ -1,10 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { LayoutGalleryFeature } from "@components";
 import { createHomePageSchema } from "../lib/schema";
+import { getGalleryTypes, getGalleryTypePath } from "../lib/gallery";
 
-const title = "Blake Zajac Photography | Newcastle, NSW";
+const types = await getGalleryTypes();
+
+const title = "Blake Zajac — Photographer | Newcastle, NSW";
 const description =
-  "Blake Zajac is a Newcastle-based photographer specialising in commercial, events, portraiture, lifestyle and automotive photography.";
+  "Photography by Blake Zajac — commercial, lifestyle, landscape and automotive work based in Newcastle, NSW.";
 
 const schema = createHomePageSchema({
   siteName: "Blake Zajac",
@@ -14,29 +18,17 @@ const schema = createHomePageSchema({
 });
 ---
 
-<Layout {title} {description} {schema} showChrome={false}>
-  <section class="coming-soon">
-    <div class="coming-soon__container l-container">
-      <div class="coming-soon__content">
-        <p class="coming-soon__label">Coming Soon</p>
-        <h1 class="coming-soon__name">Blake Zajac</h1>
-        <p class="coming-soon__disciplines">
-          Commercial · Lifestyle · Travel · Automotive
-        </p>
-        <div class="coming-soon__contact">
-          <a href="mailto:contact@blakezajac.com" class="coming-soon__link">
-            contact@blakezajac.com
-          </a>
-          <a
-            href="https://instagram.com/zajacphoto"
-            class="coming-soon__link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @zajacphoto
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+<Layout {title} {description} {schema}>
+  <div class="gallery-features">
+    {
+      types.map((galleryType, index) => (
+        <LayoutGalleryFeature
+          title={galleryType.data.title}
+          href={getGalleryTypePath(galleryType.id)}
+          imageSrc={galleryType.data.heroImage}
+          loading={index === 0 ? "eager" : "lazy"}
+        />
+      ))
+    }
+  </div>
 </Layout>

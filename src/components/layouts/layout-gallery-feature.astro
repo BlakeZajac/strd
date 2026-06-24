@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  imageSrc: string;
+  loading?: "eager" | "lazy";
+}
+
+const { title, href, imageSrc, loading = "lazy" } = Astro.props;
+---
+
+<a href={href} class="gallery-feature">
+  <div class="gallery-feature__media-wrap">
+    <img
+      src={imageSrc}
+      alt=""
+      class="gallery-feature__media"
+      loading={loading}
+      decoding="async"
+      aria-hidden="true"
+    />
+    <div class="gallery-feature__overlay" aria-hidden="true"></div>
+  </div>
+
+  <div class="gallery-feature__content l-container">
+    <h2 class="gallery-feature__title">{title}</h2>
+  </div>
+</a>

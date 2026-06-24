@@ -5,77 +5,76 @@
 //---------------------------------------------------------------------------
 
 .list-2col {
-    --list-spacer: #{rem(12px)};
+  --list-spacer: #{rem(12px)};
 
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: var(--list-spacer) $l-grid-padding-02;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-block-start: var(--spacer-03);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: var(--list-spacer) $l-grid-padding-02;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-block-start: var(--spacer-03);
 
-    @media (width >= $break-grid-md) {
-        flex-direction: row;
-    }
+  @media (width >= $break-grid-md) {
+    flex-direction: row;
+  }
 
-    &:first-child {
-        margin-block-start: 0;
-    }
+  &:first-child {
+    margin-block-start: 0;
+  }
 }
 
 .list-2col__unit {
-    width: 100%;
+  width: 100%;
 }
 
 .list-2col__unit--title {
-    flex: 1;
-    padding-block-start: var(--list-spacer);
-    border-block-start: rem(1px) solid $color-border;
+  flex: 1;
+  padding-block-start: var(--list-spacer);
+  border-block-start: rem(1px) solid $color-border;
 
-    @media (width >= $break-grid-md) {
-        width: 25%;
-    }
+  @media (width >= $break-grid-md) {
+    width: 25%;
+  }
 
-
-    .list-2col--no-border-top & {
-        padding-block-start: 0;
-        border-block-start: none;
-    }
+  .list-2col--no-border-top & {
+    padding-block-start: 0;
+    border-block-start: none;
+  }
 }
 
 .list-2col__unit--list {
-    display: grid;
-    grid-auto-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-columns: 1fr;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
 
-    @media (width >= $break-grid-md) {
-        width: 75%;
-    }
+  @media (width >= $break-grid-md) {
+    width: 75%;
+  }
 }
 
 .list-2col__unit--copy,
 .list-2col__unit--form {
-    width: 100%;
-    padding-block-start: rem(32px);
-    border-block-start: rem(1px) solid $color-border;
+  width: 100%;
+  padding-block-start: rem(32px);
+  border-block-start: rem(1px) solid $color-border;
 
-    @media (width >= $break-grid-md) {
-        width: 75%;
-    }
+  @media (width >= $break-grid-md) {
+    width: 75%;
+  }
 
-    .list-2col--no-border-top & {
-        padding-block-start: 0;
-        border-block-start: none;
-    }
+  .list-2col--no-border-top & {
+    padding-block-start: 0;
+    border-block-start: none;
+  }
 }
 
 .list-2col__unit--image {
-    margin-block-start: var(--spacer-03);
+  margin-block-start: var(--spacer-03);
 }
 
 //---------------------------------------------------------------------------
@@ -83,42 +82,35 @@
 //---------------------------------------------------------------------------
 
 .list-3col {
-    padding-block: var(--list-spacer);
-    position: relative;
-    border-block-start: rem(1px) solid $color-border;
-    transition: background-color $transition-default;
+  padding-block: var(--list-spacer);
+  position: relative;
+  border-block-start: rem(1px) solid $color-border;
+  transition: background-color $transition-default;
 
-    @media (width >= $break-grid-sm) {
-        display: grid;
-        gap: rem(20px);
-        grid-template-columns: 4fr 4fr 4fr;
-        align-content: start;
-        align-items: center;
-    }
+  @media (width >= $break-grid-sm) {
+    display: grid;
+    gap: rem(20px);
+    grid-template-columns: 4fr 4fr 4fr;
+    align-content: start;
+    align-items: center;
+  }
 
-    &:last-child {
-        border-block-end: rem(1px) solid $color-border;
-    }
+  &:last-child {
+    border-block-end: rem(1px) solid $color-border;
+  }
 
-    &:has(.list-link:hover) {
-        background-color: $color-black-6;
-    }
+  &:has(.list-link:hover) {
+    background-color: $color-black-6;
+  }
 
-    &:has(.list-link:focus-visible) {
-        @include focus;
-    }
+  &:has(.list-link:focus-visible) {
+    @include focus;
+  }
 }
-
 
 .list-3col--menu {
-    align-items: flex-start;
-    padding-block: 0;
-}
-
-.list-3col--reading {
-    @media (width >= $break-grid-sm) {
-        grid-template-columns: 4fr 4fr 2fr;
-    }
+  align-items: flex-start;
+  padding-block: 0;
 }
 
 //---------------------------------------------------------------------------
@@ -126,19 +118,19 @@
 //---------------------------------------------------------------------------
 
 .list-text {
-    @include type-style-09;
+  @include type-style-09;
 }
 
 .list-text--author {
-    color: $color-grey;
+  color: $color-grey;
 }
 
 .list-link {
-    @include type-style-09;
+  @include type-style-09;
 
-    &::before {
-        position: absolute;
-        inset: 0;
-        content: '';
-    }
+  &::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+  }
 }
