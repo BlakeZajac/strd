@@ -4,9 +4,13 @@ export type Action = {
   target?: string | "_self";
 };
 
+export const BOOKING_EMAIL = "contact@blakezajac.com";
+
+const bookingMailto = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent("Shoot enquiry")}`;
+
 export const DEFAULT_PRIMARY_ACTION: Action = {
-  label: "Get in touch",
-  url: "mailto:contact@blakezajac.com",
+  label: "Book a shoot",
+  url: bookingMailto,
   target: "_self",
 };
 

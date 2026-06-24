@@ -1,33 +1,57 @@
+---
+import BlockButtonGroup from "../blocks/block-button-group.astro";
+import menu from "../../content/menu.json";
+import type { Action } from "../../lib/actions";
+
+interface Props {
+  title?: string;
+  description?: string;
+  primaryAction?: Action | null;
+  secondaryAction?: Action | null;
+}
+
+function formatMenuOffer(items: { label: string }[]): string {
+  const labels = items.map((item) => item.label.toLowerCase());
+
+  if (labels.length === 0) {
+    return "";
+  }
+
+  if (labels.length === 1) {
+    return labels[0];
+  }
+
+  const last = labels.pop();
+
+  return `${labels.join(", ")} and ${last}`;
+}
+
+const menuOffer = formatMenuOffer(menu.items);
+
+const {
+  title = "Let's work together",
+  description = menuOffer
+    ? `${menuOffer.charAt(0).toUpperCase()}${menuOffer.slice(1)} photography — Newcastle based, open to travel.`
+    : "",
+  primaryAction,
+  secondaryAction,
+} = Astro.props;
+---
+
 <footer class="site-footer">
-  <div class="site-footer__sticky-container">
-    <div class="site-footer__container l-container">
-      <div class="site-footer__list-2col list-2col list-2col--no-border-top">
-        <div class="list-2col__unit list-2col__unit--title"></div>
+  <div class="site-footer__container l-container">
+    <div class="site-footer__cta">
+      <h2 class="site-footer__title">{title}</h2>
+      {description && <p class="site-footer__text">{description}</p>}
+      <BlockButtonGroup {primaryAction} {secondaryAction} />
+    </div>
 
-        <div class="list-2col__unit list-2col__unit--list">
-          <nav class="site-footer__menu">
-            <a href="mailto:contact@blakezajac.com" class="site-footer__link">
-              contact@blakezajac.com
-            </a>
-            <a
-              href="https://instagram.com/zajacphoto"
-              class="site-footer__link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              @zajacphoto
-            </a>
-          </nav>
-        </div>
-      </div>
+    <div class="site-footer__strip">
+      <p class="site-footer__meta">
+        &copy; {new Date().getFullYear()} Blake Zajac. All rights reserved.
+      </p>
 
-      <div class="site-footer__strip">
-        <p class="site-footer__text">
-          &copy; {new Date().getFullYear()} Blake Zajac. All rights reserved.
-        </p>
-
-        <p class="site-footer__text">32.9283° S, 151.7817° E</p>
-      </div>
+      <p class="site-footer__meta">32.9283° S, 151.7817° E</p>
     </div>
   </div>
 </footer>
