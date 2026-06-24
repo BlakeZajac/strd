@@ -1,7 +1,6 @@
 export { default as BlockButton } from "./blocks/block-button.astro";
 export { default as BlockButtonGroup } from "./blocks/block-button-group.astro";
 export { default as BlockDetailList } from "./blocks/block-detail-list.astro";
-export { default as BlockGalleryItem } from "./blocks/block-gallery-item.astro";
 export { default as BlockLink } from "./blocks/block-link.astro";
 export { default as BlockMedia } from "./blocks/block-media.astro";
 export { default as BlockProjectCard } from "./blocks/block-project-card.astro";
@@ -13,9 +12,8 @@ export { default as LayoutAccordion } from "./layouts/layout-accordion.astro";
 export { default as LayoutBannerPost } from "./layouts/layout-banner-post.astro";
 export { default as LayoutContactForm } from "./layouts/layout-contact-form.astro";
 export { default as LayoutContent } from "./layouts/layout-content.astro";
+export { default as LayoutGalleryCarousel } from "./layouts/layout-gallery-carousel.astro";
 export { default as LayoutGalleryFeature } from "./layouts/layout-gallery-feature.astro";
-export { default as LayoutGalleryGrid } from "./layouts/layout-gallery-grid.astro";
-export { default as LayoutGalleryLightbox } from "./layouts/layout-gallery-lightbox.astro";
 export { default as LayoutHero } from "./layouts/layout-hero.astro";
 export { default as LayoutList } from "./layouts/layout-list.astro";
 export { default as LayoutList2col } from "./layouts/layout-list-2col.astro";

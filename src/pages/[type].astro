@@ -2,17 +2,13 @@
 export const prerender = true;
 
 import Layout from "../layouts/Layout.astro";
-import {
-	LayoutGalleryGrid,
-	LayoutGalleryLightbox,
-} from "@components";
+import { LayoutGalleryCarousel } from "@components";
 import {
 	getGalleryTypes,
 	getGalleryPhotosByType,
 	getGalleryTypeDescription,
 	getGalleryTypeSchema,
 	getGalleryTypeTitle,
-	toLightboxPhotos,
 } from "../lib/gallery";
 
 export async function getStaticPaths() {
@@ -25,30 +21,15 @@ export async function getStaticPaths() {
 }
 
 const { galleryType } = Astro.props;
-const photos = await getGalleryPhotosByType(galleryType.id);
+const photos = getGalleryPhotosByType(galleryType);
 const title = getGalleryTypeTitle(galleryType.data.title);
 const description = getGalleryTypeDescription(
 	galleryType.data.title,
 	galleryType.data.description,
 );
 const schema = getGalleryTypeSchema(galleryType, photos);
-const lightboxPhotos = toLightboxPhotos(photos);
 ---
 
 <Layout {title} {description} {schema} invertedHeader>
-	<section class="gallery-page__header l-section">
-		<div class="l-container">
-			<h1 class="gallery-page__title">{galleryType.data.title}</h1>
-			{
-				galleryType.data.description && (
-					<p class="gallery-page__description">
-						{galleryType.data.description}
-					</p>
-				)
-			}
-		</div>
-	</section>
-
-	<LayoutGalleryGrid photos={photos} sectionClass="gallery-page__grid" />
-	<LayoutGalleryLightbox photos={lightboxPhotos} />
+	<LayoutGalleryCarousel photos={photos} />
 </Layout>

@@ -1,22 +1,7 @@
 @use "abstracts" as *;
 
-.gallery-page__header {
-	margin-block-start: var(--spacer-section);
-}
-
-.gallery-page__title {
-	@include type-style-02;
-}
-
-.gallery-page__description {
-	@include type-style-08;
-
-	max-width: rem(640px);
-	margin-block-start: rem(12px);
-	color: $color-grey;
-}
-
-.site-main:has(.gallery-features) {
+.site-main:has(.gallery-features),
+.site-main:has(.gallery-carousel) {
 	padding-block-end: 0;
 	min-height: auto;
 }

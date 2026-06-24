@@ -1,16 +1,24 @@
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
+
 import { getCollection, type CollectionEntry } from "astro:content";
 
 import { url } from "./site";
 
 const PERSON_ID = url("");
+const GALLERY_ROOT = join(process.cwd(), "public", "gallery");
+const IMAGE_EXTENSIONS = new Set([
+  ".avif",
+  ".gif",
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+]);
 
 export type GalleryTypeEntry = CollectionEntry<"gallery-types">;
-export type GalleryPhotoEntry = CollectionEntry<"gallery">;
-
-export type GalleryLightboxPhoto = {
-  title: string;
-  alt: string;
-  fullImage: string;
+export type GalleryPhoto = {
+  src: string;
 };
 
 export async function getGalleryTypes(): Promise<GalleryTypeEntry[]> {
@@ -25,13 +33,82 @@ export async function getGalleryType(
   return types.find((type) => type.id === slug);
 }
 
-export async function getGalleryPhotosByType(
+function isImageFile(name: string): boolean {
+  const extension = name.slice(name.lastIndexOf(".")).toLowerCase();
+  return IMAGE_EXTENSIONS.has(extension);
+}
+
+function toGalleryPath(type: string, value: string): string {
+  const trimmed = value.trim().replace(/\\/g, "/");
+
+  if (trimmed.startsWith("/gallery/")) {
+    return trimmed;
+  }
+
+  if (trimmed.includes("/")) {
+    return `/gallery/${trimmed.replace(/^\/+/, "")}`;
+  }
+
+  return `/gallery/${type}/${trimmed}`;
+}
+
+function sortGalleryPhotos(
+  photos: string[],
   type: string,
-): Promise<GalleryPhotoEntry[]> {
-  const photos = await getCollection("gallery");
-  return photos
-    .filter((photo) => photo.data.type === type)
-    .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+  photoOrder?: string[],
+): string[] {
+  if (!photoOrder?.length) {
+    return [...photos].sort((a, b) => a.localeCompare(b));
+  }
+
+  const orderIndex = new Map(
+    photoOrder.map((path, index) => [toGalleryPath(type, path), index]),
+  );
+
+  return [...photos].sort((a, b) => {
+    const aIndex = orderIndex.get(a);
+    const bIndex = orderIndex.get(b);
+
+    if (aIndex !== undefined && bIndex !== undefined) {
+      return aIndex - bIndex;
+    }
+
+    if (aIndex !== undefined) {
+      return -1;
+    }
+
+    if (bIndex !== undefined) {
+      return 1;
+    }
+
+    return a.localeCompare(b);
+  });
+}
+
+export function getGalleryPhotosByType(
+  galleryType: GalleryTypeEntry,
+): GalleryPhoto[] {
+  const type = galleryType.id;
+  const directory = join(GALLERY_ROOT, type);
+
+  let filenames: string[];
+
+  try {
+    filenames = readdirSync(directory).filter(
+      (name) => isImageFile(name) && !name.startsWith("."),
+    );
+  } catch {
+    return [];
+  }
+
+  const heroImage = galleryType.data.heroImage;
+  const photos = filenames
+    .map((filename) => `/gallery/${type}/${filename}`)
+    .filter((src) => src !== heroImage);
+
+  return sortGalleryPhotos(photos, type, galleryType.data.photoOrder).map(
+    (src) => ({ src }),
+  );
 }
 
 export function getGalleryTypePath(slug: string): string {
@@ -55,7 +132,7 @@ export function getGalleryTypeDescription(
 
 export function getGalleryTypeSchema(
   galleryType: GalleryTypeEntry,
-  photos: GalleryPhotoEntry[],
+  photos: GalleryPhoto[],
 ) {
   const path = galleryType.id;
   const name = getGalleryTypeTitle(galleryType.data.title);
@@ -79,22 +156,8 @@ export function getGalleryTypeSchema(
         name: galleryType.data.title,
         description,
         url: url(path),
-        image: photos.map((photo) => url(photo.data.fullImage)),
+        image: photos.map((photo) => url(photo.src)),
       },
     ],
   };
-}
-
-export function getGalleryPhotoAlt(photo: GalleryPhotoEntry): string {
-  return photo.data.alt ?? photo.data.title ?? "";
-}
-
-export function toLightboxPhotos(
-  photos: GalleryPhotoEntry[],
-): GalleryLightboxPhoto[] {
-  return photos.map((photo) => ({
-    title: photo.data.title,
-    alt: getGalleryPhotoAlt(photo),
-    fullImage: photo.data.fullImage,
-  }));
 }
