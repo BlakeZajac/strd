@@ -1,24 +1,61 @@
 @use "abstracts" as *;
 
 .site-header {
-  height: var(--site-header-height);
-  position: fixed;
-  inset-block-start: 0;
-  inset-inline: 0;
-  z-index: 1;
+	height: var(--site-header-height);
+	position: fixed;
+	inset-block-start: 0;
+	inset-inline: 0;
+	z-index: 1;
+	color: white;
 }
 
 .site-header--inverted {
-  position: static;
-  border-block-end: rem(1px) solid $color-border;
+	position: static;
+	border-block-end: rem(1px) solid $color-border;
+	color: $color-black;
 }
 
 .site-header__container {
-  display: flex;
-  align-items: center;
-  padding-block: rem(24px);
+	display: flex;
+	gap: rem(32px);
+	align-items: center;
+	justify-content: space-between;
+	padding-block: rem(24px);
 }
 
-.site-brand {
-  width: rem(40px);
+.site-header__brand {
+	flex-shrink: 0;
+
+	&:focus-visible {
+		@include focus($color: currentColor);
+	}
+}
+
+.site-header__menu {
+	display: none;
+	margin-inline-start: auto;
+
+	@media (width >= $site-header-break-full) {
+		display: flex;
+		gap: rem(32px);
+		align-items: center;
+	}
+}
+
+.site-header__link {
+	@include type-style-13;
+	@include link-underline-animated(true);
+
+	&:hover {
+		@include link-underline-animated-hover(true);
+	}
+
+	&:focus-visible {
+		@include focus($color: currentColor);
+	}
+}
+
+.site-header__link--active {
+	pointer-events: none;
+	opacity: 0.5;
 }

@@ -2,7 +2,7 @@
 export const prerender = true;
 
 import Layout from "../layouts/Layout.astro";
-import { LayoutGalleryCarousel } from "@components";
+import { LayoutGallery } from "@components";
 import {
 	getGalleryTypes,
 	getGalleryPhotosByType,
@@ -31,5 +31,9 @@ const schema = getGalleryTypeSchema(galleryType, photos);
 ---
 
 <Layout {title} {description} {schema} invertedHeader>
-	<LayoutGalleryCarousel photos={photos} />
+	<LayoutGallery
+		photos={photos}
+		galleryId={galleryType.id}
+		title={galleryType.data.title}
+	/>
 </Layout>

@@ -1,4 +1,4 @@
-import { readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 import { getCollection, type CollectionEntry } from "astro:content";
@@ -17,9 +17,57 @@ const IMAGE_EXTENSIONS = new Set([
 ]);
 
 export type GalleryTypeEntry = CollectionEntry<"gallery-types">;
+type GalleryManifestEntry = {
+  width: number;
+  height: number;
+  thumbSrc: string;
+};
+
+type GalleryManifest = Record<string, Record<string, GalleryManifestEntry>>;
+
 export type GalleryPhoto = {
   src: string;
+  thumbSrc: string;
+  width: number;
+  height: number;
 };
+
+function loadGalleryManifest(): GalleryManifest {
+  const manifestPath = join(GALLERY_ROOT, "manifest.json");
+
+  if (!existsSync(manifestPath)) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(readFileSync(manifestPath, "utf-8")) as GalleryManifest;
+  } catch {
+    return {};
+  }
+}
+
+function getPhotoMeta(
+  type: string,
+  filename: string,
+  src: string,
+  manifest: GalleryManifest,
+): Pick<GalleryPhoto, "thumbSrc" | "width" | "height"> {
+  const entry = manifest[type]?.[filename];
+
+  if (entry) {
+    return {
+      thumbSrc: entry.thumbSrc,
+      width: entry.width,
+      height: entry.height,
+    };
+  }
+
+  return {
+    thumbSrc: src,
+    width: 3,
+    height: 2,
+  };
+}
 
 export async function getGalleryTypes(): Promise<GalleryTypeEntry[]> {
   const types = await getCollection("gallery-types");
@@ -90,25 +138,44 @@ export function getGalleryPhotosByType(
 ): GalleryPhoto[] {
   const type = galleryType.id;
   const directory = join(GALLERY_ROOT, type);
+  const manifest = loadGalleryManifest();
 
   let filenames: string[];
 
   try {
-    filenames = readdirSync(directory).filter(
-      (name) => isImageFile(name) && !name.startsWith("."),
-    );
+    filenames = readdirSync(directory, { withFileTypes: true })
+      .filter(
+        (entry) =>
+          entry.isFile() &&
+          isImageFile(entry.name) &&
+          !entry.name.startsWith("."),
+      )
+      .map((entry) => entry.name);
   } catch {
     return [];
   }
 
   const heroImage = galleryType.data.heroImage;
   const photos = filenames
-    .map((filename) => `/gallery/${type}/${filename}`)
-    .filter((src) => src !== heroImage);
+    .map((filename) => ({
+      filename,
+      src: `/gallery/${type}/${filename}`,
+    }))
+    .filter(({ src }) => src !== heroImage);
 
-  return sortGalleryPhotos(photos, type, galleryType.data.photoOrder).map(
-    (src) => ({ src }),
-  );
+  return sortGalleryPhotos(
+    photos.map(({ src }) => src),
+    type,
+    galleryType.data.photoOrder,
+  ).map((src) => {
+    const filename = src.split("/").pop() ?? "";
+    const meta = getPhotoMeta(type, filename, src, manifest);
+
+    return {
+      src,
+      ...meta,
+    };
+  });
 }
 
 export function getGalleryTypePath(slug: string): string {

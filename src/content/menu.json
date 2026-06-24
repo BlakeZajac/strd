@@ -1,0 +1,17 @@
+{
+  "title": "Menu",
+  "items": [
+    {
+      "label": "Lifestyle",
+      "href": "/lifestyle/"
+    },
+    {
+      "label": "Automotive",
+      "href": "/automotive/"
+    },
+    {
+      "label": "Landscape",
+      "href": "/landscape/"
+    }
+  ]
+}

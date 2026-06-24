@@ -9,10 +9,11 @@
 // Components
 @use "components/accordion";
 @use "components/banner-post";
+@use "components/brand";
 @use "components/button";
 @use "components/button-group";
 @use "components/detail-list";
-@use "components/gallery-carousel";
+@use "components/gallery-grid";
 @use "components/gallery-feature";
 @use "components/hero";
 @use "components/link";
@@ -27,6 +28,7 @@
 
 // Layout
 @use "layout/site-header";
+@use "layout/site-offcanvas";
 @use "layout/site-main";
 @use "layout/site-content";
 @use "layout/site-footer";

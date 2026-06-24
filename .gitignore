@@ -1,6 +1,10 @@
 # build output
 dist/
 
+# generated gallery assets
+public/gallery/manifest.json
+public/gallery/**/_thumbs/
+
 # generated types
 .astro/
 

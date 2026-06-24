@@ -6,15 +6,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "gallery:thumbs": "node scripts/generate-gallery-thumbs.mjs",
+    "predev": "npm run gallery:thumbs",
+    "prebuild": "npm run gallery:thumbs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/vercel": "^9.0.4",
+    "@fancyapps/ui": "^6.1.14",
     "@vercel/analytics": "^1.6.1",
     "astro": "^5.16.11",
     "resend": "^6.9.1",
     "sass": "^1.97.2",
     "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

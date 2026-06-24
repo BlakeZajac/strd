@@ -3,7 +3,7 @@
 $offcanvas-z-index: 100;
 $offcanvas-stagger-step: 0.12s;
 $offcanvas-stagger-base: 0.2s;
-$offcanvas-menu-item-count: 4;
+$offcanvas-menu-item-count: 3;
 
 //---------------------------------------------------------------------------
 //	Trigger
@@ -41,7 +41,7 @@ $offcanvas-menu-item-count: 4;
             width: var(--width);
             height: var(--height);
             position: relative;
-            background-color: $color-black;
+            background-color: currentColor;
             transition: background-color $transition-default;
         
             &::before,
@@ -149,7 +149,7 @@ $offcanvas-menu-item-count: 4;
     .site-offcanvas__header {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-between;
         height: var(--site-header-height);
         border-block-end: rem(1px) solid $color-border-inverted;
         opacity: 0;
@@ -157,6 +157,12 @@ $offcanvas-menu-item-count: 4;
         transition:
             opacity $transition-cubic-01,
             transform $transition-cubic-01;
+    }
+
+    .site-offcanvas__brand {
+        &:focus-visible {
+            @include focus($color: white);
+        }
     }
 
     .offcanvas-active .site-offcanvas__header {
@@ -253,27 +259,5 @@ $offcanvas-menu-item-count: 4;
     .offcanvas-menu__link--active {
         pointer-events: none;
         opacity: 0.5;
-    }
-    
-    .offcanvas-menu__button {
-        justify-content: center;
-        margin-block-start: auto;
-        opacity: 0;
-        transform: translateY(rem(20px));
-        transition:
-            opacity $transition-cubic-01,
-            transform $transition-cubic-01;
-    }
-
-    .offcanvas-active .offcanvas-menu__button {
-        opacity: 1;
-        transform: translateY(0);
-        transition-delay: $offcanvas-stagger-base + ($offcanvas-stagger-step * 4);
-    }
-
-    .offcanvas-closing .offcanvas-menu__button {
-        opacity: 0;
-        transform: translateY(rem(12px));
-        transition-delay: $offcanvas-stagger-step * 4;
     }
 }

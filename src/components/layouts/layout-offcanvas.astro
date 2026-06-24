@@ -1,8 +1,11 @@
 ---
-import BlockButton from "../blocks/block-button.astro";
+import BlockBrand from "../blocks/block-brand.astro";
 import Menu from "../../content/menu.json";
 
 const currentPath = Astro.url.pathname;
+
+const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
+const normalizedCurrent = normalizePath(currentPath);
 ---
 
 <div
@@ -26,6 +29,8 @@ const currentPath = Astro.url.pathname;
 	>
 		<div class="site-offcanvas__container l-container">
 			<div class="site-offcanvas__header">
+				<BlockBrand className="site-offcanvas__brand" />
+
 				<button
 					type="button"
 					class="site-offcanvas__close js-site-offcanvas-close"
@@ -47,7 +52,8 @@ const currentPath = Astro.url.pathname;
 											"js-offcanvas-menu-link",
 											{
 												"offcanvas-menu__link--active":
-													currentPath === item.href,
+													normalizedCurrent ===
+													normalizePath(item.href),
 											},
 										]}
 									>
@@ -58,12 +64,6 @@ const currentPath = Astro.url.pathname;
 						}
 					</ul>
 				</nav>
-
-				<BlockButton
-					label="Start a project"
-					url="/contact"
-					className="offcanvas-menu__button"
-				/>
 			</div>
 		</div>
 	</div>
@@ -145,7 +145,12 @@ const currentPath = Astro.url.pathname;
 	backdrop.addEventListener("click", close);
 
 	offcanvas.addEventListener("click", (event) => {
-		if (event.target.closest(".js-offcanvas-menu-link")) close();
+		if (
+			event.target.closest(".js-offcanvas-menu-link") ||
+			event.target.closest(".site-offcanvas__brand")
+		) {
+			close();
+		}
 	});
 
 	document.addEventListener("keydown", (event) => {

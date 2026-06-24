@@ -1,0 +1,79 @@
+---
+import type { GalleryPhoto } from "../../lib/gallery";
+
+interface Props {
+  photos: GalleryPhoto[];
+  galleryId: string;
+  title: string;
+}
+
+const { photos, galleryId, title } = Astro.props;
+const fancyboxGroup = `gallery-${galleryId}`;
+const eagerCount = 6;
+---
+
+<div class="gallery l-container">
+  <h1 class="gallery__title">{title}</h1>
+
+  <section class="gallery-grid js-gallery-grid" aria-label="Gallery photos">
+    {
+      photos.map((photo, index) => (
+        <a
+          href={photo.src}
+          class="gallery-grid__link"
+          data-fancybox={fancyboxGroup}
+        >
+          <span
+            class="gallery-grid__media js-gallery-grid-media"
+            style={`--gallery-aspect: ${photo.width} / ${photo.height}`}
+          >
+            <img
+              src={photo.thumbSrc}
+              alt=""
+              width={photo.width}
+              height={photo.height}
+              class="gallery-grid__image js-gallery-grid-image"
+              loading={index < eagerCount ? "eager" : "lazy"}
+              decoding="async"
+              fetchpriority={index < 2 ? "high" : undefined}
+            />
+          </span>
+        </a>
+      ))
+    }
+  </section>
+</div>
+
+<script>
+  import { Fancybox } from "@fancyapps/ui";
+  import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+  const gallery = document.querySelector(".js-gallery-grid");
+
+  function initGalleryImages(grid) {
+    grid.querySelectorAll(".js-gallery-grid-image").forEach((img) => {
+      const media = img.closest(".js-gallery-grid-media");
+      if (!media) return;
+
+      const markLoaded = () => media.classList.add("is-loaded");
+
+      if (img.complete && img.naturalWidth > 0) {
+        markLoaded();
+      } else {
+        img.addEventListener("load", markLoaded, { once: true });
+        img.addEventListener("error", markLoaded, { once: true });
+      }
+    });
+  }
+
+  if (gallery instanceof HTMLElement) {
+    initGalleryImages(gallery);
+
+    Fancybox.bind(gallery, "[data-fancybox]", {
+      Carousel: {
+        infinite: true,
+        preload: 1,
+      },
+    });
+  }
+</script>

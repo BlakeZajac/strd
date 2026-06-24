@@ -1,0 +1,20 @@
+---
+interface Props {
+	inverted?: boolean;
+	loading?: "eager" | "lazy";
+	className?: string;
+}
+
+const { inverted = false, loading = "lazy", className } = Astro.props;
+const src = inverted ? "/logo-black.svg" : "/logo-white.svg";
+---
+
+<a href="/" class:list={[className]}>
+	<img
+		src={src}
+		alt="Blake Zajac"
+		class="site-brand"
+		loading={loading}
+		decoding="async"
+	/>
+</a>

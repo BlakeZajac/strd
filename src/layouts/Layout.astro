@@ -3,6 +3,7 @@ import Analytics from "@vercel/analytics/astro";
 
 import LayoutHeader from "../components/layouts/layout-header.astro";
 import LayoutFooter from "../components/layouts/layout-footer.astro";
+import LayoutOffcanvas from "../components/layouts/layout-offcanvas.astro";
 
 import "../scss/style.scss";
 
@@ -67,6 +68,7 @@ const url = Astro.url.href;
     </main>
 
     <!-- <LayoutFooter /> -->
+    <LayoutOffcanvas />
     <Analytics />
   </body>
 </html>

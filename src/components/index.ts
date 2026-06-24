@@ -12,7 +12,7 @@ export { default as LayoutAccordion } from "./layouts/layout-accordion.astro";
 export { default as LayoutBannerPost } from "./layouts/layout-banner-post.astro";
 export { default as LayoutContactForm } from "./layouts/layout-contact-form.astro";
 export { default as LayoutContent } from "./layouts/layout-content.astro";
-export { default as LayoutGalleryCarousel } from "./layouts/layout-gallery-carousel.astro";
+export { default as LayoutGallery } from "./layouts/layout-gallery.astro";
 export { default as LayoutGalleryFeature } from "./layouts/layout-gallery-feature.astro";
 export { default as LayoutHero } from "./layouts/layout-hero.astro";
 export { default as LayoutList } from "./layouts/layout-list.astro";
