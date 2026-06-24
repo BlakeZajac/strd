@@ -14,7 +14,7 @@ const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
 const normalizedCurrent = normalizePath(currentPath);
 ---
 
-<header class:list={["site-header", inverted && "site-header--inverted"]}>
+<header class:list={["site-header", !inverted && "theme-dark", inverted && "site-header--inverted"]}>
 	<div class="site-header__container l-container">
 		<BlockBrand
 			inverted={inverted}

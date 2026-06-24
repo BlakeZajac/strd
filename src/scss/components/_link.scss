@@ -1,10 +1,11 @@
 @use "abstracts" as *;
 
 .link {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    padding-block: rem(8px);
+	display: inline-flex;
+	align-items: center;
+	width: fit-content;
+	padding-block: rem(8px);
+	color: inherit;
 
     &:focus-visible {
         @include focus;

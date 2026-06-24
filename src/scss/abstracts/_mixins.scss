@@ -76,6 +76,24 @@
 	outline-offset: $offset;
 }
 
+@mixin theme-dark {
+	--color-emphasis: #{$theme-color-emphasis-dark};
+	--color-default: #{$theme-color-default-dark};
+}
+
+@mixin theme-light {
+	--color-emphasis: #{$theme-color-emphasis-light};
+	--color-default: #{$theme-color-default-light};
+}
+
+@mixin color-emphasis {
+	color: var(--color-emphasis);
+}
+
+@mixin color-default {
+	color: var(--color-default);
+}
+
 @mixin inset {
 	margin-block-end: var(--inset);
 	margin-inline: max(var(--inset), calc((100vw - #{$l-container-max-width}) / 2));

@@ -1,67 +1,67 @@
 @use "abstracts" as *;
 
 .project-card {
-    display: flex;
-    flex-direction: column;
-    row-gap: rem(24px);
-    position: relative;
+	display: flex;
+	flex-direction: column;
+	row-gap: rem(24px);
+	position: relative;
 
-    @media (width >= $break-grid-md) {
-        color: white;
-    }
+	@media (width >= $break-grid-md) {
+		@include theme-dark;
+	}
 }
 
 .project-card__background {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background-color: inherit;
-    border-radius: $border-radius-01;
+	position: relative;
+	aspect-ratio: 16 / 9;
+	background-color: inherit;
+	border-radius: $border-radius-01;
 
-    .project-card:focus-visible & {
-        @include focus($color: $color-black);
-    }
+	.project-card:focus-visible & {
+		@include focus($color: $color-black);
+	}
 }
 
 .project-card__content {
-    display: grid;
-    align-content: flex-end;
+	display: grid;
+	align-content: flex-end;
 
-    @media (width >= $break-grid-md) {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        inset-block-end: 0;
-        inset-inline-end: 0;
-    }
+	@media (width >= $break-grid-md) {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		inset-block-end: 0;
+		inset-inline-end: 0;
+	}
 }
 
 .project-card__content-inner {
-    display: grid;
-    row-gap: rem(4px);
+	display: grid;
+	row-gap: rem(4px);
 
-    @media (width >= $break-grid-md) {
-        padding: rem(32px);
-        position: sticky;
-        inset-block-end: 0;
-    }
+	@media (width >= $break-grid-md) {
+		padding: rem(32px);
+		position: sticky;
+		inset-block-end: 0;
+	}
 }
 
 .project-card__title {
-    @include type-style-04;
+	@include type-style-04;
+	@include color-emphasis;
 }
 
 .project-card__text {
-    opacity: 0.75;
-    @include type-style-09;
-    transition: height $transition-cubic-01;
+	@include type-style-09;
+	@include color-default;
 
-    @media (width >= $break-grid-md) {
-        height: 0;
-        overflow: hidden;
+	@media (width >= $break-grid-md) {
+		height: 0;
+		overflow: hidden;
+		transition: height $transition-cubic-01;
 
-        .project-card:hover & {
-            height: rem(25px);
-        }
-    }
-
+		.project-card:hover & {
+			height: rem(25px);
+		}
+	}
 }

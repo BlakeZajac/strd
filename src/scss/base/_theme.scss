@@ -1,0 +1,11 @@
+@use "abstracts" as *;
+
+.theme-dark {
+	@include theme-dark;
+	color: var(--color-default);
+}
+
+.theme-light {
+	@include theme-light;
+	color: var(--color-default);
+}

@@ -17,7 +17,7 @@ html {
 body {
 	margin: 0;
 	background: white;
-	color: $color-black;
+	color: var(--color-default);
 	font-family: $font-family-01;
 	font-size: rem($font-size-base);
 	line-height: 1.5;

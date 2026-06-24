@@ -27,7 +27,8 @@
 }
 
 .accordion__title {
-  @include type-style-04;
+	@include type-style-04;
+	@include color-emphasis;
 }
 
 .accordion__icon {

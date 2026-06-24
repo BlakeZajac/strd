@@ -23,6 +23,11 @@ $color-border: $color-black-6;
 $color-border-inverted: rgba(white, 10%);
 $color-grey: #999999;
 
+$theme-color-emphasis-light: $color-black;
+$theme-color-default-light: rgba($color-black, 70%);
+$theme-color-emphasis-dark: #fff;
+$theme-color-default-dark: rgba(white, 70%);
+
 //---------------------------------------------------------------------------
 //  Breakpoints
 //---------------------------------------------------------------------------
@@ -116,6 +121,9 @@ $border-radius-01: rem(10px);
   --spacer-05: #{rem(160px)};
 
   --spacer-section: var(--spacer-03);
+
+  --color-emphasis: #{$theme-color-emphasis-light};
+  --color-default: #{$theme-color-default-light};
 }
 
 @media (width >= $break-grid-lg) {

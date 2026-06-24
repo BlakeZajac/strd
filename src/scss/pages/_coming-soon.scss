@@ -23,18 +23,18 @@
 
 .coming-soon__label {
 	@include type-style-14;
-
-	color: $color-grey;
+	@include color-default;
 	margin-block-end: rem(40px);
 }
 
 .coming-soon__name {
 	@include type-style-02;
+	@include color-emphasis;
 }
 
 .coming-soon__disciplines {
 	@include type-style-09;
-
+	@include color-default;
 	margin-block-start: rem(12px);
 }
 

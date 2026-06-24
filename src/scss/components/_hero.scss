@@ -3,21 +3,23 @@
 .hero {}
 
 .hero__container {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--spacer-03);
+	display: flex;
+	flex-direction: column;
+	row-gap: var(--spacer-03);
 }
 
 .hero__title {
-    @include type-style-12;
+	@include type-style-12;
+	@include color-emphasis;
 }
 
 .hero__text {
-    @include type-style-08;
+	@include type-style-08;
+	@include color-default;
 
-    @media (width < $break-grid-xs) {
-        br {
-            display: none;
-        }
-    }
+	@media (width < $break-grid-xs) {
+		br {
+			display: none;
+		}
+	}
 }

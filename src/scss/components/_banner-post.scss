@@ -1,44 +1,45 @@
 @use "abstracts" as *;
 
 .banner-post {
-    --min-height: calc(100svh - var(--site-header-height) - (var(--inset) * 2));
+	--min-height: calc(100svh - var(--site-header-height) - (var(--inset) * 2));
 
-    display: flex;
-    flex-direction: column;
-    min-height: var(--min-height);
-    position: relative;
-    color: white;
+	display: flex;
+	flex-direction: column;
+	min-height: var(--min-height);
+	position: relative;
 }
 
 .banner-post__container {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--spacer-02);
-    justify-content: flex-end;
-    flex-grow: 1;
-    width: 100%;
-    padding-block: var(--spacer-section) var(--spacer-03);
-    position: relative;
-    z-index: 1;
+	display: flex;
+	flex-direction: column;
+	row-gap: var(--spacer-02);
+	justify-content: flex-end;
+	flex-grow: 1;
+	width: 100%;
+	padding-block: var(--spacer-section) var(--spacer-03);
+	position: relative;
+	z-index: 1;
 }
 
 .banner-post__content {
-    display: flex;
-    flex-direction: column;
-    row-gap: rem(24px);
-    max-width: $l-content-max-width;
+	display: flex;
+	flex-direction: column;
+	row-gap: rem(24px);
+	max-width: $l-content-max-width;
 }
 
 .banner-post__title {
-    margin-block-start: auto;
-    @include type-style-12;
+	margin-block-start: auto;
+	@include type-style-12;
+	@include color-emphasis;
 }
 
 .banner-post__description {
-    @include type-style-07;
+	@include type-style-07;
+	@include color-default;
 }
 
 .banner-post__button-group {
-    padding-block-start: var(--spacer-02);
-    border-block-start: rem(1px) solid rgba(white, 20%);
+	padding-block-start: var(--spacer-02);
+	border-block-start: rem(1px) solid rgba(white, 20%);
 }

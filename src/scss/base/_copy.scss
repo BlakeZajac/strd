@@ -17,31 +17,37 @@
 
 	:is(h1, .h1) {
 		@include type-style-02;
+		@include color-emphasis;
 		margin-block-end: var(--copy-spacer);
 	}
 
 	:is(h2, .h2) {
 		@include type-style-02;
+		@include color-emphasis;
 		margin-block: var(--spacer-section) var(--copy-spacer);
 	}
 
 	:is(h3, .h3) {
 		@include type-style-03;
+		@include color-emphasis;
 		margin-block: var(--copy-spacer);
 	}
 
 	:is(h4, .h4) {
 		@include type-style-04;
+		@include color-emphasis;
 		margin-block: var(--copy-spacer);
 	}
 
 	:is(h5, .h5) {
 		@include type-style-05;
+		@include color-emphasis;
 		margin-block: var(--copy-spacer);
 	}
 
 	:is(h6, .h6) {
 		@include type-style-06;
+		@include color-emphasis;
 		margin-block: var(--copy-spacer);
 	}
 

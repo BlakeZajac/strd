@@ -8,11 +8,12 @@
 }
 
 .locations__title {
-  @include type-style-04;
+	@include type-style-04;
+	@include color-emphasis;
 }
 
 .locations__intro {
-  color: $color-black-80;
+	@include color-default;
 }
 
 .locations__list {

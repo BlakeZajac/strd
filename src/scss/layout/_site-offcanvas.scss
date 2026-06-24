@@ -129,7 +129,6 @@ $offcanvas-menu-item-count: 3;
         inset-inline-end: 0;
         transform: translateX(100%);
         background-color: $color-black;
-        color: white;
         transition: transform $transition-cubic-01;
         will-change: transform;
     }
@@ -161,7 +160,7 @@ $offcanvas-menu-item-count: 3;
 
     .site-offcanvas__brand {
         &:focus-visible {
-            @include focus($color: white);
+            @include focus($color: var(--color-emphasis));
         }
     }
 
@@ -194,7 +193,7 @@ $offcanvas-menu-item-count: 3;
         }
 
         &:focus-visible {
-            @include focus($color: white)
+            @include focus($color: var(--color-emphasis));
         }
     }
     
@@ -244,6 +243,7 @@ $offcanvas-menu-item-count: 3;
     
     .offcanvas-menu__link {
         @include type-style-03;
+        @include color-emphasis;
     
         &::before {
             position: absolute;

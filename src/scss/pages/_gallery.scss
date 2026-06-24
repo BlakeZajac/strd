@@ -12,8 +12,9 @@
 }
 
 .gallery__title {
-  padding-block: rem(80px);
-  @include type-style-02;
+	padding-block: rem(80px);
+	@include type-style-02;
+	@include color-emphasis;
 
   @media (width >= $break-grid-md) {
     padding-block: rem(96px);

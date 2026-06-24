@@ -6,13 +6,16 @@
 	inset-block-start: 0;
 	inset-inline: 0;
 	z-index: 1;
-	color: white;
+	@include color-emphasis;
+
+	&.theme-dark {
+		color: var(--color-emphasis);
+	}
 }
 
 .site-header--inverted {
 	position: static;
 	border-block-end: rem(1px) solid $color-border;
-	color: $color-black;
 }
 
 .site-header__container {

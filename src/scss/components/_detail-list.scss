@@ -18,4 +18,5 @@
 .detail-list__title {
 	margin-block-end: rem(8px);
 	@include type-style-04;
+	@include color-emphasis;
 }
