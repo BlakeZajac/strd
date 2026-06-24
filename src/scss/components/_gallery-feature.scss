@@ -1,12 +1,18 @@
 @use "abstracts" as *;
 
 .gallery-feature {
+  --min-height: 50svh;
+
   display: block;
   position: relative;
-  min-height: 100svh;
+  min-height: var(--min-height);
   overflow: hidden;
   color: white;
   text-decoration: none;
+
+  @media (width >= $break-grid-md) {
+    --min-height: 100svh;
+  }
 
   &:focus-visible {
     @include focus($color: white);
@@ -40,7 +46,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 100svh;
+  min-height: var(--min-height);
   position: relative;
   z-index: 1;
   padding-block: rem(48px);
