@@ -1,7 +1,9 @@
 ---
 import BlockBrand from "../blocks/block-brand.astro";
+import BlockButton from "../blocks/block-button.astro";
 import BlockOffcanvasTrigger from "../blocks/block-offcanvas-trigger.astro";
 import Menu from "../../content/menu.json";
+import { DEFAULT_PRIMARY_ACTION } from "../../lib/actions";
 
 interface Props {
 	inverted?: boolean;
@@ -22,7 +24,7 @@ const normalizedCurrent = normalizePath(currentPath);
 			className="site-header__brand"
 		/>
 
-		<nav class="site-header__menu" aria-label="Gallery">
+		<nav class="site-header__menu" aria-label="Site">
 			{
 				Menu.items.map((item) => (
 					<a
@@ -39,6 +41,10 @@ const normalizedCurrent = normalizePath(currentPath);
 					</a>
 				))
 			}
+			<BlockButton
+				{...DEFAULT_PRIMARY_ACTION}
+				className="site-header__button"
+			/>
 		</nav>
 
 		<BlockOffcanvasTrigger />

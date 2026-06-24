@@ -28,9 +28,10 @@ const description = getGalleryTypeDescription(
 	galleryType.data.description,
 );
 const schema = getGalleryTypeSchema(galleryType, photos);
+const ogImage = galleryType.data.heroImage;
 ---
 
-<Layout {title} {description} {schema} invertedHeader>
+<Layout {title} {description} {schema} {ogImage} invertedHeader>
 	<LayoutGallery
 		photos={photos}
 		galleryId={galleryType.id}

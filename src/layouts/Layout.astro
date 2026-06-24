@@ -5,23 +5,28 @@ import LayoutHeader from "../components/layouts/layout-header.astro";
 import LayoutFooter from "../components/layouts/layout-footer.astro";
 import LayoutOffcanvas from "../components/layouts/layout-offcanvas.astro";
 
+import { DEFAULT_OG_IMAGE, url as siteUrl } from "../lib/site";
+
 import "../scss/style.scss";
 
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
   schema?: any;
   invertedHeader?: boolean;
 }
 
 const {
   title = "Blake Zajac — Photographer | Newcastle, NSW",
-  description = "Blake Zajac is a Newcastle-based photographer specialising in commercial, events, portraiture, lifestyle and automotive photography. Open to travel.",
+  description = "Photography by Blake Zajac — lifestyle, landscape and automotive work based in Newcastle, NSW.",
+  ogImage = DEFAULT_OG_IMAGE,
   schema,
   invertedHeader = false,
 } = Astro.props;
 
-const url = Astro.url.href;
+const pageUrl = Astro.url.href;
+const ogImageUrl = siteUrl(ogImage);
 ---
 
 <!doctype html>
@@ -37,16 +42,18 @@ const url = Astro.url.href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={url} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImageUrl} />
 
     {/* Twitter cards */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     {/* Site assets and generator */}
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/logo-black.svg" />
     <link rel="stylesheet" href="https://use.typekit.net/lec4mqw.css" />
     <meta name="generator" content={Astro.generator} />
 

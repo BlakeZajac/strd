@@ -1,5 +1,6 @@
 ---
 import BlockBrand from "../blocks/block-brand.astro";
+import BlockButtonGroup from "../blocks/block-button-group.astro";
 import Menu from "../../content/menu.json";
 
 const currentPath = Astro.url.pathname;
@@ -64,6 +65,10 @@ const normalizedCurrent = normalizePath(currentPath);
 						}
 					</ul>
 				</nav>
+
+				<div class="site-offcanvas__cta">
+					<BlockButtonGroup />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -147,7 +152,8 @@ const normalizedCurrent = normalizePath(currentPath);
 	offcanvas.addEventListener("click", (event) => {
 		if (
 			event.target.closest(".js-offcanvas-menu-link") ||
-			event.target.closest(".site-offcanvas__brand")
+			event.target.closest(".site-offcanvas__brand") ||
+			event.target.closest(".site-offcanvas__cta a")
 		) {
 			close();
 		}

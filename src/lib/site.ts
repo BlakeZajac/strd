@@ -3,6 +3,9 @@
  */
 export const SITE_URL = "https://blakezajac.com";
 
+/** Default social preview image (absolute path under `public/`). */
+export const DEFAULT_OG_IMAGE = "/gallery/lifestyle/hero.webp";
+
 /**
  * Returns the full URL for a path.
  *

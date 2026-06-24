@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from "../layouts/Layout.astro";
 import { LayoutGalleryFeature } from "@components";
 import { createHomePageSchema } from "../lib/schema";
@@ -8,7 +10,7 @@ const types = await getGalleryTypes();
 
 const title = "Blake Zajac — Photographer | Newcastle, NSW";
 const description =
-  "Photography by Blake Zajac — commercial, lifestyle, landscape and automotive work based in Newcastle, NSW.";
+  "Photography by Blake Zajac — lifestyle, landscape and automotive work based in Newcastle, NSW.";
 
 const schema = createHomePageSchema({
   siteName: "Blake Zajac",

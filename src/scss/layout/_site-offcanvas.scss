@@ -204,6 +204,27 @@ $offcanvas-menu-item-count: 3;
         flex-grow: 1;
         padding-block-end: rem(32px);
     }
+
+    .site-offcanvas__cta {
+        margin-block-start: auto;
+        opacity: 0;
+        transform: translateY(rem(20px));
+        transition:
+            opacity $transition-cubic-01,
+            transform $transition-cubic-01;
+    }
+
+    .offcanvas-active .site-offcanvas__cta {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: $offcanvas-stagger-base + ($offcanvas-stagger-step * $offcanvas-menu-item-count);
+    }
+
+    .offcanvas-closing .site-offcanvas__cta {
+        opacity: 0;
+        transform: translateY(rem(12px));
+        transition-delay: 0s;
+    }
 }
 
 

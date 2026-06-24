@@ -10,6 +10,7 @@ const { label, url, target = "_self", className = "" } = Astro.props;
 
 if (!url && !label) return;
 
+const rel = target === "_blank" ? "noopener noreferrer" : undefined;
 const words = label.split(" ").filter((word) => word !== "");
 const totalWords = words.length;
 ---
@@ -17,6 +18,7 @@ const totalWords = words.length;
 <a
 	href={url}
 	target={target}
+	rel={rel}
 	class:list={["link", className]}
 	style={`--total-words: ${totalWords};`}
 >
