@@ -23,7 +23,7 @@ function formatMenuOffer(items: { label: string }[]): string {
 
   const last = labels.pop();
 
-  return `${labels.join(", ")} and ${last}`;
+  return `${labels.join(", ")}, ${last}`;
 }
 
 const menuOffer = formatMenuOffer(menu.items);
@@ -31,7 +31,7 @@ const menuOffer = formatMenuOffer(menu.items);
 const {
   title = "Let's work together",
   description = menuOffer
-    ? `${menuOffer.charAt(0).toUpperCase()}${menuOffer.slice(1)} and more — Newcastle based, open to travel.`
+    ? `${menuOffer.charAt(0).toUpperCase()}${menuOffer.slice(1)}, and more — Newcastle based, open to travel.`
     : "",
   primaryAction,
   secondaryAction,
